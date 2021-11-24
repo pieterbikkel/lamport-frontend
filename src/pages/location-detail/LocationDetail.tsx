@@ -40,7 +40,7 @@ function LocationDetail() {
 
   return (
     <div className="location-detail">
-      <DetailTopSection pageTitle={location.name} buttonTitle={'wijzigen'} navigationLink={'/locations/edit/' + location.locationId} subheading={'Locaties'}/>
+      <DetailTopSection pageTitle={location.name} buttonTitle={'Wijzigen'} navigationLink={'/locations/edit/' + location.locationId} subheading={'Locaties'}/>
       <table className="location-detail-table">
         <tbody>
           <tr>
