@@ -30,13 +30,17 @@ function Login() {
     
   }
 
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setLogin({...login, [e.target.id]: e.target.value})
+  }
+
   return (
-    <div className="page login">
+    <div className="login">
       <h1>Jitai</h1>
       <form onSubmit={onSubmit}>
-        <Input placeholderText={'Gebruikersnaam'} inputName={'username'} inputType={'text'} inputLabel={'Gebruikersnaam'} onChange={undefined} value={undefined} errors={[]}/>
+        <Input placeholderText={'Gebruikersnaam'} inputName={'username'} inputType={'text'} inputLabel={'Gebruikersnaam'} onChange={handleChange} errors={errors.username}/>
         <br/>
-        <Input placeholderText={'Wachtwoord'} inputName={'password'} inputType={'password'} inputLabel={'Wachtwoord'} onChange={undefined} value={undefined} errors={[]}/>
+        <Input placeholderText={'Wachtwoord'} inputName={'password'} inputType={'password'} inputLabel={'Wachtwoord'} onChange={handleChange} errors={errors.password}/>
         <div className="login-button">
           <SubmitButton value={"Login"}/>
         </div>
