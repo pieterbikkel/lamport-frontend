@@ -53,9 +53,8 @@ class UserService implements IService<UserDTO> {
         throw new Error("Method not implemented.");
     }
     async delete(id: number): Promise<void> {
-        throw new Error("Method not implemented.");
+        return networkAdapter.delete("users/" + id);
     }
-
 }
 
 export default UserService
