@@ -28,7 +28,6 @@ function UserDetail() {
     return <div></div>
   }
 
-
   return (
     <div>
       <DetailTopSection pageTitle={user.username} buttonTitle={'Wijzigen'} navigationLink={'/users/edit/' + user.id} subheading={'Gebruiker'}/>
