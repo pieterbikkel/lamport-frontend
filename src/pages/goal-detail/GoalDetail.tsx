@@ -25,7 +25,7 @@ function GoalDetail() {
 
   return (
     <div>
-      <DetailTopSection pageTitle={goal.name} buttonTitle={'Wijzigen'} navigationLink={'/goals/edit/' + goal.id} subheading={'Doelstelling'}/>
+      <DetailTopSection pageTitle={goal.name} buttonTitle={'Wijzigen'} navigationLink={'/doelstellingen/wijzigen/' + goal.id} subheading={'Doelstelling'}/>
     </div>
   );
 }

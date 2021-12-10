@@ -29,11 +29,11 @@ function LocationList() {
 
   return (
     <div>
-      <TopSection pageTitle={'Locaties'} buttonTitle={'Toevoegen'} navigationLink={'/locations/edit/0'} onClick={search}/>
+      <TopSection pageTitle={'Locaties'} buttonTitle={'Toevoegen'} navigationLink={'/locaties/wijzigen/0'} onClick={search}/>
         {locations.map(location => {
           return (
             <div key={location.id}>
-              <TableRow title={location.name} subtitle={location.area.name} onEditLink={"edit/" + location.id} onDeleteClick={() => deleteLocation(location.id)} navigationLink={ "/locations/" + location.id }/>
+              <TableRow title={location.name} subtitle={location.area.name} onEditLink={"wijzigen/" + location.id} onDeleteClick={() => deleteLocation(location.id)} navigationLink={ "/locaties/" + location.id }/>
             </div>
           )
         })}

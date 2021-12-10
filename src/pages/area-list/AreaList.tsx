@@ -29,11 +29,11 @@ function AreaList() {
 
   return (
     <div>
-      <TopSection pageTitle={'Gebieden'} buttonTitle={'Toevoegen'} navigationLink={'/areas/edit/0'} onClick={search}/>
+      <TopSection pageTitle={'Gebieden'} buttonTitle={'Toevoegen'} navigationLink={'/gebieden/wijzigen/0'} onClick={search}/>
         {areas.map(area => {
           return (
             <div key={area.id}>
-              <TableRow title={area.name} onEditLink={"/areas/edit/" + area.id} onDeleteClick={() => deleteArea(area.id)} navigationLink={"/areas/" + area.id}/>
+              <TableRow title={area.name} onEditLink={"/gebieden/wijzigen/" + area.id} onDeleteClick={() => deleteArea(area.id)} navigationLink={"/gebieden/" + area.id}/>
             </div>
           )
         })}

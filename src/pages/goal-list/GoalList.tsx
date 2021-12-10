@@ -29,11 +29,11 @@ function GoalList() {
 
   return (
     <div>
-      <TopSection pageTitle={'Doelstellingen'} buttonTitle={'Toevoegen'} navigationLink={'/goals/edit/0'} onClick={search}/>
+      <TopSection pageTitle={'Doelstellingen'} buttonTitle={'Toevoegen'} navigationLink={'/doelstellingen/wijzigen/0'} onClick={search}/>
         {goals.map(goal => {
           return (
             <div key={goal.id}>
-              <TableRow title={goal.name} onEditLink={"/goals/edit/" + goal.id} onDeleteClick={() => deleteGoal(goal.id)} navigationLink={"/goals/" + goal.id}/>
+              <TableRow title={goal.name} onEditLink={"/doelstellingen/wijzigen/" + goal.id} onDeleteClick={() => deleteGoal(goal.id)} navigationLink={"/doelstellingen/" + goal.id}/>
             </div>
           )
         })}

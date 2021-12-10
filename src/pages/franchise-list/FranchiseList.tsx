@@ -29,11 +29,11 @@ function FranchiseList() {
 
   return (
     <div>
-      <TopSection pageTitle={'Franchises'} buttonTitle={'Toevoegen'} navigationLink={'/franchises/edit/0'} onClick={search}/>
+      <TopSection pageTitle={'Franchises'} buttonTitle={'Toevoegen'} navigationLink={'/franchises/wijzigen/0'} onClick={search}/>
         {franchises.map(franchise => {
           return (
             <div key={franchise.id}>
-              <TableRow title={franchise.name} onEditLink={"/franchises/edit/" + franchise.id} onDeleteClick={() => deleteFranchise(franchise.id)} navigationLink={"/franchises/" + franchise.id}/>
+              <TableRow title={franchise.name} onEditLink={"/franchises/wijzigen/" + franchise.id} onDeleteClick={() => deleteFranchise(franchise.id)} navigationLink={"/franchises/" + franchise.id}/>
             </div>
           )
         })}

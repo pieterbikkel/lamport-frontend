@@ -36,7 +36,7 @@ function LocationEdit() {
       await service.create(location)
         .then(() => {
           toast.success("Locatie aangemaakt!");
-          navigate("/locations");
+          navigate("/locaties");
         }).catch(err => {
           setErrors(err.response.data);
           console.log(err.response.data)
@@ -46,7 +46,7 @@ function LocationEdit() {
       await service.update(location)
       .then(() => {
         toast.success("Locatie bijgewerkt!");
-        navigate("/locations");
+        navigate("/locaties");
       }).catch(err => {
         setErrors(err.response.data);
         return;
@@ -130,7 +130,7 @@ function LocationEdit() {
   }
 
   return (
-    <div>
+    <div  >
       <h2>{isEdit ? location.name + " Wijzigen" : "Locatie aanmaken"}</h2>
       <div className="fields-row">
       <form onSubmit={onSubmit}>

@@ -16,19 +16,19 @@ const logOut = () => {
         <span className="branding"><p className="branding-name">Jitai</p><img className="navbar-logo" src={WURLogo} alt="WUR-logo"/></span>
       </Link>
       <div className="nav-links">
-        <Link className="nav-link" to="/areas">
+        <Link className="nav-link" to="/gebieden">
           <p>Gebieden</p>
         </Link>
-        <Link className="nav-link" to="/locations">
+        <Link className="nav-link" to="/locaties">
           <p>Locaties</p>
         </Link>
         <Link className="nav-link" to="/franchises">
           <p>Franchises</p>
         </Link>
-        <Link className="nav-link" to="/goals">
+        <Link className="nav-link" to="/doelstellingen">
           <p>Doelstellingen</p>
         </Link>        
-        <Link className="nav-link" to="/users">
+        <Link className="nav-link" to="/gebruikers">
           <p>Gebruikers</p>
         </Link>
         {/* <Link className="nav-link" to="/interventions">

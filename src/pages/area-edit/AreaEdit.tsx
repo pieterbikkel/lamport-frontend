@@ -23,7 +23,7 @@ const AreaEdit : React.FC = () => {
       await service.create(area)
         .then(() => {
           toast.success("Gebied aangemaakt!");
-          navigate("/areas");
+          navigate("/gebieden");
         }).catch(err => {
           setErrors(err.response.data);
           return;
@@ -33,7 +33,7 @@ const AreaEdit : React.FC = () => {
         .update(area)
         .then(response => {
           toast.success("Gebied bijgewerkt!");
-          navigate("/areas");
+          navigate("/gebieden");
         }).catch(err => {
           setErrors(err.response.data);
           return;

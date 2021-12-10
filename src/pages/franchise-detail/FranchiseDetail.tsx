@@ -27,7 +27,7 @@ function FranchiseDetail() {
 
   return (
     <div>
-      <DetailTopSection pageTitle={franchise.name} buttonTitle={'Wijzigen'} navigationLink={'/franchises/edit/' + franchise.id} subheading={'Franchises'}/>
+      <DetailTopSection pageTitle={franchise.name} buttonTitle={'Wijzigen'} navigationLink={'/franchises/wijzigen/' + franchise.id} subheading={'Franchises'}/>
     </div>
   );
 }
