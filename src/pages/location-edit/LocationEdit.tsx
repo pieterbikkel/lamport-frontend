@@ -16,6 +16,7 @@ import Select from '../../components/select/Select';
 import Option from '../../components/select/Option';
 import FranchiseService from '../../services/franchise/FranchiseService';
 import FranchiseDTO from '../../dto/FranchiseDTO';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
 function LocationEdit() {
   const [location, setLocation] = useState({} as LocationDTO);
@@ -36,7 +37,7 @@ function LocationEdit() {
       await service.create(location)
         .then(() => {
           toast.success("Locatie aangemaakt!");
-          navigate("/locations");
+          navigate("/locaties");
         }).catch(err => {
           setErrors(err.response.data);
           console.log(err.response.data)
@@ -46,7 +47,7 @@ function LocationEdit() {
       await service.update(location)
       .then(() => {
         toast.success("Locatie bijgewerkt!");
-        navigate("/locations");
+        navigate("/locaties");
       }).catch(err => {
         setErrors(err.response.data);
         return;
@@ -131,6 +132,7 @@ function LocationEdit() {
 
   return (
     <div>
+      <Breadcrumb lastItem={location.name}/>
       <h2>{isEdit ? location.name + " Wijzigen" : "Locatie aanmaken"}</h2>
       <div className="fields-row">
       <form onSubmit={onSubmit}>

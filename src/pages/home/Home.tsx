@@ -1,3 +1,4 @@
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 import './Home.css';
 
 function Home() {
@@ -5,6 +6,9 @@ function Home() {
   
     return (
       <div className="home">
+
+        <Breadcrumb/>
+        
         <h1>Home</h1>
       </div>
     );

@@ -4,6 +4,7 @@ import LocationService from '../../services/location/LocationService';
 import LocationDTO from '../../dto/LocationDTO';
 import { Link, useParams } from "react-router-dom";
 import DetailTopSection from '../../components/detail-top-section/DetailTopSection';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
 function LocationDetail() {
   const [location, setLocation] = useState<LocationDTO>();
@@ -30,7 +31,8 @@ function LocationDetail() {
 
   return (
     <div>
-      <DetailTopSection pageTitle={location.name} buttonTitle={'Wijzigen'} navigationLink={'/locations/edit/' + location.id} subheading={'Locaties'}/>
+      <Breadcrumb lastItem={location.name}/>
+      <DetailTopSection pageTitle={location.name} buttonTitle={'Wijzigen'} navigationLink={'/locaties/wijzigen/' + location.id} subheading={'Locaties'}/>
       <table className="location-detail-table">
         <tbody>
           <tr>

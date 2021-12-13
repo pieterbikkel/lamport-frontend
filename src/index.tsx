@@ -22,6 +22,7 @@ import GoalEdit from './pages/goal-edit/GoalEdit';
 import Login from './pages/login/Login';
 import UserList from './pages/user-list/UserList';
 import UserDetail from './pages/user-detail/UserDetail';
+import Breadcrumb from './components/breadcrumb/Breadcrumb';
 import UserEdit from './pages/user-edit/UserEdit';
 
 
@@ -34,32 +35,32 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/components" element={<Components/>}/>
-        <Route path="areas">
+        <Route path="gebieden">
           <Route index element={<AreaList/>}/>
           <Route path=":id" element={<AreaDetail/>}/>
-          <Route path="edit/:id" element={<AreaEdit/>}/>
+          <Route path="wijzigen/:id" element={<AreaEdit/>}/>
         </Route>
-        <Route path="locations">
+        <Route path="locaties">
           <Route index element={<LocationList />}/>
           <Route path=":id" element={<LocationDetail />}/>
-          <Route path="edit/:id" element={<LocationEdit />}/>
+          <Route path="wijzigen/:id" element={<LocationEdit />}/>
         </Route>
         <Route path="franchises">
           <Route index element={<FranchiseList />}/>
           <Route path=":id" element={<FranchiseDetail />}/>
-          <Route path="edit/:id" element={<FranchiseEdit />}/>
+          <Route path="wijzigen/:id" element={<FranchiseEdit />}/>
         </Route>
-        <Route path="goals">
+        <Route path="doelstellingen">
           <Route index element={<GoalList />}/>
           <Route path=":id" element={<GoalDetail />}/>
-          <Route path="edit/:id" element={<GoalEdit />}/>
+          <Route path="wijzigen/:id" element={<GoalEdit />}/>
+        </Route>
+        <Route path="gebruikers">
+          <Route index element={<UserList />}/>
+          <Route path="wijzigen/:id" element={<UserEdit />}/>
+          <Route path=":id" element={<UserDetail />}/>
         </Route>
         <Route path="login" element={<Login/>}/>
-        <Route path="users">
-          <Route index element={<UserList />}/>
-          <Route path=":id" element={<UserDetail />}/>
-          <Route path="edit/:id" element={<UserEdit />}/>
-        </Route>
         <Route
         //todo 404
           path="*"

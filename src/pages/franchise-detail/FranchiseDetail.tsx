@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import DetailTopSection from '../../components/detail-top-section/DetailTopSection';
 import FranchiseDTO from '../../dto/FranchiseDTO';
 import FranchiseService from '../../services/franchise/FranchiseService';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
 function FranchiseDetail() {
   const [franchise, setFranchise] = useState({} as FranchiseDTO);
@@ -27,7 +28,8 @@ function FranchiseDetail() {
 
   return (
     <div>
-      <DetailTopSection pageTitle={franchise.name} buttonTitle={'Wijzigen'} navigationLink={'/franchises/edit/' + franchise.id} subheading={'Franchises'}/>
+      <Breadcrumb lastItem={franchise.name}/>
+      <DetailTopSection pageTitle={franchise.name} buttonTitle={'Wijzigen'} navigationLink={'/franchises/wijzigen/' + franchise.id} subheading={'Franchises'}/>
     </div>
   );
 }

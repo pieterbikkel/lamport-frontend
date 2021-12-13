@@ -4,6 +4,7 @@ import TopSection from '../../components/list-top-section/ListTopSection';
 import TableRow from '../../components/tablerow/TableRow';
 import GoalDTO from '../../dto/GoalDTO';
 import GoalService from '../../services/goal/GoalService';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
 function GoalList() {
   const [goals, setGoals] = useState([] as GoalDTO[]);
@@ -29,11 +30,12 @@ function GoalList() {
 
   return (
     <div>
-      <TopSection pageTitle={'Doelstellingen'} buttonTitle={'Toevoegen'} navigationLink={'/goals/edit/0'} onClick={search}/>
+      <Breadcrumb/>
+      <TopSection pageTitle={'Doelstellingen'} buttonTitle={'Toevoegen'} navigationLink={'/doelstellingen/wijzigen/0'} onClick={search}/>
         {goals.map(goal => {
           return (
             <div key={goal.id}>
-              <TableRow title={goal.name} onEditLink={"/goals/edit/" + goal.id} onDeleteClick={() => deleteGoal(goal.id)} navigationLink={"/goals/" + goal.id}/>
+              <TableRow title={goal.name} onEditLink={"/doelstellingen/wijzigen/" + goal.id} onDeleteClick={() => deleteGoal(goal.id)} navigationLink={"/doelstellingen/" + goal.id}/>
             </div>
           )
         })}

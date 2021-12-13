@@ -6,6 +6,7 @@ import Input from '../../components/input/Input';
 import SubmitButton from '../../components/submit-button/SubmitButton';
 import GoalDTO from '../../dto/GoalDTO';
 import GoalService from '../../services/goal/GoalService';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
 const GoalEdit : React.FC = () => {
   const [goal, setGoal] = useState({} as GoalDTO);
@@ -22,7 +23,7 @@ const GoalEdit : React.FC = () => {
       await service.create(goal)
         .then(() => {
           toast.success("Doelstelling aangemaakt!");
-          navigate("/goals");
+          navigate("/doelstellingen");
         }).catch(err => {
           setErrors(err.response.data);
           return;
@@ -32,7 +33,7 @@ const GoalEdit : React.FC = () => {
         .update(goal)
         .then(response => {
           toast.success("Doelstelling bijgewerkt!");
-          navigate("/goals");
+          navigate("/doelstellingen");
         }).catch(err => {
           setErrors(err.response.data);
           return;
@@ -63,6 +64,7 @@ const GoalEdit : React.FC = () => {
 
   return (
     <div>
+      <Breadcrumb lastItem={goal.name}/>
       <h2>{isEdit ? goal.name + " Wijzigen" : "Doelstelling aanmaken"}</h2>
       <form onSubmit={onSubmit}>
         <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={goal.name} errors={errors.name}/>
