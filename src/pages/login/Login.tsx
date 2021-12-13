@@ -24,7 +24,10 @@ function Login() {
         localStorage.setItem("token", data.token)
         navigate("/");
       }).catch(err => {
-        setErrors(err.response.data);
+        if(err.response.status === 401) {
+          errors.password = ["Invalid login!"];
+          setErrors(errors);
+        }
         return;
       })
   }
@@ -39,7 +42,7 @@ function Login() {
       <form onSubmit={onSubmit}>
         <Input placeholderText={'Gebruikersnaam'} inputName={'username'} inputType={'text'} inputLabel={'Gebruikersnaam'} onChange={handleChange} value={login.username} errors={[]}/>
         <br/>
-        <Input placeholderText={'Wachtwoord'} inputName={'password'} inputType={'password'} inputLabel={'Wachtwoord'} onChange={handleChange} value={login.password} errors={[]}/>
+        <Input placeholderText={'Wachtwoord'} inputName={'password'} inputType={'password'} inputLabel={'Wachtwoord'} onChange={handleChange} value={login.password} errors={errors.password}/>
         <div className="login-button">
           <SubmitButton value={"Login"}/>
         </div>
