@@ -7,14 +7,18 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
   event.preventDefault();
-  console.info('You clicked a breadcrumb.');
 }
 
-const Breadcrumb = () => {
+interface Props {
+  lastItem?: string;
+}
+
+const Breadcrumb = ({lastItem}: Props) => {
   const location = useLocation();
   const navigate = useNavigate();
   
   const pathnames = location.pathname.split("/").filter(x => x);
+  // const pathnamesWithout = pathnames[pathnames.length - 1].replace(/\d/g, '');
 
   return (
     <div className="breadcrumb" role="presentation" onClick={handleClick}>
@@ -28,10 +32,13 @@ const Breadcrumb = () => {
           const routeTo = `/${pathnames.slice(0, index + 1).join("/")}`;
           const isLast = index === pathnames.length - 1;
           return isLast ? (
-            <Typography key={name}><h4>{name}</h4></Typography>
+            <div>
+              {lastItem && <Typography key={lastItem}><h4>{lastItem.charAt(0).toUpperCase() + lastItem.slice(1)}</h4></Typography>}
+              {!lastItem && <Typography key={name}><h4>{name.charAt(0).toUpperCase() + name.slice(1)}</h4></Typography>}
+            </div>
           ) : (
             <Link underline="hover" color="inherit" key={name} onClick={() => navigate(routeTo)}>
-              <h4 className='hover-green'>{name}</h4>
+              <h4 className='hover-green'>{name.charAt(0).toUpperCase() + name.slice(1)}</h4>
             </Link>
           );
         })}

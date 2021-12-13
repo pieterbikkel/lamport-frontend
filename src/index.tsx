@@ -28,7 +28,6 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
     <Nav/>
-    <Breadcrumb/>
     <ToastContainer />
     <div className="page">
       <Routes>

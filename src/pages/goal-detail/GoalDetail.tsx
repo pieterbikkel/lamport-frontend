@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import DetailTopSection from '../../components/detail-top-section/DetailTopSection';
 import GoalDTO from '../../dto/GoalDTO';
 import GoalService from '../../services/goal/GoalService';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
 function GoalDetail() {
   const [goal, setGoal] = useState({} as GoalDTO);
@@ -25,6 +26,7 @@ function GoalDetail() {
 
   return (
     <div>
+      <Breadcrumb lastItem={goal.name}/>
       <DetailTopSection pageTitle={goal.name} buttonTitle={'Wijzigen'} navigationLink={'/doelstellingen/wijzigen/' + goal.id} subheading={'Doelstelling'}/>
     </div>
   );

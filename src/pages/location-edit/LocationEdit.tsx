@@ -16,6 +16,7 @@ import Select from '../../components/select/Select';
 import Option from '../../components/select/Option';
 import FranchiseService from '../../services/franchise/FranchiseService';
 import FranchiseDTO from '../../dto/FranchiseDTO';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
 function LocationEdit() {
   const [location, setLocation] = useState({} as LocationDTO);
@@ -130,7 +131,8 @@ function LocationEdit() {
   }
 
   return (
-    <div  >
+    <div>
+      <Breadcrumb lastItem={location.name}/>
       <h2>{isEdit ? location.name + " Wijzigen" : "Locatie aanmaken"}</h2>
       <div className="fields-row">
       <form onSubmit={onSubmit}>
