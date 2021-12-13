@@ -22,6 +22,7 @@ import GoalEdit from './pages/goal-edit/GoalEdit';
 import Login from './pages/login/Login';
 import UserList from './pages/user-list/UserList';
 import UserDetail from './pages/user-detail/UserDetail';
+import UserEdit from './pages/user-edit/UserEdit';
 
 
 ReactDOM.render(
@@ -57,7 +58,7 @@ ReactDOM.render(
         <Route path="users">
           <Route index element={<UserList />}/>
           <Route path=":id" element={<UserDetail />}/>
-          {/* <Route path="edit/:id" element={<UserEdit />}/> */}
+          <Route path="edit/:id" element={<UserEdit />}/>
         </Route>
         <Route
         //todo 404

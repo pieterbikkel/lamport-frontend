@@ -19,9 +19,10 @@ function UserList() {
   }, [])
 
   const deleteUser = (userId: number) => {
-
-  }
-
+      setUsers(users.filter(x => x.id !== userId))
+      userService.delete(userId);
+    }
+  
   const search = () => {
     console.log("search")
   }
@@ -32,7 +33,7 @@ function UserList() {
         {users.map(user => {
           return (
             <div key={user.id}>
-              <TableRow title={user.username} subtitle={user.role.name} onEditLink={"edit/" + user.id} onDeleteClick={() => deleteUser(user.id)} navigationLink={ "/users/" + user.id }/>
+              <TableRow title={user.username} subtitle={user.role.name} onEditLink={"/users/edit/" + user.id} onDeleteClick={() => deleteUser(user.id)} navigationLink={ "/users/" + user.id }/>
             </div>
           )
         })}
