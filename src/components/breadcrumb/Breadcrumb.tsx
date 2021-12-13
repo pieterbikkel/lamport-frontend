@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
@@ -18,7 +18,6 @@ const Breadcrumb = ({lastItem}: Props) => {
   const navigate = useNavigate();
   
   const pathnames = location.pathname.split("/").filter(x => x);
-  // const pathnamesWithout = pathnames[pathnames.length - 1].replace(/\d/g, '');
 
   return (
     <div className="breadcrumb" role="presentation" onClick={handleClick}>

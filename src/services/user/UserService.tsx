@@ -2,6 +2,8 @@ import networkAdapter from "../../adapters/NetworkAdapterFactory";
 import RoleDTO from "../../dto/RoleDTO";
 import UserDTO from "../../dto/UserDTO";
 import IService from "../IService";
+import UserCreateRequestDTO from "./UserCreateRequestDTO";
+import UserUpdateRequestDTO from "./UserUpdateRequestDTO";
 
 class UserService implements IService<UserDTO> {
     async loadAll(): Promise<UserDTO[]> {
@@ -47,15 +49,14 @@ class UserService implements IService<UserDTO> {
         });
     }
     async update(value: UserDTO): Promise<void> {
-        throw new Error("Method not implemented.");
+        return networkAdapter.put("users", new UserUpdateRequestDTO(value));
     }
     async create(value: UserDTO): Promise<void> {
-        throw new Error("Method not implemented.");
+        return networkAdapter.post("users", new UserCreateRequestDTO(value));
     }
     async delete(id: number): Promise<void> {
-        throw new Error("Method not implemented.");
+        return networkAdapter.delete("users/" + id);
     }
-
 }
 
 export default UserService
