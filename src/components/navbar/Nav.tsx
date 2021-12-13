@@ -27,6 +27,9 @@ const logOut = () => {
         </Link>
         <Link className="nav-link" to="/goals">
           <p>Doelstellingen</p>
+        </Link>        
+        <Link className="nav-link" to="/users">
+          <p>Gebruikers</p>
         </Link>
         {/* <Link className="nav-link" to="/interventions">
           <p>Interventies</p>

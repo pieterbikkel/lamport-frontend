@@ -13,7 +13,8 @@ interface Props {
 
 function Select({ placeholderText, selectName, selectLabel, options, value = "", onChange, width = "normal" }: Props ) {
     const changeSelect = (e:React.ChangeEvent<HTMLSelectElement>):any => {
-        onChange(options[e.target.options.selectedIndex - 1].id);
+        const selectedOption = options[e.target.options.selectedIndex - 1];
+        onChange(selectedOption === undefined ? 0 : selectedOption.id);
     }
     return (
         <div>
