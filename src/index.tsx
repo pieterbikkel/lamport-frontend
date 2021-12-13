@@ -19,6 +19,7 @@ import FranchiseEdit from './pages/franchise-edit/FranchiseEdit';
 import GoalList from './pages/goal-list/GoalList';
 import GoalDetail from './pages/goal-detail/GoalDetail';
 import GoalEdit from './pages/goal-edit/GoalEdit';
+import Login from './pages/login/Login';
 import UserList from './pages/user-list/UserList';
 import UserDetail from './pages/user-detail/UserDetail';
 import UserEdit from './pages/user-edit/UserEdit';
@@ -31,7 +32,7 @@ ReactDOM.render(
     <ToastContainer />
     <div className="page">
       <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Home/>}/>
         <Route path="/components" element={<Components/>}/>
         <Route path="areas">
           <Route index element={<AreaList/>}/>
@@ -53,6 +54,7 @@ ReactDOM.render(
           <Route path=":id" element={<GoalDetail />}/>
           <Route path="edit/:id" element={<GoalEdit />}/>
         </Route>
+        <Route path="login" element={<Login/>}/>
         <Route path="users">
           <Route index element={<UserList />}/>
           <Route path=":id" element={<UserDetail />}/>
@@ -68,6 +70,7 @@ ReactDOM.render(
             </main>
           }
         />
+        
       </Routes>
       </div>
     </BrowserRouter>
