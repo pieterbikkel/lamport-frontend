@@ -3,6 +3,7 @@ import RoleDTO from "../../dto/RoleDTO";
 import UserDTO from "../../dto/UserDTO";
 import IService from "../IService";
 import UserCreateRequestDTO from "./UserCreateRequestDTO";
+import UserUpdateRequestDTO from "./UserUpdateRequestDTO";
 
 class UserService implements IService<UserDTO> {
     async loadAll(): Promise<UserDTO[]> {
@@ -48,7 +49,7 @@ class UserService implements IService<UserDTO> {
         });
     }
     async update(value: UserDTO): Promise<void> {
-        return networkAdapter.put("users", new UserCreateRequestDTO(value));
+        return networkAdapter.put("users", new UserUpdateRequestDTO(value));
     }
     async create(value: UserDTO): Promise<void> {
         return networkAdapter.post("users", new UserCreateRequestDTO(value));
