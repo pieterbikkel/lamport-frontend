@@ -2,6 +2,7 @@ import networkAdapter from "../../../adapters/NetworkAdapterFactory";
 import CommandDTO from "../../../dto/CommandDTO";
 import InterventionDTO from "../../../dto/CommandDTO";
 import CommandCreateRequestDTO from "./CommandCreateRequestDTO";
+import CommandUpdateRequestDTO from "./CommandUpdateRequestDTO";
 
 class CommandService {
     async loadAll(): Promise<InterventionDTO[]> {
@@ -32,7 +33,7 @@ class CommandService {
             });
     }
     update(value: CommandDTO): Promise<void> {
-        return networkAdapter.put("command", value);
+        return networkAdapter.put("command", new CommandUpdateRequestDTO(value));
     }
     create(value: CommandDTO): Promise<void> {
         return networkAdapter.post("interventions/command", new CommandCreateRequestDTO(value));
