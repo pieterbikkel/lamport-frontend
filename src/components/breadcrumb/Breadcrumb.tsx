@@ -30,14 +30,15 @@ const Breadcrumb = ({lastItem}: Props) => {
         {pathnames.map((name, index) => {
           const routeTo = `/${pathnames.slice(0, index + 1).join("/")}`;
           const isLast = index === pathnames.length - 1;
+          const isEditPage = name.toLocaleUpperCase() === "WIJZIGEN";
           return isLast ? (
             <div>
               {lastItem && <Typography key={lastItem}><h4>{lastItem.charAt(0).toUpperCase() + lastItem.slice(1)}</h4></Typography>}
               {!lastItem && <Typography key={name}><h4>{name.charAt(0).toUpperCase() + name.slice(1)}</h4></Typography>}
             </div>
           ) : (
-            <Link underline="hover" color="inherit" key={name} onClick={() => navigate(routeTo)}>
-              <h4 className='hover-green'>{name.charAt(0).toUpperCase() + name.slice(1)}</h4>
+            <Link underline={(!isEditPage ? "hover" : "none")} color="inherit" key={name} onClick={() => !isEditPage ? navigate(routeTo) : {}}>
+              <h4 className={!isEditPage ? "hover-green" : ""}>{name.charAt(0).toUpperCase() + name.slice(1)}</h4>
             </Link>
           );
         })}
