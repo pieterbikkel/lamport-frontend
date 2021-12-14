@@ -72,7 +72,7 @@ const CommandEdit : React.FC = () => {
       <form onSubmit={onSubmit}>
         <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={command.name} errors={errors.name}/>
         <br/>
-        <Input placeholderText={'Tekst'} inputName={'text'} inputType={'text'} inputLabel={'Tekst'} onChange={handleChange} value={command.text} errors={errors.name}/>
+        <Input placeholderText={'Tekst'} inputName={'commandText'} inputType={'text'} inputLabel={'Tekst'} onChange={handleChange} value={command.commandText} errors={errors.name}/>
         <br/>
         <SubmitButton value={isEdit ? "Opslaan" : "Voeg toe"}/>
       </form>

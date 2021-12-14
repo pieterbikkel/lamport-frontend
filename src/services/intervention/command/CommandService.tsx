@@ -14,7 +14,7 @@ class CommandService {
 				let commandDTO: CommandDTO = new CommandDTO();
 				commandDTO.id = command.id;
 				commandDTO.name = command.name;
-				commandDTO.text = command.text;
+				commandDTO.commandText = command.commandText;
 				toReturn.push(commandDTO);
 			});
 			return toReturn;
@@ -27,7 +27,7 @@ class CommandService {
                 let commandDTO: CommandDTO = new CommandDTO();
                 commandDTO.id = command.id;
                 commandDTO.name = command.name;
-				commandDTO.text = command.text;
+				commandDTO.commandText = command.commandText;
                 return commandDTO;
             });
     }
