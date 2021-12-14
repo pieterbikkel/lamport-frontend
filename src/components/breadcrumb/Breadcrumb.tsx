@@ -30,7 +30,7 @@ const Breadcrumb = ({lastItem}: Props) => {
         {pathnames.map((name, index) => {
           const routeTo = `/${pathnames.slice(0, index + 1).join("/")}`;
           const isLast = index === pathnames.length - 1;
-          const isEditPage = name.toLocaleUpperCase() === "WIJZIGEN";
+          const isEditPage = name.toUpperCase() === "WIJZIGEN";
           return isLast ? (
             <div>
               {lastItem && <Typography key={lastItem}><h4>{lastItem.charAt(0).toUpperCase() + lastItem.slice(1)}</h4></Typography>}
