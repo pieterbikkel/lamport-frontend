@@ -20,9 +20,10 @@ function UserList() {
   }, [])
 
   const deleteUser = (userId: number) => {
-
-  }
-
+      setUsers(users.filter(x => x.id !== userId))
+      userService.delete(userId);
+    }
+  
   const search = () => {
     console.log("search")
   }

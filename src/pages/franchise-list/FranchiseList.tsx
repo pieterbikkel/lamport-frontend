@@ -4,6 +4,7 @@ import TopSection from '../../components/list-top-section/ListTopSection';
 import TableRow from '../../components/tablerow/TableRow';
 import FranchiseService from '../../services/franchise/FranchiseService';
 import FranchiseDTO from '../../dto/FranchiseDTO';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
 function FranchiseList() {
   const [franchises, setFranchises] = useState([] as FranchiseDTO[]);
@@ -29,11 +30,12 @@ function FranchiseList() {
 
   return (
     <div>
-      <TopSection pageTitle={'Franchises'} buttonTitle={'Toevoegen'} navigationLink={'/franchises/edit/0'} onClick={search}/>
+      <Breadcrumb/>
+      <TopSection pageTitle={'Franchises'} buttonTitle={'Toevoegen'} navigationLink={'/franchises/wijzigen/0'} onClick={search}/>
         {franchises.map(franchise => {
           return (
             <div key={franchise.id}>
-              <TableRow title={franchise.name} onEditLink={"/franchises/edit/" + franchise.id} onDeleteClick={() => deleteFranchise(franchise.id)} navigationLink={"/franchises/" + franchise.id}/>
+              <TableRow title={franchise.name} onEditLink={"/franchises/wijzigen/" + franchise.id} onDeleteClick={() => deleteFranchise(franchise.id)} navigationLink={"/franchises/" + franchise.id}/>
             </div>
           )
         })}

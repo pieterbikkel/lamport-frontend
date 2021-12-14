@@ -5,6 +5,7 @@ import AreaService from '../../services/AreaService';
 import AreaDTO from '../../dto/AreaDTO';
 import { useParams } from "react-router-dom";
 import DetailTopSection from '../../components/detail-top-section/DetailTopSection';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
 function AreaDetail() {
   const [area, setArea] = useState({} as AreaDTO);
@@ -28,7 +29,8 @@ function AreaDetail() {
 
   return (
     <div>
-      <DetailTopSection pageTitle={area.name} buttonTitle={'Wijzigen'} navigationLink={'/areas/edit/' + area.id} subheading={'Gebieden'}/>
+      <Breadcrumb lastItem={area.name}/>
+      <DetailTopSection pageTitle={area.name} buttonTitle={'Wijzigen'} navigationLink={'/gebieden/wijzigen/' + area.id} subheading={'Gebieden'}/>
       <table className="area-detail-table">
         <tbody>
           <tr>

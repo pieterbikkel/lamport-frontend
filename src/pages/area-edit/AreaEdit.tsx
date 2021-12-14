@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from 'react-toastify';
 import Input from '../../components/input/Input';
 import SubmitButton from '../../components/submit-button/SubmitButton';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
 const AreaEdit : React.FC = () => {
   const [area, setArea] = useState({} as AreaDTO);
@@ -23,7 +24,7 @@ const AreaEdit : React.FC = () => {
       await service.create(area)
         .then(() => {
           toast.success("Gebied aangemaakt!");
-          navigate("/areas");
+          navigate("/gebieden");
         }).catch(err => {
           setErrors(err.response.data);
           return;
@@ -33,7 +34,7 @@ const AreaEdit : React.FC = () => {
         .update(area)
         .then(response => {
           toast.success("Gebied bijgewerkt!");
-          navigate("/areas");
+          navigate("/gebieden");
         }).catch(err => {
           setErrors(err.response.data);
           return;
@@ -63,6 +64,7 @@ const AreaEdit : React.FC = () => {
 
   return (
     <div>
+      <Breadcrumb lastItem={area.name}/>
       <h2>{isEdit ? area.name + " Wijzigen" : "Gebied aanmaken"}</h2>
       <form onSubmit={onSubmit}>
         <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={area.name} errors={errors.name}/>

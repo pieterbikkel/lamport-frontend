@@ -29,7 +29,6 @@ function UserDetail() {
     return <div></div>
   }
 
-
   return (
     <div>
       <Breadcrumb lastItem={user.username}/>

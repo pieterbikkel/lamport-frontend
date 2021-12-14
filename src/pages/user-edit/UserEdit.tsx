@@ -9,8 +9,8 @@ import UserService from '../../services/user/UserService';
 import Select from '../../components/select/Select';
 import Option from '../../components/select/Option';
 import RoleDTO from '../../dto/RoleDTO';
-import RoleService from '../../services/role/RoleService';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
+import RoleService from '../../services/role/RoleService';
 
 const UserEdit : React.FC = () => {
   const [user, setUser] = useState({} as UserDTO);
