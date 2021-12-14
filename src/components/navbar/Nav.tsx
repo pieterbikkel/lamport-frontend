@@ -31,9 +31,9 @@ const logOut = () => {
         <Link className="nav-link" to="/gebruikers">
           <p>Gebruikers</p>
         </Link>
-        {/* <Link className="nav-link" to="/interventions">
+        <Link className="nav-link" to="/interventies">
           <p>Interventies</p>
-        </Link> */}
+        </Link>
       </div>
       <Button title="Log uit" disabled={false} onClick={logOut} />
     </div>

@@ -24,6 +24,10 @@ import UserList from './pages/user-list/UserList';
 import UserDetail from './pages/user-detail/UserDetail';
 import Breadcrumb from './components/breadcrumb/Breadcrumb';
 import UserEdit from './pages/user-edit/UserEdit';
+import CommandDetail from './pages/intervention-detail/command/CommandDetail';
+import InterventionList from './pages/intervention-list/InterventionList';
+import QuestionDetail from './pages/intervention-detail/question/QuestionDetail';
+import QuestionnaireDetail from './pages/intervention-detail/questionnaire/QuestionnaireDetail';
 
 
 ReactDOM.render(
@@ -59,6 +63,15 @@ ReactDOM.render(
           <Route index element={<UserList />}/>
           <Route path="wijzigen/:id" element={<UserEdit />}/>
           <Route path=":id" element={<UserDetail />}/>
+        </Route>
+        <Route path="interventies">
+          <Route index element={<InterventionList/>}/>
+          <Route path="wijzigen/commando/:id" element={<div/>}/>
+          <Route path="commando/:id" element={<CommandDetail/>}/>
+          <Route path="wijzigen/question/:id" element={<div/>}/>
+          <Route path="question/:id" element={<QuestionDetail/>}/>
+          <Route path="wijzigen/questionnaire/:id" element={<div/>}/>
+          <Route path="questionnaire/:id" element={<QuestionnaireDetail/>}/>
         </Route>
         <Route path="login" element={<Login/>}/>
         <Route

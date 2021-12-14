@@ -3,15 +3,19 @@ import Button from '../button/Button';
 import './ListTopSection.css';
 import { useNavigate } from "react-router-dom";
 import Searchbar from '../searchbar/Searchbar';
+import Dropdown from '../dropdown/Dropdown';
 
 interface Props {
     pageTitle: String,
-    buttonTitle: String,
-    navigationLink: string,
+    buttonTitle: string,
+    navigationLink?: string,
+    dropdownLinks?: string[],
+    dropdownLabels?: string[],
+    onChange?: any,
     onClick: React.MouseEventHandler<HTMLButtonElement>
 }
 
-function TopSection({ pageTitle, buttonTitle, navigationLink, onClick }: Props ) {
+function TopSection({ pageTitle, buttonTitle, navigationLink, dropdownLinks, dropdownLabels, onChange, onClick }: Props ) {
 
     const navigate = useNavigate();
 
@@ -20,7 +24,8 @@ function TopSection({ pageTitle, buttonTitle, navigationLink, onClick }: Props )
             <h2>{pageTitle}</h2>
             <div className="top-section-component-right">
                 <Searchbar placeholderText={'zoeken...'} inputName={'search'} onClick={onClick}/>
-                <Button title={buttonTitle} onClick={() => navigate(navigationLink)} />
+                {navigationLink && <Button title={buttonTitle} onClick={() => navigate(navigationLink)} />}
+                {(dropdownLinks && dropdownLabels) && <Dropdown placeholderText={buttonTitle} selectLabel={''} options={[]} onChange={onChange} />}
             </div>
         </div>
     );
