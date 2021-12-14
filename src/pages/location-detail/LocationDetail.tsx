@@ -35,7 +35,7 @@ function LocationDetail() {
         <tbody>
           <tr>
             <td className="table-min-width">Gebied:</td>
-            <td><Link to={"/areas/" + location.area.id}>{location.area.name}</Link></td>
+            <td><Link to={"/gebieden/" + location.area.id}>{location.area.name}</Link></td>
           </tr>
           <tr>
             <td className="table-min-width">Franchise:</td>
