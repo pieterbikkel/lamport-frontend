@@ -33,7 +33,7 @@ class CommandService {
             });
     }
     update(value: CommandDTO): Promise<void> {
-        return networkAdapter.put("command", new CommandUpdateRequestDTO(value));
+        return networkAdapter.put("interventions/command", new CommandUpdateRequestDTO(value));
     }
     create(value: CommandDTO): Promise<void> {
         return networkAdapter.post("interventions/command", new CommandCreateRequestDTO(value));
