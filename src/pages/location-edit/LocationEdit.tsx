@@ -9,7 +9,7 @@ import Input from '../../components/input/Input';
 import SubmitButton from '../../components/submit-button/SubmitButton';
 import AreaDTO from '../../dto/AreaDTO';
 import InterventionDTO from '../../dto/InterventionDTO';
-import InterventionService from '../../services/InterventionService';
+import InterventionService from '../../services/intervention/InterventionService';
 import TableRow from '../../components/tablerow/TableRow';
 import AreaService from '../../services/AreaService';
 import Select from '../../components/select/Select';

@@ -1,6 +1,6 @@
-import networkAdapter from "../adapters/NetworkAdapterFactory";
-import InterventionDTO from "../dto/InterventionDTO";
-import IService from "./IService";
+import networkAdapter from "../../adapters/NetworkAdapterFactory";
+import InterventionDTO from "../../dto/InterventionDTO";
+import IService from "../IService";
 
 class InterventionService implements IService<InterventionDTO> {
     async loadAll(): Promise<InterventionDTO[]> {
