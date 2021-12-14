@@ -1,3 +1,40 @@
 .home {
     text-align: center;
 }
+
+.ring {
+    position: absolute;
+    transform-origin: -100% 50%;
+    top: calc(50% - 15rem);
+    left: calc(50% - 15rem);
+}
+
+.jitai-animation {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 38rem; */
+}
+
+.ring1 {
+    height: 38rem;
+}
+
+.ring2 {
+    height: 34rem;
+    transform: rotate(120deg);
+}
+
+.ring3 {
+    height: 30rem;
+    transform: rotate(240deg) ;
+}
+
+.jitai-animation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 38rem; 
+}
