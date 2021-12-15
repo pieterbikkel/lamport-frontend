@@ -25,10 +25,28 @@ function QuestionDetail() {
   const id: number = Number.parseInt(params.id);
 
   return (
-    <div>
+    <div> 
       <Breadcrumb lastItem={question.question}/>
-      <DetailTopSection pageTitle={question.question} buttonTitle={'Wijzigen'} navigationLink={'/vragen/wijzigen/' + question.id} subheading={'vragen'}/>
-    </div>
+      <DetailTopSection pageTitle={question.name ?? ""} buttonTitle={'Wijzigen'} navigationLink={'/vragen/wijzigen/' + question.id} subheading={'vragen'}/>
+      <table className="question-detail-table">
+        <tbody>
+          <tr>
+            <td className="table-min-width">Interventie</td>
+            <td>Vraag</td>
+          </tr>
+        </tbody>
+      </table>
+      <div className="questions">
+        <h4>Antwoorden</h4>
+        {
+        question.answers.length !== 0  ? 
+        question.answers.map(answer => {
+          return <p id={answer.id.toString()}>{answer.answer}</p>
+        }) : 
+        <p>Er zijn nog geen gekoppelde vragen!</p>
+        }
+      </div>
+    </div>  
   );
 }
 

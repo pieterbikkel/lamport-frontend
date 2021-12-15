@@ -28,6 +28,42 @@ function QuestionnaireDetail() {
     <div>
       <Breadcrumb lastItem={questionnaire.name}/>
       <DetailTopSection pageTitle={questionnaire.name} buttonTitle={'Wijzigen'} navigationLink={'/vragenlijsten/wijzigen/' + questionnaire.id} subheading={'vragenlijsten'}/>
+      <table className="questionnaire-detail-table">
+        <tbody>
+          <tr>
+            <td className="table-min-width">Interventie</td>
+            <td>Vraag</td>
+          </tr>
+        </tbody>
+      </table>
+      <div className="questionnaires">
+        {
+          questionnaire.questions.length !== 0  ? 
+          questionnaire.questions.map((question, index) => {
+            return (
+              <div>
+                <h4>{"Vraag " + index + 1}</h4>
+                {
+                  question.answers.length !== 0  ? 
+                  question.answers.map(answer => {
+                    return (
+                      <div>
+                        <p>{answer.answer}</p>
+                      </div>
+                      
+                    )
+                  })
+                  :
+                  <p>Er zijn nog geen gekoppelde antwoorden!</p>
+                }
+              </div>
+              
+            )
+          })
+          :
+          <p>Er zijn nog geen gekoppelde vragen!</p>
+        }
+      </div>
     </div>
   );
 }

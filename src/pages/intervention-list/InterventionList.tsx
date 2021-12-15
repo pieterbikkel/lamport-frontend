@@ -5,11 +5,13 @@ import TableRow from '../../components/tablerow/TableRow';
 import InterventionDTO from '../../dto/InterventionDTO';
 import InterventionService from '../../services/intervention/InterventionService';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
+import { useNavigate } from 'react-router-dom';
 
 function InterventionList() {
   const [interventions, setInterventions] = useState([] as InterventionDTO[]);
   const [service, setService] = useState({} as InterventionService);
 
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interventionService = new InterventionService();
@@ -29,28 +31,29 @@ function InterventionList() {
     console.log("search")
   }
 
-  const dropdownoptions = [
+  const dropdownOptions = [
     {
-      id: 1,
+      id: "/interventies/commandos/0",
       name: "Commando",
-      link: "/interventies/commandos/0"
     },
     {
-      id: 2,
+      id: "/interventies/vragen/0",
       name: "Vraag",
-      link: "/interventies/vragen/0"
     },
     {
-      id: 3,
+      id: "/interventies/vragenlijst/0",
       name: "Commando",
-      link: "/interventies/vragenlijst/0"
     },
   ];
+
+  const changeDropdown = (val:string) => {
+    navigate(val);
+  }
 
   return (
     <div>
       <Breadcrumb/>
-      <TopSection pageTitle={'Interventies'} buttonTitle={'Toevoegen'} dropdownOptions={dropdownoptions} onClick={search}/> {/* TODO: dropdown */}
+      <TopSection pageTitle={'Interventies'} buttonTitle={'Toevoegen'} dropdownOptions={dropdownOptions} onClick={search} onChange={changeDropdown}/>
         {interventions.map(intervention => {
           return (
             <div key={intervention.id}>

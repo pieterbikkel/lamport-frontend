@@ -67,19 +67,14 @@ ReactDOM.render(
         </Route>
         <Route path="interventies">
           <Route index element={<InterventionList/>}/>
-          <Route path="wijzigen/commando/:id" element={<div/>}/>
+          <Route path="commando/wijzigen/:id" element={<div/>}/>
           <Route path="commando/:id" element={<CommandDetail/>}/>
-          <Route path="wijzigen/question/:id" element={<div/>}/>
-          <Route path="question/:id" element={<QuestionDetail/>}/>
-          <Route path="wijzigen/questionnaire/:id" element={<div/>}/>
-          <Route path="questionnaire/:id" element={<QuestionnaireDetail/>}/>
+          <Route path="vragen/wijzigen/:id" element={<div/>}/>
+          <Route path="vragen/:id" element={<QuestionDetail/>}/>
+          <Route path="vragenlijst/wijzigen/:id" element={<div/>}/>
+          <Route path="vragenlijst/:id" element={<QuestionnaireDetail/>}/>
         </Route>
         <Route path="login" element={<Login/>}/>
-        <Route path="commandos">
-        {/* <Route index element={<CommandList />}/> */}
-          {/* <Route path=":id" element={<CommandDetail />}/> */}
-          <Route path="wijzigen/:id" element={<CommandEdit />}/>
-        </Route>
         <Route
         //todo 404
           path="*"

@@ -28,6 +28,18 @@ function CommandDetail() {
     <div>
       <Breadcrumb lastItem={command.name}/>
       <DetailTopSection pageTitle={command.name} buttonTitle={'Wijzigen'} navigationLink={'/commando/wijzigen/' + command.id} subheading={'Commando'}/>
+      <table className="question-detail-table">
+        <tbody>
+          <tr>
+            <td className="table-min-width">Interventie</td>
+            <td>Commando</td>
+          </tr>
+          <tr>
+            <td className="table-min-width">Commando</td>
+            <td>{command.commandText}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 }
