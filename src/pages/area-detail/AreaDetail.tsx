@@ -6,18 +6,22 @@ import AreaDTO from '../../dto/AreaDTO';
 import { useParams } from "react-router-dom";
 import DetailTopSection from '../../components/detail-top-section/DetailTopSection';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
+import { Circle } from 'leaflet';
+import createCircle from '../../adapters/circle/CircleFactory';
+import Map from '../../components/map/Map';
 
 function AreaDetail() {
   const [area, setArea] = useState({} as AreaDTO);
-  const [service, setService] = useState({} as AreaService);
+  const [circles, setCircles] = useState([] as Circle[]);
+  const [mapKey, setMapKey] = useState(0 as number);
 
   const params = useParams();
   useEffect(() => {
-    const areaService = new AreaService();
-    setService(areaService)
-    areaService.loadOne(id)
+    new AreaService().loadOne(id)
     .then(val => {
       setArea(val);
+      setCircles([createCircle(val.longitude, val.latitude, val.radius, "red")]);
+      setMapKey(mapKey + 1);
     })
   }, [])
 
@@ -26,6 +30,10 @@ function AreaDetail() {
   }
 
   const id: number = Number.parseInt(params.id);
+
+  if(!area.longitude) {
+    return <div></div>
+  }
 
   return (
     <div>
@@ -47,7 +55,7 @@ function AreaDetail() {
           </tr>
         </tbody>
       </table>
-
+      <Map key={mapKey} viewCoords={[area.latitude, area.longitude]} viewZoom={15} circles={circles}></Map>
     </div>
   );
 }

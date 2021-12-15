@@ -8,11 +8,16 @@ import { toast } from 'react-toastify';
 import Input from '../../components/input/Input';
 import SubmitButton from '../../components/submit-button/SubmitButton';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
+import Map from '../../components/map/Map';
+import { Circle } from 'leaflet';
+import createCircle from '../../adapters/circle/CircleFactory';
 
 const AreaEdit : React.FC = () => {
   const [area, setArea] = useState({} as AreaDTO);
   const [service, setService] = useState({} as AreaService);
   const [errors, setErrors] = useState({} as any);
+  const [circles, setCircles] = useState([] as Circle[]);
+  const [mapKey, setMapKey] = useState(0 as number);
   
   const params = useParams();
   const navigate = useNavigate();
@@ -62,6 +67,21 @@ const AreaEdit : React.FC = () => {
     setArea({...area, [e.target.id]: e.target.value})
   }
 
+    //This effect is needed because we sometimes want to update the circles whenever the location updates
+    useEffect(() => {
+      if(area.longitude === undefined) {
+        setCircles([]);
+        return;
+      }
+      
+      setCircles([createCircle(area.longitude, area.latitude, area.radius, "red")]);
+      setMapKey(mapKey + 1);
+    }, [area]);
+
+  if(!area.longitude) {
+    return <div></div>
+  }
+
   return (
     <div>
       <Breadcrumb lastItem={area.name}/>
@@ -76,6 +96,7 @@ const AreaEdit : React.FC = () => {
         <Input placeholderText={'Straal in meters'} inputName={'radius'} inputType={'number'} inputLabel={'Straal'} onChange={handleChange} value={area.radius === 0 ? "" : area.radius} errors={errors.radius}/>
         <br/>
         <SubmitButton value={isEdit ? "Opslaan" : "Voeg toe"}/>
+        <Map key={mapKey} viewCoords={[area.latitude, area.longitude]} viewZoom={15} circles={circles}></Map>
       </form>
     </div>
   );
