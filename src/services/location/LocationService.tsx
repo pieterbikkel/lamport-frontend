@@ -1,4 +1,4 @@
-import networkAdapter from "../../adapters/NetworkAdapterFactory";
+import networkAdapter from "../../adapters/network/NetworkAdapterFactory";
 import AreaDTO from "../../dto/AreaDTO";
 import FranchiseDTO from "../../dto/FranchiseDTO";
 import LocationDTO from "../../dto/LocationDTO";

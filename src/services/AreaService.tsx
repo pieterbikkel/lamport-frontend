@@ -1,4 +1,4 @@
-import networkAdapter from "../adapters/NetworkAdapterFactory";
+import networkAdapter from "../adapters/network/NetworkAdapterFactory";
 import AreaDTO from "../dto/AreaDTO";
 import IService from "./IService";
 

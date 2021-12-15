@@ -5,9 +5,13 @@ import LocationDTO from '../../dto/LocationDTO';
 import { Link, useParams } from "react-router-dom";
 import DetailTopSection from '../../components/detail-top-section/DetailTopSection';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
+import Map from '../../components/map/Map';
+import { Circle } from 'leaflet';
+import createCircle from '../../adapters/circle/CircleFactory';
 
 function LocationDetail() {
   const [location, setLocation] = useState<LocationDTO>();
+  const [circles] = useState([] as Circle[]);
 
   const params = useParams();
 
@@ -15,8 +19,10 @@ function LocationDetail() {
     const locationService = new LocationService();
     locationService.loadOne(id)
     .then(val => {
-      setLocation(val);
-    });
+      setLocation(val)
+      circles.push(createCircle(val.longitude, val.latitude, val.radius, "blue"))
+      circles.push(createCircle(val.area.longitude, val.area.latitude, val.area.radius, "red"))
+    })
   }, [])
 
   if(params.id === undefined) {
@@ -71,6 +77,7 @@ function LocationDetail() {
         <p>Er zijn nog geen gekoppelde interventies!</p>
         }
       </div>
+      <Map viewCoords={[location.latitude, location.longitude]} viewZoom={15} circles={circles}></Map>
     </div>
   );
 }
