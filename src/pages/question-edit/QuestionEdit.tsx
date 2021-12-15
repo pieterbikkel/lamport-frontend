@@ -62,9 +62,9 @@ const QuestionEdit : React.FC = () => {
       <form onSubmit={onSubmit}>
         <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={question.name} errors={errors.name}/>
         <br/>
-        <Input placeholderText={'Vraag'} inputName={'question'} inputType={'text'} inputLabel={'Vraag'} onChange={handleChange} value={question.question} errors={errors.name}/>
+        <Input placeholderText={'Vraag'} inputName={'question'} inputType={'text'} inputLabel={'Vraag'} onChange={handleChange} value={question.question} errors={errors.question}/>
         <br/>
-		<Input placeholderText={'Antwoord'} inputName={'answer'} inputType={'text'} inputLabel={'Antwoord'} onChange={handleChange} value={question.answer} errors={errors.name}/>
+		<Input placeholderText={'Antwoord'} inputName={'answer'} inputType={'text'} inputLabel={'Antwoord'} onChange={handleChange} value={question.answer} errors={errors.answer}/>
         <br/>
         <SubmitButton value={isEdit ? "Opslaan" : "Voeg toe"}/>
       </form>

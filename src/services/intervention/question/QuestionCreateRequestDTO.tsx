@@ -1,10 +1,11 @@
+import AnswerDTO from "../../../dto/AnswerDTO";
 import QuestionDTO from "../../../dto/QuestionDTO";
 
 
 class CommandCreateRequestDTO {
     name: string = "";
 	question: string = "";
-    answer: string = "";
+    answer: AnswerDTO = new AnswerDTO();
     
     constructor(questionDTO: QuestionDTO) {
         this.name = questionDTO.name;
