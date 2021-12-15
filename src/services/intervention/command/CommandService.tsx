@@ -1,4 +1,4 @@
-import networkAdapter from "../../../adapters/NetworkAdapterFactory";
+import networkAdapter from "../../../adapters/network/NetworkAdapterFactory";
 import CommandDTO from "../../../dto/CommandDTO";
 import InterventionDTO from "../../../dto/CommandDTO";
 import CommandCreateRequestDTO from "./CommandCreateRequestDTO";
