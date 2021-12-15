@@ -1,4 +1,4 @@
-import networkAdapter from "../../adapters/NetworkAdapterFactory";
+import networkAdapter from "../../adapters/network/NetworkAdapterFactory";
 import FranchiseDTO from "../../dto/FranchiseDTO";
 import IService from "../IService";
 import FranchiseCreateRequestDTO from "./FranchiseCreateRequestDTO";
