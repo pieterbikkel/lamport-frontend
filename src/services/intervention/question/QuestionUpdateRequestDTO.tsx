@@ -6,7 +6,7 @@ class CommandUpdateRequestDTO {
     id: number = 0;
     name: string = "";
 	question: string = "";
-    answer: AnswerDTO = new AnswerDTO();
+    answer: AnswerDTO[] = [];
     
     constructor(questionDTO: QuestionDTO) {
         this.id = questionDTO.id;
