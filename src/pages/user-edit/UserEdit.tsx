@@ -9,6 +9,7 @@ import UserService from '../../services/user/UserService';
 import Select from '../../components/select/Select';
 import Option from '../../components/select/Option';
 import RoleDTO from '../../dto/RoleDTO';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 import RoleService from '../../services/role/RoleService';
 
 const UserEdit : React.FC = () => {
@@ -26,7 +27,7 @@ const UserEdit : React.FC = () => {
       await service.create(user)
         .then(() => {
           toast.success("Gebruiker aangemaakt!");
-          navigate("/users");
+          navigate("/gebruikers");
         }).catch(err => {
           setErrors(err.response.data);
           return;
@@ -35,7 +36,7 @@ const UserEdit : React.FC = () => {
       await service.update(user)
         .then(response => {
           toast.success("Gebruiker bijgewerkt!");
-          navigate("/users");
+          navigate("/gebruikers");
         }).catch(err => {
           setErrors(err.response.data);
           return;
@@ -79,6 +80,7 @@ const UserEdit : React.FC = () => {
 
   return (
     <div>
+      <Breadcrumb lastItem={user.username}/>
       <h2>{isEdit ? user.username + " Wijzigen" : "Gebruiker aanmaken"}</h2>
       <form onSubmit={onSubmit}>
         <Input placeholderText={'Naam'} inputName={'username'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={user.username} errors={errors.name}/>

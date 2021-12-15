@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import TopSection from '../../components/list-top-section/ListTopSection';
 import TableRow from '../../components/tablerow/TableRow';
 import InterventionDTO from '../../dto/InterventionDTO';
-import InterventionService from '../../services/InterventionService';
+import InterventionService from '../../services/intervention/InterventionService';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
 function InterventionList() {

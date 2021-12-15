@@ -9,7 +9,7 @@ import Input from '../../components/input/Input';
 import SubmitButton from '../../components/submit-button/SubmitButton';
 import AreaDTO from '../../dto/AreaDTO';
 import InterventionDTO from '../../dto/InterventionDTO';
-import InterventionService from '../../services/InterventionService';
+import InterventionService from '../../services/intervention/InterventionService';
 import TableRow from '../../components/tablerow/TableRow';
 import AreaService from '../../services/AreaService';
 import Select from '../../components/select/Select';
@@ -17,6 +17,9 @@ import Option from '../../components/select/Option';
 import FranchiseService from '../../services/franchise/FranchiseService';
 import FranchiseDTO from '../../dto/FranchiseDTO';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
+import { Circle } from 'leaflet';
+import Map from "../../components/map/Map"
+import createCircle from '../../adapters/circle/CircleFactory';
 
 function LocationEdit() {
   const [location, setLocation] = useState({} as LocationDTO);
@@ -26,6 +29,8 @@ function LocationEdit() {
   const [allFranchises, setAllFranchises] = useState([] as FranchiseDTO[]);
   const [service, setService] = useState({} as LocationService);
   const [errors, setErrors] = useState({} as any);
+  const [circles, setCircles] = useState([] as Circle[]);
+  const [mapKey, setMapKey] = useState(1 as number);
   
   const params = useParams();
   const navigate = useNavigate();
@@ -92,11 +97,36 @@ function LocationEdit() {
   const isEdit: boolean = id !== 0;
 
   const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-    setLocation({...location, [e.target.id]: e.target.value})
+    setLocation({...location, [e.target.id]: e.target.value});
+  }
+
+  //This effect is needed because we sometimes want to update the circles whenever the location updates
+  useEffect(() => {
+    setCircles(getCircles(location));
+    setMapKey(mapKey + 1);
+  }, [location])
+
+  const getCircles = (location : LocationDTO) : Circle[] => {
+    const tempCircles = [] as Circle[];
+
+    if(location.longitude === undefined) {
+      return [];
+    }
+
+    tempCircles.push(createCircle(location.longitude, location.latitude, location.radius, "blue"));
+    tempCircles.push(createCircle(location.area.longitude, location.area.latitude, location.area.radius, "red"));
+
+    return tempCircles;
   }
 
   const updateArea = (id:string) => {
-    setLocation({...location, "areaId": Number(id)});
+    const newLoc = {...location, "areaId": Number(id)};
+
+    const newArea = allAreas.find(x => x.id == Number(id));
+
+    newLoc.area = newArea === undefined ? newLoc.area : newArea;
+    
+    setLocation(newLoc);
   }
 
   const updateFranchise = (id:string) => {
@@ -192,6 +222,7 @@ function LocationEdit() {
         {location.linkedInterventions.map(intervention => {
           return <TableRow title={intervention.name} onDeleteClick={() => removeIntervention(intervention.id)} />
         })}
+        <Map key={mapKey} viewCoords={[location.latitude, location.longitude]} viewZoom={15} circles={circles}></Map>
         </div>
       </div>
     </div>

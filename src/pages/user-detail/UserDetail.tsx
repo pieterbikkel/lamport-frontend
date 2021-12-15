@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import DetailTopSection from '../../components/detail-top-section/DetailTopSection';
 import UserDTO from '../../dto/UserDTO';
 import UserService from '../../services/user/UserService';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
 function UserDetail() {
   const [user, setUser] = useState({} as UserDTO);
@@ -30,7 +31,8 @@ function UserDetail() {
 
   return (
     <div>
-      <DetailTopSection pageTitle={user.username} buttonTitle={'Wijzigen'} navigationLink={'/users/edit/' + user.id} subheading={'Gebruiker'}/>
+      <Breadcrumb lastItem={user.username}/>
+      <DetailTopSection pageTitle={user.username} buttonTitle={'Wijzigen'} navigationLink={'/gebruikers/wijzigen/' + user.id} subheading={'Gebruiker'}/>
       <table className="user-detail-table">
         <tbody>
           <tr>

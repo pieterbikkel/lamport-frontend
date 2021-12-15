@@ -28,6 +28,7 @@ import CommandDetail from './pages/intervention-detail/command/CommandDetail';
 import InterventionList from './pages/intervention-list/InterventionList';
 import QuestionDetail from './pages/intervention-detail/question/QuestionDetail';
 import QuestionnaireDetail from './pages/intervention-detail/questionnaire/QuestionnaireDetail';
+import CommandEdit from './pages/command-edit/CommandEdit';
 
 
 ReactDOM.render(
@@ -74,6 +75,11 @@ ReactDOM.render(
           <Route path="questionnaire/:id" element={<QuestionnaireDetail/>}/>
         </Route>
         <Route path="login" element={<Login/>}/>
+        <Route path="commandos">
+        {/* <Route index element={<CommandList />}/> */}
+          {/* <Route path=":id" element={<CommandDetail />}/> */}
+          <Route path="wijzigen/:id" element={<CommandEdit />}/>
+        </Route>
         <Route
         //todo 404
           path="*"

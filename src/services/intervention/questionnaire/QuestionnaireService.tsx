@@ -1,4 +1,4 @@
-import networkAdapter from "../../../adapters/NetworkAdapterFactory";
+import networkAdapter from "../../../adapters/network/NetworkAdapterFactory";
 import QuestionnaireDTO from "../../../dto/QuestionnaireDTO";
 import IService from "../../IService";
 import QuestionnaireCreateRequestDTO from "./QuestionnaireCreateRequestDTO";

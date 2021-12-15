@@ -1,4 +1,4 @@
-import networkAdapter from "../../adapters/NetworkAdapterFactory";
+import networkAdapter from "../../adapters/network/NetworkAdapterFactory";
 import LoginDTO from "../../dto/LoginDTO";
 import LoginRequestDTO from "./LoginRequestDTO";
 class LoginService {

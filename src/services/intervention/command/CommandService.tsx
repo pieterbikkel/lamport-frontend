@@ -1,49 +1,45 @@
-import networkAdapter from "../../../adapters/NetworkAdapterFactory";
+import networkAdapter from "../../../adapters/network/NetworkAdapterFactory";
 import CommandDTO from "../../../dto/CommandDTO";
-import IService from "../../IService";
+import InterventionDTO from "../../../dto/CommandDTO";
 import CommandCreateRequestDTO from "./CommandCreateRequestDTO";
-import CommandUpdateRequestDTO from "./CommandUpdateRequestDTO";
 
-class CommandService implements IService<CommandDTO> {
-    async loadAll(): Promise<CommandDTO[]> {
-        return networkAdapter
-            .get("commands")
+class CommandService {
+    async loadAll(): Promise<InterventionDTO[]> {
+		return networkAdapter
+		.get("commands")
+		.then(response => response.data)
+		.then(data => {
+			let toReturn = [] as CommandDTO[];
+			data.forEach((command: any) => {
+				let commandDTO: CommandDTO = new CommandDTO();
+				commandDTO.id = command.id;
+				commandDTO.name = command.name;
+				commandDTO.commandText = command.commandText;
+				toReturn.push(commandDTO);
+			});
+			return toReturn;
+		});
+    }
+    async loadOne(id: number): Promise<InterventionDTO> {
+        return networkAdapter.get("command/" + id)
             .then(response => response.data)
-            .then(data => {
-                let toReturn = [] as CommandDTO[];
-                data.forEach((command: any) => {
-                    let commandDTO: CommandDTO = new CommandDTO();
-                    commandDTO.id = command.id;
-                    commandDTO.name = command.name;
-                    commandDTO.commandText = command.commandText;
-                    toReturn.push(commandDTO);
-                });
-                return toReturn;
+            .then(command => {
+                let commandDTO: CommandDTO = new CommandDTO();
+                commandDTO.id = command.id;
+                commandDTO.name = command.name;
+				commandDTO.commandText = command.commandText;
+                return commandDTO;
             });
     }
-    
-    async loadOne(id: number): Promise<CommandDTO> {
-        return networkAdapter
-            .get("commands/" + id)
-            .then(response => response.data)
-            .then(data => {
-                let toReturn = new CommandDTO();
-                toReturn.id = data.id;
-                toReturn.name = data.name;
-                toReturn.commandText = data.commandText;
-                return toReturn;
-            });
+    update(value: CommandDTO): Promise<void> {
+        return networkAdapter.put("command", value);
     }
-    async   update(value: CommandDTO): Promise<void> {
-        return networkAdapter.put("interventions/commands", new CommandUpdateRequestDTO(value));
+    create(value: CommandDTO): Promise<void> {
+        return networkAdapter.post("interventions/command", new CommandCreateRequestDTO(value));
     }
-    async create(value: CommandDTO): Promise<void> {
-        return networkAdapter.post("interventions/commands", new CommandCreateRequestDTO(value));
+    delete(id: number): Promise<void> {
+        return networkAdapter.delete("command/" + id);
     }
-    async delete(id: number): Promise<void> {
-        return networkAdapter.delete("interventions/commands/" + id);
-    }
-
 }
 
 export default CommandService;

@@ -1,4 +1,4 @@
-import networkAdapter from "../../adapters/NetworkAdapterFactory";
+import networkAdapter from "../../adapters/network/NetworkAdapterFactory";
 import GoalDTO from "../../dto/GoalDTO";
 import IService from "../IService";
 import GoalCreateRequestDTO from "./GoalCreateRequestDTO";

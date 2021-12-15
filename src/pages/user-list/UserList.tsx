@@ -4,6 +4,7 @@ import TopSection from '../../components/list-top-section/ListTopSection';
 import TableRow from '../../components/tablerow/TableRow';
 import UserDTO from '../../dto/UserDTO';
 import UserService from '../../services/user/UserService';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
 function UserList() {
   const [users, setUsers] = useState([] as UserDTO[]);
@@ -29,11 +30,12 @@ function UserList() {
 
   return (
     <div>
-      <TopSection pageTitle={'Gebruikers'} buttonTitle={'Toevoegen'} navigationLink={'/users/edit/0'} onClick={search}/>
+      <Breadcrumb/>
+      <TopSection pageTitle={'Gebruikers'} buttonTitle={'Toevoegen'} navigationLink={'/gebruikers/wijzigen/0'} onClick={search}/>
         {users.map(user => {
           return (
             <div key={user.id}>
-              <TableRow title={user.username} subtitle={user.role.name} onEditLink={"/users/edit/" + user.id} onDeleteClick={() => deleteUser(user.id)} navigationLink={ "/users/" + user.id }/>
+              <TableRow title={user.username} subtitle={user.role.name} onEditLink={"/gebruikers/wijzigen/" + user.id} onDeleteClick={() => deleteUser(user.id)} navigationLink={ "/gebruikers/" + user.id }/>
             </div>
           )
         })}
