@@ -35,13 +35,13 @@ class QuestionnaireService implements IService<QuestionnaireDTO> {
             });
     }
     async   update(value: QuestionnaireDTO): Promise<void> {
-        return networkAdapter.put("questions", new QuestionnaireUpdateRequestDTO(value));
+        return networkAdapter.put("interventions/questions", new QuestionnaireUpdateRequestDTO(value));
     }
     async create(value: QuestionnaireDTO): Promise<void> {
-        return networkAdapter.post("questions", new QuestionnaireCreateRequestDTO(value));
+        return networkAdapter.post("interventions/questions", new QuestionnaireCreateRequestDTO(value));
     }
     async delete(id: number): Promise<void> {
-        return networkAdapter.delete("questions/" + id);
+        return networkAdapter.delete("interventions/questions/" + id);
     }
 
 }

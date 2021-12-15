@@ -29,10 +29,28 @@ function InterventionList() {
     console.log("search")
   }
 
+  const dropdownoptions = [
+    {
+      id: 1,
+      name: "Commando",
+      link: "/interventies/commandos/0"
+    },
+    {
+      id: 2,
+      name: "Vraag",
+      link: "/interventies/vragen/0"
+    },
+    {
+      id: 3,
+      name: "Commando",
+      link: "/interventies/vragenlijst/0"
+    },
+  ];
+
   return (
     <div>
       <Breadcrumb/>
-      <TopSection pageTitle={'Interventies'} buttonTitle={'Toevoegen'} dropdownLinks={['/interventies/commandos/0', '/interventies/vragen/0', '/interventies/vragenlijst/0']} dropdownLabels={['Commando', 'Vraag', 'Vragenlijst']} onClick={search}/> {/* TODO: dropdown */}
+      <TopSection pageTitle={'Interventies'} buttonTitle={'Toevoegen'} dropdownOptions={dropdownoptions} onClick={search}/> {/* TODO: dropdown */}
         {interventions.map(intervention => {
           return (
             <div key={intervention.id}>

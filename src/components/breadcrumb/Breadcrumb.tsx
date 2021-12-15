@@ -31,12 +31,12 @@ const Breadcrumb = ({lastItem}: Props) => {
           const routeTo = `/${pathnames.slice(0, index + 1).join("/")}`;
           const isLast = index === pathnames.length - 1;
           return isLast ? (
-            <div>
-              {lastItem && <Typography key={lastItem}><h4>{lastItem.charAt(0).toUpperCase() + lastItem.slice(1)}</h4></Typography>}
-              {!lastItem && <Typography key={name}><h4>{name.charAt(0).toUpperCase() + name.slice(1)}</h4></Typography>}
+            <div key={name}>
+              {lastItem && <Typography component={'span'} key={lastItem}><h4>{lastItem.charAt(0).toUpperCase() + lastItem.slice(1)}</h4></Typography>}
+              {!lastItem && <Typography component={'span'} key={name}><h4>{name.charAt(0).toUpperCase() + name.slice(1)}</h4></Typography>}
             </div>
           ) : (
-            <Link underline="hover" color="inherit" key={name} onClick={() => navigate(routeTo)}>
+            <Link underline="hover" key={name} color="inherit" onClick={() => navigate(routeTo)}>
               <h4 className='hover-green'>{name.charAt(0).toUpperCase() + name.slice(1)}</h4>
             </Link>
           );

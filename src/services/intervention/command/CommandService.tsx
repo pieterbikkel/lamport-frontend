@@ -15,6 +15,7 @@ class CommandService implements IService<CommandDTO> {
                     let commandDTO: CommandDTO = new CommandDTO();
                     commandDTO.id = command.id;
                     commandDTO.name = command.name;
+                    commandDTO.commandText = command.commandText;
                     toReturn.push(commandDTO);
                 });
                 return toReturn;
@@ -29,17 +30,18 @@ class CommandService implements IService<CommandDTO> {
                 let toReturn = new CommandDTO();
                 toReturn.id = data.id;
                 toReturn.name = data.name;
+                toReturn.commandText = data.commandText;
                 return toReturn;
             });
     }
     async   update(value: CommandDTO): Promise<void> {
-        return networkAdapter.put("commands", new CommandUpdateRequestDTO(value));
+        return networkAdapter.put("interventions/commands", new CommandUpdateRequestDTO(value));
     }
     async create(value: CommandDTO): Promise<void> {
-        return networkAdapter.post("commands", new CommandCreateRequestDTO(value));
+        return networkAdapter.post("interventions/commands", new CommandCreateRequestDTO(value));
     }
     async delete(id: number): Promise<void> {
-        return networkAdapter.delete("commands/" + id);
+        return networkAdapter.delete("interventions/commands/" + id);
     }
 
 }

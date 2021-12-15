@@ -33,13 +33,13 @@ class QuestionService implements IService<QuestionDTO> {
             });
     }
     async   update(value: QuestionDTO): Promise<void> {
-        return networkAdapter.put("questions", new QuestionUpdateRequestDTO(value));
+        return networkAdapter.put("interventions/questions", new QuestionUpdateRequestDTO(value));
     }
     async create(value: QuestionDTO): Promise<void> {
-        return networkAdapter.post("questions", new QuestionCreateRequestDTO(value));
+        return networkAdapter.post("interventions/questions", new QuestionCreateRequestDTO(value));
     }
     async delete(id: number): Promise<void> {
-        return networkAdapter.delete("questions/" + id);
+        return networkAdapter.delete("interventions/questions/" + id);
     }
 
 }

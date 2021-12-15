@@ -1,8 +1,8 @@
 .select {
     border: none;
     margin: 3px 0;
-    color: var(--wur-zwart);
-    background-color: var(--wur-groen-hover);
+    color: var(--wur-wit);
+    background-color: var(--wur-groen);
     font-size: 18px;
     display: block;
     height: 52px;
@@ -20,4 +20,8 @@
 
 .select-large {
     width: 100%;
+}
+
+.option {
+    height: 2rem;
 }

@@ -1,29 +1,35 @@
 import { useNavigate } from 'react-router-dom';
 import Option from '../select/Option';
 import './Dropdown.css';
+import DropwdownOption from './DropdownOption';
 
 interface Props {
     placeholderText: string,
-    selectName?: string,
-    selectLabel: string,
-    options: string[],
-    value?: string,
-    onChange:any,
+    options: DropwdownOption[],
     width?: string;
 }
 
-function Dropdown({ placeholderText, selectName, selectLabel, options, value = "", onChange, width = "normal" }: Props ) {
+function Dropdown({ placeholderText, options, width = "normal" }: Props ) {
 
     const navigate = useNavigate();
 
+    const changeSelect = (e:React.ChangeEvent<HTMLSelectElement>):any => {
+        const selectedOption = options[e.target.options.selectedIndex - 1];
+
+        if(selectedOption === undefined) {
+            return;
+        }
+
+        navigate(selectedOption.link);
+    }
+
     return (
         <div>
-            <h4 className="select-label">{selectLabel}</h4>
-            <select value={value != "" ? value : "0"} className={"select select-" + width} id={selectName} name={selectName}>
-                <option value="0">{placeholderText + "..."}</option>
+            <select className={"select select-" + width} onChange={changeSelect}>
+                <option value="0">{placeholderText}</option>
                 {options.map(option => {
                     return (
-                        <option onClick={() => navigate(option)} value={option} key={option}>{selectName}</option>
+                        <option className="option" value={option.name} key={option.id}>{option.name}</option>
                     )}
                 )}
             </select>

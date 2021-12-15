@@ -1,7 +1,9 @@
 import CommandDTO from "../../../dto/CommandDTO";
 
 class CommandCreateRequestDTO {
-    name: String = "";
+    id: string = "";
+    name: string = "";
+    commandText: string = "";
     
     constructor(commandDTO: CommandDTO) {
         this.name = commandDTO.name;
