@@ -39,11 +39,9 @@ function QuestionDetail() {
       <div className="questions">
         <h4>Antwoorden</h4>
         {
-        question.answers.length !== 0  ? 
         question.answers.map(answer => {
           return <p id={answer.id.toString()}>{answer.answer}</p>
-        }) : 
-        <p>Er zijn nog geen gekoppelde vragen!</p>
+        })
         }
       </div>
     </div>  

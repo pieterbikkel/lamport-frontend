@@ -7,16 +7,16 @@ import QuestionnaireUpdateRequestDTO from "./QuestionnaireUpdateRequestDTO";
 class QuestionnaireService implements IService<QuestionnaireDTO> {
     async loadAll(): Promise<QuestionnaireDTO[]> {
         return networkAdapter
-            .get("questions")
+            .get("questionnaires")
             .then(response => response.data)
             .then(data => {
                 let toReturn = [] as QuestionnaireDTO[];
                 data.forEach((question: any) => {
-                    let questionDTO: QuestionnaireDTO = new QuestionnaireDTO();
-                    questionDTO.id = question.id;
-                    questionDTO.name = question.name;
-                    questionDTO.questions = question.questions;
-                    toReturn.push(questionDTO);
+                    let questionnaireDTO: QuestionnaireDTO = new QuestionnaireDTO();
+                    questionnaireDTO.id = question.id;
+                    questionnaireDTO.name = question.name;
+                    questionnaireDTO.questions = question.questions;
+                    toReturn.push(questionnaireDTO);
                 });
                 return toReturn;
             });
@@ -24,7 +24,7 @@ class QuestionnaireService implements IService<QuestionnaireDTO> {
     
     async loadOne(id: number): Promise<QuestionnaireDTO> {
         return networkAdapter
-            .get("questions/" + id)
+            .get("questionnaires/" + id)
             .then(response => response.data)
             .then(data => {
                 let toReturn = new QuestionnaireDTO();
@@ -35,13 +35,13 @@ class QuestionnaireService implements IService<QuestionnaireDTO> {
             });
     }
     async   update(value: QuestionnaireDTO): Promise<void> {
-        return networkAdapter.put("interventions/questions", new QuestionnaireUpdateRequestDTO(value));
+        return networkAdapter.put("interventions/questionnaires", new QuestionnaireUpdateRequestDTO(value));
     }
     async create(value: QuestionnaireDTO): Promise<void> {
-        return networkAdapter.post("interventions/questions", new QuestionnaireCreateRequestDTO(value));
+        return networkAdapter.post("interventions/questionnaires", new QuestionnaireCreateRequestDTO(value));
     }
     async delete(id: number): Promise<void> {
-        return networkAdapter.delete("interventions/questions/" + id);
+        return networkAdapter.delete("interventions/questionnaires/" + id);
     }
 
 }

@@ -11,8 +11,8 @@ function CommandDetail() {
 
   const params = useParams();
   useEffect(() => {
-    const Service = new CommandService();
-    Service.loadOne(id)
+    const service = new CommandService()
+    service.loadOne(id)
     .then(val => {
       setCommand(val);
     })
