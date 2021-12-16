@@ -37,7 +37,7 @@ function RoleDetail() {
         {
         role.allowedPermissions.length !== 0  ? 
         role.allowedPermissions.map(permission => {
-          return <p id={permission}>{permission}</p>
+          return <p id={permission.key}>{permission.display}</p>
         }) : 
         <p>Er zijn nog geen gekoppelde permissies!</p>
         }
