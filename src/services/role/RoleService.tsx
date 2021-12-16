@@ -13,6 +13,7 @@ class RoleService implements IService<RoleDTO> {
                 let roleDTO: RoleDTO = new RoleDTO();
                 roleDTO.id = role.id;
                 roleDTO.name = role.name;
+                roleDTO.allowedPermissions = role.allowedPermissions;
 
                 toReturn.push(roleDTO);
             });
@@ -23,10 +24,11 @@ class RoleService implements IService<RoleDTO> {
         return networkAdapter
         .get("roles/" + id)
         .then(response => response.data)
-        .then(user => {
+        .then(role => {
             let roleDTO: RoleDTO = new RoleDTO();
-            roleDTO.id = user.role.id;
-            roleDTO.name = user.role.name;
+            roleDTO.id = role.id;
+            roleDTO.name = role.name;
+            roleDTO.allowedPermissions = role.allowedPermissions;
 
             return roleDTO;
         });

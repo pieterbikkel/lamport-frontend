@@ -26,6 +26,8 @@ import Breadcrumb from './components/breadcrumb/Breadcrumb';
 import UserEdit from './pages/user-edit/UserEdit';
 import CommandEdit from './pages/command-edit/CommandEdit';
 import QuestionEdit from './pages/question-edit/QuestionEdit';
+import RoleList from './pages/role-list/RoleList';
+import RoleDetail from './pages/role-detail/RoleDetail';
 
 
 ReactDOM.render(
@@ -61,6 +63,11 @@ ReactDOM.render(
           <Route index element={<UserList />}/>
           <Route path="wijzigen/:id" element={<UserEdit />}/>
           <Route path=":id" element={<UserDetail />}/>
+        </Route>
+        <Route path="rollen">
+          <Route index element={<RoleList />}/>
+          {/* <Route path="wijzigen/:id" element={<UserEdit />}/> */}
+          <Route path=":id" element={<RoleDetail />}/>
         </Route>
         <Route path="login" element={<Login/>}/>
         <Route path="commandos">
