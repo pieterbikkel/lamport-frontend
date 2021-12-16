@@ -25,6 +25,7 @@ import UserDetail from './pages/user-detail/UserDetail';
 import Breadcrumb from './components/breadcrumb/Breadcrumb';
 import UserEdit from './pages/user-edit/UserEdit';
 import CommandEdit from './pages/command-edit/CommandEdit';
+import QuestionEdit from './pages/question-edit/QuestionEdit';
 
 
 ReactDOM.render(
@@ -66,6 +67,11 @@ ReactDOM.render(
         {/* <Route index element={<CommandList />}/> */}
           {/* <Route path=":id" element={<CommandDetail />}/> */}
           <Route path="wijzigen/:id" element={<CommandEdit />}/>
+        </Route>
+        <Route path="vragen">
+          {/* <Route index element={<QuestionList />}/> */}
+          <Route path="wijzigen/:id" element={<QuestionEdit />}/>
+          {/* <Route path=":id" element={<QuestionDetail />}/> */}
         </Route>
         <Route
         //todo 404

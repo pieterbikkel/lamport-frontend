@@ -6,7 +6,6 @@ class CommandDTO {
     constructor(commandDTO?: CommandDTO) {
         Object.assign(this, commandDTO);
     }
-
 }
 
 export default CommandDTO;
