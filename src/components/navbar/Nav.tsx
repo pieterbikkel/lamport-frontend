@@ -34,6 +34,9 @@ const logOut = () => {
         {/* <Link className="nav-link" to="/interventions">
           <p>Interventies</p>
         </Link> */}
+        <Link className="nav-link" to="/rollen">
+          <p>Rollen</p>
+        </Link>
       </div>
       <Button title="Log uit" disabled={false} onClick={logOut} />
     </div>
