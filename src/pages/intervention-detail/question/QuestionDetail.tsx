@@ -40,7 +40,7 @@ function QuestionDetail() {
         <h4>Antwoorden</h4>
         {
         question.answers.map(answer => {
-          return <p id={answer.id.toString()}>{answer.answer}</p>
+          return <p id={answer.id.toString()}>{answer.answerText}</p>
         })
         }
       </div>

@@ -29,6 +29,9 @@ import InterventionList from './pages/intervention-list/InterventionList';
 import QuestionDetail from './pages/intervention-detail/question/QuestionDetail';
 import QuestionnaireDetail from './pages/intervention-detail/questionnaire/QuestionnaireDetail';
 import CommandEdit from './pages/command-edit/CommandEdit';
+import QuestionEdit from './pages/question-edit/QuestionEdit';
+import RoleList from './pages/role-list/RoleList';
+import RoleDetail from './pages/role-detail/RoleDetail';
 
 
 ReactDOM.render(

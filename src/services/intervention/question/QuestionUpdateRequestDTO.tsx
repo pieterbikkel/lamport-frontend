@@ -1,16 +1,19 @@
 import AnswerDTO from "../../../dto/AnswerDTO";
 import QuestionDTO from "../../../dto/QuestionDTO";
 
-class QuestionUpdateRequestDTO {
+
+class CommandUpdateRequestDTO {
     id: number = 0;
-    question: string = "";
+    name: string = "";
+	question: string = "";
     answers: AnswerDTO[] = [];
     
     constructor(questionDTO: QuestionDTO) {
         this.id = questionDTO.id;
+        this.name = questionDTO.name;
         this.question = questionDTO.question;
         this.answers = questionDTO.answers;
     };
 }
 
-export default QuestionUpdateRequestDTO;
+export default CommandUpdateRequestDTO;

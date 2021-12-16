@@ -1,6 +1,6 @@
 class AnswerDTO {
     id: number = 0;
-    answer: string = "";
+	answerText: string = "";
 
     constructor(answerDTO?: AnswerDTO) {
         Object.assign(this, answerDTO);

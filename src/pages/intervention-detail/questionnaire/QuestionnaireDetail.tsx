@@ -46,7 +46,7 @@ function QuestionnaireDetail() {
                   question.answers.map(answer => {
                     return (
                       <div>
-                        <p>{answer.answer}</p>
+                        <p>{answer.answerText}</p>
                       </div>
                     )
                   })
