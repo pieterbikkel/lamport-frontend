@@ -40,7 +40,7 @@ class RoleService implements IService<RoleDTO> {
         throw new Error("Method not implemented.");
     }
     delete(id: number): Promise<void> {
-        throw new Error("Method not implemented.");
+        return networkAdapter.delete("roles/" + id);
     }
 }
 
