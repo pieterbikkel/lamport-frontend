@@ -21,7 +21,7 @@ class QuestionnaireService {
 			return toReturn;
 		});
     }
-    async loadOne(id: number): Promise<InterventionDTO> {
+    async loadOne(id: number): Promise<QuestionnaireDTO> {
         return networkAdapter.get("questionnaire/" + id)
             .then(response => response.data)
             .then(questionnaire => {

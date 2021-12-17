@@ -21,7 +21,7 @@ class CommandService {
 			return toReturn;
 		});
     }
-    async loadOne(id: number): Promise<InterventionDTO> {
+    async loadOne(id: number): Promise<CommandDTO> {
         return networkAdapter.get("command/" + id)
             .then(response => response.data)
             .then(command => {

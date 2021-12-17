@@ -76,7 +76,6 @@ const QuestionEdit : React.FC = () => {
     setQuestion({...question, [e.target.id]: e.target.value})
   }
 
-
   const handleAnswerChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     const answerId = e.target.id;
     const answer = question.answers.find(x => x.id.toString() === answerId);
