@@ -1,0 +1,34 @@
+.add-row {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.fields-row {
+	display: flex;
+	column-gap: 10%;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+}
+
+.add-button {
+	margin-bottom: 3px;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+}
+
+.answers {
+	display: flex;
+	flex-direction: column;
+}
+
+.edit-page {
+	display: flex;
+	flex-direction: row;
+}

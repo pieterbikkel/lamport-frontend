@@ -26,6 +26,7 @@ import Breadcrumb from './components/breadcrumb/Breadcrumb';
 import UserEdit from './pages/user-edit/UserEdit';
 import CommandEdit from './pages/command-edit/CommandEdit';
 import QuestionEdit from './pages/question-edit/QuestionEdit';
+import QuestionnaireEdit from './pages/questionnaire-edit/QuestionnaireEdit';
 
 
 ReactDOM.render(
@@ -71,6 +72,11 @@ ReactDOM.render(
         <Route path="vragen">
           {/* <Route index element={<QuestionList />}/> */}
           <Route path="wijzigen/:id" element={<QuestionEdit />}/>
+          {/* <Route path=":id" element={<QuestionDetail />}/> */}
+        </Route>
+        <Route path="vragenlijst">
+          {/* <Route index element={<QuestionList />}/> */}
+          <Route path="wijzigen/:id" element={<QuestionnaireEdit />}/>
           {/* <Route path=":id" element={<QuestionDetail />}/> */}
         </Route>
         <Route

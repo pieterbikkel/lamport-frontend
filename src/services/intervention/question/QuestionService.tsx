@@ -1,4 +1,5 @@
-import networkAdapter from "../../../adapters/NetworkAdapterFactory";
+
+import networkAdapter from "../../../adapters/network/NetworkAdapterFactory";
 import InterventionDTO from "../../../dto/InterventionDTO";
 import QuestionDTO from "../../../dto/QuestionDTO";
 import QuestionCreateRequestDTO from "./QuestionCreateRequestDTO";
@@ -16,21 +17,21 @@ class QuestionService {
 				questionDTO.id = question.id;
 				questionDTO.name = question.name;
 				questionDTO.question = question.question;
-				questionDTO.answer = question.answer;
+				questionDTO.answers = question.answers;
 				toReturn.push(questionDTO);
 			});
 			return toReturn;
 		});
     }
-    async loadOne(id: number): Promise<InterventionDTO> {
+    async loadOne(id: number): Promise<QuestionDTO> {
         return networkAdapter.get("question/" + id)
             .then(response => response.data)
             .then(question => {
 				let questionDTO: QuestionDTO = new QuestionDTO();
 				questionDTO.id = question.id;
 				questionDTO.name = question.name;
-				questionDTO.question = question.name;
-				questionDTO.answer = question.name;
+				questionDTO.question = question.question;
+				questionDTO.answers = question.answers;
 				
                 return questionDTO;
             });
