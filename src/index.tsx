@@ -28,6 +28,7 @@ import CommandEdit from './pages/command-edit/CommandEdit';
 import QuestionEdit from './pages/question-edit/QuestionEdit';
 import RoleList from './pages/role-list/RoleList';
 import RoleDetail from './pages/role-detail/RoleDetail';
+import RoleEdit from './pages/role-edit/RoleEdit';
 
 
 ReactDOM.render(
@@ -66,7 +67,7 @@ ReactDOM.render(
         </Route>
         <Route path="rollen">
           <Route index element={<RoleList />}/>
-          {/* <Route path="wijzigen/:id" element={<UserEdit />}/> */}
+          <Route path="wijzigen/:id" element={<RoleEdit />}/>
           <Route path=":id" element={<RoleDetail />}/>
         </Route>
         <Route path="login" element={<Login/>}/>
