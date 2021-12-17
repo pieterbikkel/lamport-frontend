@@ -1,5 +1,7 @@
 import axios, { AxiosRequestHeaders } from "axios";
+import { toast } from "react-toastify";
 import INetworkAdapter from "./INetworkAdapter";
+import { createBrowserHistory } from 'history';
 
 class AxiosNetworkAdapter implements INetworkAdapter {
     private url: string = "http://localhost:8080";
@@ -15,18 +17,67 @@ class AxiosNetworkAdapter implements INetworkAdapter {
         };
     };
 
-    public post   = (path: string, body?: any | undefined): Promise<any> => axios.post   (this.buildUrl(path), body, {
-        headers: this.getHeaders()
-    });
-    public get    = (path: string): Promise<any> => axios.get                            (this.buildUrl(path), {
-        headers: this.getHeaders()
-    });
-    public put    = (path: string, body?: any | undefined): Promise<any> => axios.put    (this.buildUrl(path), body, {
-        headers: this.getHeaders()
-    });
-    public delete = (path: string): Promise<any> => axios.delete                         (this.buildUrl(path), {
-        headers: this.getHeaders()
-    });
+    public post = async (path: string, body?: any | undefined): Promise<any> => {
+        return axios.post   (this.buildUrl(path), body, {
+            headers: this.getHeaders()
+        })
+        .catch(ex => {
+            if(ex.response.status === 403) {
+                toast.error("U heeft geen toestemming om deze actie uit te voeren!");
+            }
+            return Promise.reject(ex);
+        })
+        .then(data => {
+            return data
+        });
+    }
+
+    public get = async (path: string): Promise<any> => {
+        return axios.get(this.buildUrl(path), {
+            headers: this.getHeaders()
+        }).catch(ex => {
+            if(ex.response.status === 403) {
+                //todo redirect to home page - Bart(17-12-2021)
+                createBrowserHistory().push('/');
+                window.location.reload();
+                //todo find a way to properly show the toast and make navigating more seamless - Bart(17-12-2021)
+                toast.error("U heeft geen toestemming om deze pagina te bezoeken!");
+            }
+            return Promise.reject(ex);
+        })
+        .then(data => {
+            return data
+        });
+    }
+
+    public put = async (path: string, body?: any | undefined): Promise<any> => {
+        return axios.put   (this.buildUrl(path), body, {
+            headers: this.getHeaders()
+        })
+        .catch(ex => {
+            if(ex.response.status === 403) {
+                toast.error("U heeft geen toestemming om deze actie uit te voeren!");
+            }
+            return Promise.reject(ex);
+        })
+        .then(data => {
+            return data
+        });
+    }
+    public delete = async (path: string): Promise<any> => {
+        return axios.post   (this.buildUrl(path), {
+            headers: this.getHeaders()
+        })
+        .catch(ex => {
+            if(ex.response.status === 403) {
+                toast.error("U heeft geen toestemming om deze actie uit te voeren!");
+            }
+            return Promise.reject(ex);
+        })
+        .then(data => {
+            return data
+        });
+    }
 }
 
 export default AxiosNetworkAdapter;
