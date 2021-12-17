@@ -8,7 +8,7 @@ import QuestionUpdateRequestDTO from "./QuestionUpdateRequestDTO";
 class QuestionService {
     async loadAll(): Promise<InterventionDTO[]> {
 		return networkAdapter
-		.get("questions")
+		.get("interventions/questions")
 		.then(response => response.data)
 		.then(data => {
 			let toReturn = [] as QuestionDTO[];
@@ -24,7 +24,7 @@ class QuestionService {
 		});
     }
     async loadOne(id: number): Promise<QuestionDTO> {
-        return networkAdapter.get("question/" + id)
+        return networkAdapter.get("interventions/question/" + id)
             .then(response => response.data)
             .then(question => {
 				let questionDTO: QuestionDTO = new QuestionDTO();
@@ -39,11 +39,11 @@ class QuestionService {
     update(value: QuestionDTO): Promise<void> {
         return networkAdapter.put("interventions/question", new QuestionUpdateRequestDTO(value));
     }
-    create(value: QuestionDTO): Promise<void> {
+    async create(value: QuestionDTO): Promise<void> {
         return networkAdapter.post("interventions/question", new QuestionCreateRequestDTO(value));
     }
-    delete(id: number): Promise<void> {
-        return networkAdapter.delete("question/" + id);
+    async delete(id: number): Promise<void> {
+        return networkAdapter.delete("interventions/question/" + id);
     }
 }
 

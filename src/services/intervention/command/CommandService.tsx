@@ -7,7 +7,7 @@ import CommandUpdateRequestDTO from "./CommandUpdateRequestDTO";
 class CommandService {
     async loadAll(): Promise<InterventionDTO[]> {
 		return networkAdapter
-		.get("commands")
+		.get("interventions/commands")
 		.then(response => response.data)
 		.then(data => {
 			let toReturn = [] as CommandDTO[];
@@ -22,7 +22,7 @@ class CommandService {
 		});
     }
     async loadOne(id: number): Promise<CommandDTO> {
-        return networkAdapter.get("command/" + id)
+        return networkAdapter.get("interventions/command/" + id)
             .then(response => response.data)
             .then(command => {
                 let commandDTO: CommandDTO = new CommandDTO();
@@ -35,11 +35,11 @@ class CommandService {
     update(value: CommandDTO): Promise<void> {
         return networkAdapter.put("interventions/command", new CommandUpdateRequestDTO(value));
     }
-    create(value: CommandDTO): Promise<void> {
+    async create(value: CommandDTO): Promise<void> {
         return networkAdapter.post("interventions/command", new CommandCreateRequestDTO(value));
     }
-    delete(id: number): Promise<void> {
-        return networkAdapter.delete("command/" + id);
+    async delete(id: number): Promise<void> {
+        return networkAdapter.delete("interventions/command/" + id);
     }
 }
 
