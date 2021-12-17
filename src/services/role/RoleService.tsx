@@ -2,6 +2,7 @@ import networkAdapter from "../../adapters/network/NetworkAdapterFactory";
 import PermissionDTO from "../../dto/PermissionDTO";
 import RoleDTO from "../../dto/RoleDTO";
 import IService from "../IService";
+import RoleCreateRequestDTO from "./RoleCreateRequestDTO";
 import RoleUpdateRequestDTO from "./RoleUpdateRequestDTO";
 
 class RoleService implements IService<RoleDTO> {
@@ -55,7 +56,7 @@ class RoleService implements IService<RoleDTO> {
         return networkAdapter.put("roles", new RoleUpdateRequestDTO(value));
     }
     create(value: RoleDTO): Promise<void> {
-        throw new Error("Method not implemented.");
+        return networkAdapter.post("roles", new RoleCreateRequestDTO(value));
     }
 
     delete(id: number): Promise<void> {
