@@ -94,7 +94,7 @@ const QuestionEdit : React.FC = () => {
 
   return (
     <div>
-      <Breadcrumb lastItem={question.name}/>
+      <Breadcrumb lastItem={question.name} itemsToRemove={["vraag"]}/>
       <h2>{isEdit ? question.name + " Wijzigen" : "Vraag aanmaken"}</h2>
       <div className='edit-page'>
         <div className='form'>

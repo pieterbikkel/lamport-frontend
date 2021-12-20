@@ -51,7 +51,6 @@ const CommandEdit : React.FC = () => {
     } else {
       commandService.loadOne(id)
       .then(val => {
-        console.log(val);
         setCommand(val);
       })
     }
@@ -66,12 +65,12 @@ const CommandEdit : React.FC = () => {
 
   return (
     <div>
-      <Breadcrumb lastItem={command.name}/>
+      <Breadcrumb lastItem={command.name} itemsToRemove={["commando"]}/>
       <h2>{isEdit ? command.name + " Wijzigen" : "Commando aanmaken"}</h2>
       <form onSubmit={onSubmit}>
         <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={command.name} errors={errors.name}/>
         <br/>
-        <Input placeholderText={'Tekst'} inputName={'commandText'} inputType={'text'} inputLabel={'Tekst'} onChange={handleChange} value={command.commandText} errors={errors.name}/>
+        <Input placeholderText={'Tekst'} inputName={'commandText'} inputType={'text'} inputLabel={'Tekst'} onChange={handleChange} value={command.commandText} errors={errors.commandText}/>
         <br/>
         <SubmitButton value={isEdit ? "Opslaan" : "Voeg toe"}/>
       </form>
