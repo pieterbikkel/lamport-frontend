@@ -1,7 +1,6 @@
 import AnswerDTO from "../../../dto/AnswerDTO";
 import QuestionDTO from "../../../dto/QuestionDTO";
 
-
 class CommandUpdateRequestDTO {
     id: number = 0;
     name: string = "";

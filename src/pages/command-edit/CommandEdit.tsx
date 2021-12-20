@@ -25,7 +25,7 @@ const CommandEdit : React.FC = () => {
       await service.create(command)
         .then(() => {
           toast.success("Commando aangemaakt!");
-          navigate("/commandos");
+          navigate("/interventies");
         }).catch(err => {
           setErrors(err.response.data);
           return;
@@ -35,7 +35,7 @@ const CommandEdit : React.FC = () => {
         .update(command)
         .then(response => {
           toast.success("Commando bijgewerkt!");
-          navigate("/commandos");
+          navigate("/interventies");
         }).catch(err => {
           setErrors(err.response.data);
           return;
@@ -44,18 +44,17 @@ const CommandEdit : React.FC = () => {
   }
 
   useEffect(() => {
-    // const commandService = new CommandService();
-    // setService(commandService)
-    // if(!isEdit) {
-    //   setCommand(new CommandDTO())
-    // } else {
-    //   commandService.loadOne(id)
-    //   .then(val => {
-    //     console.log(val);
-    //     setCommand(val);
-    //   })
-    // }
-    setCommand(new CommandDTO());
+    const commandService = new CommandService();
+    setService(commandService)
+    if(!isEdit) {
+      setCommand(new CommandDTO())
+    } else {
+      commandService.loadOne(id)
+      .then(val => {
+        console.log(val);
+        setCommand(val);
+      })
+    }
   }, [])
 
   const id: number = Number.parseInt(params.id === undefined ? "0" : params!.id);

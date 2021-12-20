@@ -1,53 +1,11 @@
 import networkAdapter from "../../../adapters/network/NetworkAdapterFactory";
-import AnswerDTO from "../../../dto/AnswerDTO";
-import QuestionDTO from "../../../dto/QuestionDTO";
 import QuestionnaireDTO from "../../../dto/QuestionnaireDTO";
-import IService from "../../IService";
 import QuestionnaireCreateRequestDTO from "./QuestionnaireCreateRequestDTO";
 import QuestionnaireUpdateRequestDTO from "./QuestionnaireUpdateRequestDTO";
+import QuestionDTO from "../../../dto/QuestionDTO";
+import AnswerDTO from "../../../dto/AnswerDTO";
 
-class QuestionnaireService implements IService<QuestionnaireDTO> {
-    async loadAll(): Promise<QuestionnaireDTO[]> {
-        return networkAdapter
-            .get("interventions")
-            .then(response => response.data)
-            .then(data => {
-                let toReturn = [] as QuestionnaireDTO[];
-                data.forEach((question: any) => {
-                    let questionnaireDTO: QuestionnaireDTO = new QuestionnaireDTO();
-                    questionnaireDTO.id = question.id;
-                    questionnaireDTO.name = question.name;
-                    let questions : QuestionDTO[] = [];
-
-                    data.questions.forEach((question:any) => {
-                        let questionDto = new QuestionDTO();
-    
-                        questionDto.name = question.question;
-                        questionDto.question = question.question;
-                        questionDto.id = question.id;
-    
-                        let answers : AnswerDTO[] = [];
-                        question.answers.forEach((answer:any) => {
-                            let answerDto = new AnswerDTO();
-    
-                            answerDto.answerText = answer.answerText;
-                            answerDto.id = answer.id;
-    
-                            answers.push(answer);
-                        })
-    
-                        questionDto.answers = answers;
-    
-    
-                        questions.push(questionDto)
-                    });
-
-                    toReturn.push(questionnaireDTO);
-                });
-                return toReturn;
-            });
-    }
-    
+class QuestionnaireService {
     async loadOne(id: number): Promise<QuestionnaireDTO> {
         return networkAdapter
             .get("interventions/" + id)
@@ -85,16 +43,15 @@ class QuestionnaireService implements IService<QuestionnaireDTO> {
                 return toReturn;
             });
     }
-    async   update(value: QuestionnaireDTO): Promise<void> {
-        return networkAdapter.put("interventions/questionnaires", new QuestionnaireUpdateRequestDTO(value));
+    update(value: QuestionnaireDTO): Promise<void> {
+        return networkAdapter.put("interventions/questionnaire", new QuestionnaireUpdateRequestDTO(value));
     }
     async create(value: QuestionnaireDTO): Promise<void> {
-        return networkAdapter.post("interventions/questionnaires", new QuestionnaireCreateRequestDTO(value));
+        return networkAdapter.post("interventions/questionnaire", new QuestionnaireCreateRequestDTO(value));
     }
     async delete(id: number): Promise<void> {
-        return networkAdapter.delete("interventions/questionnaires/" + id);
+        return networkAdapter.delete("interventions/questionnaire/" + id);
     }
-
 }
 
 export default QuestionnaireService;

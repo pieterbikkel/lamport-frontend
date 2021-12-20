@@ -35,11 +35,11 @@ class CommandService {
     update(value: CommandDTO): Promise<void> {
         return networkAdapter.put("interventions/command", new CommandUpdateRequestDTO(value));
     }
-    create(value: CommandDTO): Promise<void> {
+    async create(value: CommandDTO): Promise<void> {
         return networkAdapter.post("interventions/command", new CommandCreateRequestDTO(value));
     }
-    delete(id: number): Promise<void> {
-        return networkAdapter.delete("command/" + id);
+    async delete(id: number): Promise<void> {
+        return networkAdapter.delete("interventions/command/" + id);
     }
 }
 

@@ -23,7 +23,7 @@
 	flex-direction: column;
 }
 
-.answers {
+.questions {
 	display: flex;
 	flex-direction: column;
 }

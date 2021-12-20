@@ -1,52 +1,19 @@
+
 import networkAdapter from "../../../adapters/network/NetworkAdapterFactory";
 import AnswerDTO from "../../../dto/AnswerDTO";
 import QuestionDTO from "../../../dto/QuestionDTO";
-import IService from "../../IService";
 import QuestionCreateRequestDTO from "./QuestionCreateRequestDTO";
 import QuestionUpdateRequestDTO from "./QuestionUpdateRequestDTO";
 
-class QuestionService implements IService<QuestionDTO> {
-    async loadAll(): Promise<QuestionDTO[]> {
-        return networkAdapter
-            .get("interventions")
-            .then(response => response.data)
-            .then(data => {
-                let toReturn = [] as QuestionDTO[];
-                data.forEach((question: any) => {
-					let questionDto = new QuestionDTO();
-
-					questionDto.name = question.question;
-					questionDto.question = question.question;
-					questionDto.id = question.id;
-	
-					let answers : AnswerDTO[] = [];
-					question.answers.forEach((answer:any) => {
-						let answerDto = new AnswerDTO();
-	
-						answerDto.answerText = answer.answer;
-						answerDto.id = answer.id;
-	
-						answers.push(answerDto);
-					})
-	
-					questionDto.answers = answers;
-                    toReturn.push(questionDto);
-                });
-                return toReturn;
-            });
-    }
-    
+class QuestionService {
     async loadOne(id: number): Promise<QuestionDTO> {
-        return networkAdapter
-            .get("interventions/" + id)
+        return networkAdapter.get("interventions/" + id)
             .then(response => response.data)
             .then(question => {
-				let questionDto = new QuestionDTO();
-
-				questionDto.name = question.question;
-				questionDto.question = question.question;
-				questionDto.id = question.id;
-
+				let questionDTO: QuestionDTO = new QuestionDTO();
+				questionDTO.id = question.id;
+				questionDTO.name = question.name;
+				questionDTO.question = question.question;
 				let answers : AnswerDTO[] = [];
 				question.answers.forEach((answer:any) => {
 					let answerDto = new AnswerDTO();
@@ -57,18 +24,22 @@ class QuestionService implements IService<QuestionDTO> {
 					answers.push(answerDto);
 				})
 
-				questionDto.answers = answers;
-                return questionDto;
-            });
+				questionDTO.answers = answers;
+				
+                return questionDTO;
+        });
     }
+
     async   update(value: QuestionDTO): Promise<void> {
-        return networkAdapter.put("interventions/questions", new QuestionUpdateRequestDTO(value));
+        return networkAdapter.put("interventions/question", new QuestionUpdateRequestDTO(value));
     }
+
     async create(value: QuestionDTO): Promise<void> {
-        return networkAdapter.post("interventions/questions", new QuestionCreateRequestDTO(value));
+        return networkAdapter.post("interventions/question", new QuestionCreateRequestDTO(value));
     }
+
     async delete(id: number): Promise<void> {
-        return networkAdapter.delete("interventions/questions/" + id);
+        return networkAdapter.delete("interventions/question/" + id);
     }
 
 }

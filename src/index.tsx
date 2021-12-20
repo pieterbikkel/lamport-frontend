@@ -30,6 +30,7 @@ import QuestionDetail from './pages/intervention-detail/question/QuestionDetail'
 import QuestionnaireDetail from './pages/intervention-detail/questionnaire/QuestionnaireDetail';
 import CommandEdit from './pages/command-edit/CommandEdit';
 import QuestionEdit from './pages/question-edit/QuestionEdit';
+import QuestionnaireEdit from './pages/questionnaire-edit/QuestionnaireEdit';
 import RoleList from './pages/role-list/RoleList';
 import RoleDetail from './pages/role-detail/RoleDetail';
 import RoleEdit from './pages/role-edit/RoleEdit';
@@ -71,11 +72,11 @@ ReactDOM.render(
         </Route>
         <Route path="interventies">
           <Route index element={<InterventionList/>}/>
-          <Route path="commando/wijzigen/:id" element={<div/>}/>
+          <Route path="commando/wijzigen/:id" element={<CommandEdit/>}/>
           <Route path="commando/:id" element={<CommandDetail/>}/>
-          <Route path="vraag/wijzigen/:id" element={<div/>}/>
+          <Route path="vraag/wijzigen/:id" element={<QuestionEdit/>}/>
           <Route path="vraag/:id" element={<QuestionDetail/>}/>
-          <Route path="vragenlijst/wijzigen/:id" element={<div/>}/>
+          <Route path="vragenlijst/wijzigen/:id" element={<QuestionnaireEdit/>}/>
           <Route path="vragenlijst/:id" element={<QuestionnaireDetail/>}/>
         </Route>
         <Route path="rollen">

@@ -3,11 +3,11 @@ import QuestionnaireDTO from "../../../dto/QuestionnaireDTO";
 
 class QuestionnaireCreateRequestDTO {
     name: string = "";
-    questions: QuestionDTO[] = [];
+	questions: QuestionDTO[] = [];
     
-    constructor(questionDTO: QuestionnaireDTO) {
-        this.name = questionDTO.name;
-        this.questions = questionDTO.questions;
+    constructor(questionnaireDTO: QuestionnaireDTO) {
+        this.name = questionnaireDTO.name;
+        this.questions = questionnaireDTO.questions;
     };
 }
 

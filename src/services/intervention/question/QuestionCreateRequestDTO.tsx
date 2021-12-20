@@ -1,7 +1,6 @@
 import AnswerDTO from "../../../dto/AnswerDTO";
 import QuestionDTO from "../../../dto/QuestionDTO";
 
-
 class CommandCreateRequestDTO {
     name: string = "";
 	question: string = "";
