@@ -31,7 +31,7 @@ function QuestionDetail() {
   return (
     <div> 
       <Breadcrumb lastItem={question.question}/>
-      <DetailTopSection pageTitle={question.name ?? ""} buttonTitle={'Wijzigen'} navigationLink={'/vraag/wijzigen/' + question.id} subheading={'Vraag'}/>
+      <DetailTopSection pageTitle={question.name ?? ""} buttonTitle={'Wijzigen'} navigationLink={'/interventies/vraag/wijzigen/' + question.id} subheading={'Vraag'}/>
       <table className="question-detail-table">
         <tbody>
           <tr>

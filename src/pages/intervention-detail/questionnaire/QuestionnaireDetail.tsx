@@ -14,6 +14,7 @@ function QuestionnaireDetail() {
     const Service = new QuestionnaireService();
     Service.loadOne(id)
     .then(val => {
+      console.log(val);
       setQuestionnaire(val);
     })
   }, [])
@@ -31,7 +32,7 @@ function QuestionnaireDetail() {
   return (
     <div>
       <Breadcrumb lastItem={questionnaire.name}/>
-      <DetailTopSection pageTitle={questionnaire.name} buttonTitle={'Wijzigen'} navigationLink={'/vragenlijst/wijzigen/' + questionnaire.id} subheading={'Vragenlijst'}/>
+      <DetailTopSection pageTitle={questionnaire.name} buttonTitle={'Wijzigen'} navigationLink={'/interventies/vragenlijst/wijzigen/' + questionnaire.id} subheading={'Vragenlijst'}/>
       <table className="questionnaire-detail-table">
         <tbody>
           <tr>

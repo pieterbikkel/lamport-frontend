@@ -25,7 +25,7 @@ const QuestionEdit : React.FC = () => {
       await service.create(question)
         .then(() => {
           toast.success("Vraag aangemaakt!");
-          navigate("/vragen");
+          navigate("/interventies");
         }).catch(err => {
           setErrors(err.response.data);
           return;
@@ -34,7 +34,7 @@ const QuestionEdit : React.FC = () => {
       await service.update(question)
         .then(response => {
           toast.success("Vraag bijgewerkt!");
-          navigate("/vragen");
+          navigate("/interventies");
         }).catch(err => {
           setErrors(err.response.data);
           return;
@@ -103,8 +103,8 @@ const QuestionEdit : React.FC = () => {
             <br/>
             <Input placeholderText={'Vraag'} inputName={'question'} inputType={'text'} inputLabel={'Vraag'} onChange={handleChange} value={question.question} errors={errors.question}/>
             <br/>
+            <SubmitButton value={isEdit ? "Opslaan" : "Voeg toe"}/>
           </form>
-          <SubmitButton value={isEdit ? "Opslaan" : "Voeg toe"}/>
         </div>
         <div className="submit-button">
             <button value="Voeg toe" onClick={() => addAnswer()}>Voeg antwoord toe</button>
