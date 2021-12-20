@@ -73,8 +73,8 @@ ReactDOM.render(
           <Route index element={<InterventionList/>}/>
           <Route path="commando/wijzigen/:id" element={<div/>}/>
           <Route path="commando/:id" element={<CommandDetail/>}/>
-          <Route path="vragen/wijzigen/:id" element={<div/>}/>
-          <Route path="vragen/:id" element={<QuestionDetail/>}/>
+          <Route path="vraag/wijzigen/:id" element={<div/>}/>
+          <Route path="vraag/:id" element={<QuestionDetail/>}/>
           <Route path="vragenlijst/wijzigen/:id" element={<div/>}/>
           <Route path="vragenlijst/:id" element={<QuestionnaireDetail/>}/>
         </Route>

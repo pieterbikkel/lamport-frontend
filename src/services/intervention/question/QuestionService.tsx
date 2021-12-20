@@ -1,4 +1,5 @@
 import networkAdapter from "../../../adapters/network/NetworkAdapterFactory";
+import AnswerDTO from "../../../dto/AnswerDTO";
 import QuestionDTO from "../../../dto/QuestionDTO";
 import IService from "../../IService";
 import QuestionCreateRequestDTO from "./QuestionCreateRequestDTO";
@@ -7,15 +8,29 @@ import QuestionUpdateRequestDTO from "./QuestionUpdateRequestDTO";
 class QuestionService implements IService<QuestionDTO> {
     async loadAll(): Promise<QuestionDTO[]> {
         return networkAdapter
-            .get("questions")
+            .get("interventions")
             .then(response => response.data)
             .then(data => {
                 let toReturn = [] as QuestionDTO[];
                 data.forEach((question: any) => {
-                    let questionDTO: QuestionDTO = new QuestionDTO();
-                    questionDTO.id = question.id;
-                    questionDTO.question = question.question;
-                    toReturn.push(questionDTO);
+					let questionDto = new QuestionDTO();
+
+					questionDto.name = question.question;
+					questionDto.question = question.question;
+					questionDto.id = question.id;
+	
+					let answers : AnswerDTO[] = [];
+					question.answers.forEach((answer:any) => {
+						let answerDto = new AnswerDTO();
+	
+						answerDto.answerText = answer.answer;
+						answerDto.id = answer.id;
+	
+						answers.push(answerDto);
+					})
+	
+					questionDto.answers = answers;
+                    toReturn.push(questionDto);
                 });
                 return toReturn;
             });
@@ -23,13 +38,27 @@ class QuestionService implements IService<QuestionDTO> {
     
     async loadOne(id: number): Promise<QuestionDTO> {
         return networkAdapter
-            .get("questions/" + id)
+            .get("interventions/" + id)
             .then(response => response.data)
-            .then(data => {
-                let toReturn = new QuestionDTO();
-                toReturn.id = data.id;
-                toReturn.question = data.question;
-                return toReturn;
+            .then(question => {
+				let questionDto = new QuestionDTO();
+
+				questionDto.name = question.question;
+				questionDto.question = question.question;
+				questionDto.id = question.id;
+
+				let answers : AnswerDTO[] = [];
+				question.answers.forEach((answer:any) => {
+					let answerDto = new AnswerDTO();
+
+					answerDto.answerText = answer.answer;
+					answerDto.id = answer.id;
+
+					answers.push(answerDto);
+				})
+
+				questionDto.answers = answers;
+                return questionDto;
             });
     }
     async   update(value: QuestionDTO): Promise<void> {

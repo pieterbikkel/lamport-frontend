@@ -23,11 +23,15 @@ function QuestionDetail() {
   }
 
   const id: number = Number.parseInt(params.id);
+  
+  if(!question || !question.answers) {
+    return <div></div>
+  }
 
   return (
     <div> 
       <Breadcrumb lastItem={question.question}/>
-      <DetailTopSection pageTitle={question.name ?? ""} buttonTitle={'Wijzigen'} navigationLink={'/vragen/wijzigen/' + question.id} subheading={'vragen'}/>
+      <DetailTopSection pageTitle={question.name ?? ""} buttonTitle={'Wijzigen'} navigationLink={'/vraag/wijzigen/' + question.id} subheading={'Vraag'}/>
       <table className="question-detail-table">
         <tbody>
           <tr>

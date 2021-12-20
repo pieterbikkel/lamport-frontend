@@ -24,10 +24,14 @@ function QuestionnaireDetail() {
 
   const id: number = Number.parseInt(params.id);
 
+  if(!questionnaire || !questionnaire.questions) {
+    return <div></div>
+  }
+
   return (
     <div>
       <Breadcrumb lastItem={questionnaire.name}/>
-      <DetailTopSection pageTitle={questionnaire.name} buttonTitle={'Wijzigen'} navigationLink={'/vragenlijsten/wijzigen/' + questionnaire.id} subheading={'vragenlijsten'}/>
+      <DetailTopSection pageTitle={questionnaire.name} buttonTitle={'Wijzigen'} navigationLink={'/vragenlijst/wijzigen/' + questionnaire.id} subheading={'Vragenlijst'}/>
       <table className="questionnaire-detail-table">
         <tbody>
           <tr>
@@ -41,7 +45,7 @@ function QuestionnaireDetail() {
           questionnaire.questions.map((question, index) => {
             return (
               <div>
-                <h4>{"Vraag " + index + 1}</h4>
+                <h4>{"Vraag " + (index + 1) + ": " + question.name}</h4>
                 {
                   question.answers.map(answer => {
                     return (
