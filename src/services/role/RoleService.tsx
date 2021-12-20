@@ -46,7 +46,6 @@ class RoleService implements IService<RoleDTO> {
                 allowedPermissions.push(permissionDTO)
             });
             roleDTO.allowedPermissions = allowedPermissions;
-            console.log(roleDTO);
 
             return roleDTO;
         });

@@ -26,7 +26,7 @@ function CommandDetail() {
 
   return (
     <div>
-      <Breadcrumb lastItem={command.name}/>
+      <Breadcrumb lastItem={command.name} itemsToRemove={["commando"]}/>
       <DetailTopSection pageTitle={command.name} buttonTitle={'Wijzigen'} navigationLink={'/interventies/commando/wijzigen/' + command.id} subheading={'Commando'}/>
       <table className="question-detail-table">
         <tbody>

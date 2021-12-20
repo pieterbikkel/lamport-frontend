@@ -127,7 +127,7 @@ const QuestionnaireEdit : React.FC = () => {
   
   return (
     <div>
-      <Breadcrumb lastItem={questionnaire.name}/>
+      <Breadcrumb lastItem={questionnaire.name} itemsToRemove={["vragenlijst"]}/>
       <h2>{isEdit ? questionnaire.name + " Wijzigen" : "Vragenlijst aanmaken"}</h2>
 
       <div className="edit-page">

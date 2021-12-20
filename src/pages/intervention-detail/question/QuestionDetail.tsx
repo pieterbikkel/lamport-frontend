@@ -30,7 +30,7 @@ function QuestionDetail() {
 
   return (
     <div> 
-      <Breadcrumb lastItem={question.question}/>
+      <Breadcrumb lastItem={question.name} itemsToRemove={["vraag"]}/>
       <DetailTopSection pageTitle={question.name ?? ""} buttonTitle={'Wijzigen'} navigationLink={'/interventies/vraag/wijzigen/' + question.id} subheading={'Vraag'}/>
       <table className="question-detail-table">
         <tbody>
