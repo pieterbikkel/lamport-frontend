@@ -55,6 +55,12 @@ const hasPermission = (permission:string) => {
           </Link>  
         }
         {
+          hasPermission("GET_INTERVENTIONS") &&
+          <Link className="nav-link" to="/interventies">
+            <p>Interventies</p>
+          </Link>
+        }
+        {
           hasPermission("GET_USERS") &&
           <Link className="nav-link" to="/gebruikers">
             <p>Gebruikers</p>
@@ -64,12 +70,6 @@ const hasPermission = (permission:string) => {
           hasPermission("GET_ROLES") &&
           <Link className="nav-link" to="/rollen">
             <p>Rollen</p>
-          </Link>
-        }
-        {
-          hasPermission("GET_INTERVENTIONS") &&
-          <Link className="nav-link" to="/interventies">
-            <p>Interventies</p>
           </Link>
         }
       </div>

@@ -38,8 +38,8 @@ class AxiosNetworkAdapter implements INetworkAdapter {
         }).catch(ex => {
             if(ex.response.status === 403) {
                 //todo redirect to home page - Bart(17-12-2021)
-                createBrowserHistory().push('/');
-                window.location.reload();
+                // createBrowserHistory().push('/');
+                // window.location.reload();
                 //todo find a way to properly show the toast and make navigating more seamless - Bart(17-12-2021)
                 toast.error("U heeft geen toestemming om deze pagina te bezoeken!");
             }
