@@ -66,6 +66,12 @@ const hasPermission = (permission:string) => {
             <p>Rollen</p>
           </Link>
         }
+        {
+          hasPermission("GET_INTERVENTIONS") &&
+          <Link className="nav-link" to="/interventies">
+            <p>Interventies</p>
+          </Link>
+        }
       </div>
       <Button title="Log uit" disabled={false} onClick={logOut} />
     </div>

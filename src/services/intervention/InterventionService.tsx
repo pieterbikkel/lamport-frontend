@@ -12,6 +12,8 @@ class InterventionService implements IService<InterventionDTO> {
                     let interventionDto: InterventionDTO = new InterventionDTO();
                     interventionDto.id = intervention.id;
                     interventionDto.name = intervention.name;
+                    interventionDto.type = intervention.type;
+
                     toReturn.push(interventionDto);
                 });
 
@@ -25,6 +27,8 @@ class InterventionService implements IService<InterventionDTO> {
                 let interventionDto: InterventionDTO = new InterventionDTO();
                 interventionDto.id = intervention.id;
                 interventionDto.name = intervention.name;
+                interventionDto.type = intervention.type;
+
                 return interventionDto;
             });
     }

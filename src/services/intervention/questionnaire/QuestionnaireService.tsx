@@ -18,7 +18,7 @@ class QuestionnaireService {
 				questionnaireDTO.questions = questionnaire.questions;
 				let questions : QuestionDTO[] = []
 
-                questionnaire.questions.filter((x:string) => x !== null).forEach((question:any) => {
+                questionnaire.questions.forEach((question:any) => {
                     const questionDTO = new QuestionDTO();
                     questionDTO.id = question.id;
                     questionDTO.name = question.name;
@@ -40,7 +40,7 @@ class QuestionnaireService {
                 questionnaireDTO.name = questionnaire.name;
                 let questions : QuestionDTO[] = []
 
-                questionnaire.questions.filter((x:string) => x !== null).forEach((question:any) => {
+                questionnaire.questions.forEach((question:any) => {
                     const questionDTO = new QuestionDTO();
                     questionDTO.id = question.id;
                     questionDTO.name = question.name;

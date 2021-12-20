@@ -96,7 +96,6 @@ const QuestionEdit : React.FC = () => {
     <div>
       <Breadcrumb lastItem={question.name}/>
       <h2>{isEdit ? question.name + " Wijzigen" : "Vraag aanmaken"}</h2>
-
       <div className='edit-page'>
         <div className='form'>
           <form onSubmit={onSubmit}>

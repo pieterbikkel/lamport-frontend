@@ -19,8 +19,9 @@ function Select({ placeholderText, selectName, selectLabel, options, value = "",
     return (
         <div>
             <h4 className="select-label">{selectLabel}</h4>
-            <select value={value != "" ? value : "0"} className={"select select-" + width} id={selectName} name={selectName} onChange={changeSelect}>
-                <option value="0">{placeholderText + "..."}</option>
+            <select value={value != "" ? value : "0"} className={selectName === "" ? "select dropwdown" : "select select-" + width} id={selectName} name={selectName} onChange={changeSelect}>
+                {selectName === "" && <option value="0">{placeholderText}</option>}
+                {selectName.length > 1 && <option value="0">{placeholderText + "..."}</option>}
                 {options.map(option => {
                     return (
                         <option value={option.id} key={option.id}>{option.name}</option>

@@ -5,7 +5,6 @@ class AnswerDTO {
     constructor(answerDTO?: AnswerDTO) {
         Object.assign(this, answerDTO);
     }
-
 }
 
 export default AnswerDTO;
