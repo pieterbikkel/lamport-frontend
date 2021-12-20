@@ -34,16 +34,16 @@ function InterventionList() {
 
   const dropdownOptions = [
     {
-      id: "/interventies/commandos/0",
+      id: "/interventies/commando/wijzigen/0",
       name: "Commando",
     },
     {
-      id: "/interventies/vragen/0",
+      id: "/interventies/vraag/wijzigen/0",
       name: "Vraag",
     },
     {
-      id: "/interventies/vragenlijst/0",
-      name: "Commando",
+      id: "/interventies/vragenlijst/wijzigen/0",
+      name: "Vragenlijst",
     },
   ];
 
