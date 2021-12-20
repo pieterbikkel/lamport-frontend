@@ -7,7 +7,7 @@ import CommandUpdateRequestDTO from "./CommandUpdateRequestDTO";
 class CommandService {
     async loadAll(): Promise<InterventionDTO[]> {
 		return networkAdapter
-		.get("interventions/commands")
+		.get("interventions")
 		.then(response => response.data)
 		.then(data => {
 			let toReturn = [] as CommandDTO[];
@@ -21,8 +21,8 @@ class CommandService {
 			return toReturn;
 		});
     }
-    async loadOne(id: number): Promise<CommandDTO> {
-        return networkAdapter.get("interventions/command/" + id)
+    async loadOne(id: number): Promise<InterventionDTO> {
+        return networkAdapter.get("interventions/" + id)
             .then(response => response.data)
             .then(command => {
                 let commandDTO: CommandDTO = new CommandDTO();
