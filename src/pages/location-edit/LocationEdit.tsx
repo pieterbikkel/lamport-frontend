@@ -165,7 +165,7 @@ function LocationEdit() {
       <Breadcrumb lastItem={location.name}/>
       <h2>{isEdit ? location.name + " Wijzigen" : "Locatie aanmaken"}</h2>
       <div className="fields-row">
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className='form-edit'>
           <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={location.name} errors={errors.name}/>
           <br/>
           <Select placeholderText={'Kies een gebied'} value={location.areaId.toString()} selectName={'areaId'} selectLabel={'Gebied'} onChange={updateArea} options={allAreas.map(x => {
@@ -198,6 +198,7 @@ function LocationEdit() {
           <br/>
           <SubmitButton value={isEdit ? "Opslaan" : "Voeg toe"}/>
       </form>
+      <Map key={mapKey} viewCoords={[location.latitude, location.longitude]} viewZoom={15} circles={circles}></Map>
       <div className="column interventions">
         <form className="add-row" onSubmit={addIntervention}>
           <Select 
@@ -222,7 +223,6 @@ function LocationEdit() {
         {location.linkedInterventions.map(intervention => {
           return <TableRow title={intervention.name} onDeleteClick={() => removeIntervention(intervention.id)} />
         })}
-        <Map key={mapKey} viewCoords={[location.latitude, location.longitude]} viewZoom={15} circles={circles}></Map>
         </div>
       </div>
     </div>

@@ -14,6 +14,10 @@
     --arrow-location: 2rem;
 }
 
+.table-row-grey-section-edit {
+    max-width: 400px;
+}
+
 .table-row-grey-section:hover {
     --arrow-location: 1rem;
 }

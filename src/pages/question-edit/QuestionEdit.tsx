@@ -106,23 +106,26 @@ const QuestionEdit : React.FC = () => {
             <SubmitButton value={isEdit ? "Opslaan" : "Voeg toe"}/>
           </form>
         </div>
-        <div className="submit-button">
-            <button value="Voeg toe" onClick={() => addAnswer()}>Voeg antwoord toe</button>
+        <div className='edit-question-container'>
+          <div className='answers'>
+            {question.answers.map((answer, index) => {
+              return (
+                <div className='add-row'>
+                  <Input placeholderText={'Antwoord'} inputName={answer.id.toString()} 
+                    value={answer.answerText} onChange={handleAnswerChange}
+                    inputType={'text'} inputLabel={'Antwoord ' + (index + 1)} errors={[]}           
+                  />
+                  <button value = "Verwijder antwoord" className="trash trash-intervention-edit table-row-button" onClick={() => deleteAnswer(answer.id)}>
+                    <img className="table-row-icon" src={TrashIcon} alt="verwijder" />
+                  </button>
+                </div>
+              )})}
+          </div>
+          <div className="submit-button-intervention-question">
+              <button value="Voeg toe" onClick={() => addAnswer()}>Voeg antwoord toe</button>
+          </div>
         </div>
-        <div className='answers'>
-          {question.answers.map(answer => {
-            return <div className='add-row'>
-              <Input placeholderText={'Antwoord'} inputName={answer.id.toString()} 
-            value={answer.answerText} onChange={handleAnswerChange}
-            inputType={'text'} inputLabel={'Antwoord'} errors={[]}           
-            />
-            <button value = "Verwijder antwoord" className="trash table-row-button" onClick={() => deleteAnswer(answer.id)}>
-              <img className="table-row-icon" src={TrashIcon} alt="verwijder" />
-            </button>
-            </div>
-          })}
-        </div>
-    </div>
+      </div>
     </div>
   );
 }

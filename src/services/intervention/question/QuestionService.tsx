@@ -15,6 +15,7 @@ class QuestionService {
 				questionDTO.name = question.name;
 				questionDTO.question = question.question;
 				let answers : AnswerDTO[] = [];
+                console.log(question)
 				question.answers.forEach((answer:any) => {
 					let answerDto = new AnswerDTO();
 
@@ -25,6 +26,7 @@ class QuestionService {
 				})
 
 				questionDTO.answers = answers;
+                console.log(questionDTO)
 				
                 return questionDTO;
         });
