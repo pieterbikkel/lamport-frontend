@@ -32,6 +32,7 @@ import CommandEdit from './pages/command-edit/CommandEdit';
 import QuestionEdit from './pages/question-edit/QuestionEdit';
 import RoleList from './pages/role-list/RoleList';
 import RoleDetail from './pages/role-detail/RoleDetail';
+import RoleEdit from './pages/role-edit/RoleEdit';
 
 
 ReactDOM.render(
@@ -76,6 +77,11 @@ ReactDOM.render(
           <Route path="vragen/:id" element={<QuestionDetail/>}/>
           <Route path="vragenlijst/wijzigen/:id" element={<div/>}/>
           <Route path="vragenlijst/:id" element={<QuestionnaireDetail/>}/>
+        </Route>
+        <Route path="rollen">
+          <Route index element={<RoleList />}/>
+          <Route path="wijzigen/:id" element={<RoleEdit />}/>
+          <Route path=":id" element={<RoleDetail />}/>
         </Route>
         <Route path="login" element={<Login/>}/>
         <Route

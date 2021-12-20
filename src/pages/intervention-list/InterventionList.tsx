@@ -19,6 +19,7 @@ function InterventionList() {
     interventionService.loadAll()
     .then(val => {
       setInterventions(val);
+      console.log(val);
     })
   }, [])
 
@@ -57,7 +58,7 @@ function InterventionList() {
         {interventions.map(intervention => {
           return (
             <div key={intervention.id}>
-              <TableRow title={intervention.name} onEditLink={"/interventies/" + intervention.type + "/wijzigen/" + intervention.id} onDeleteClick={() => deleteIntervention(intervention.id)} navigationLink={"/interventies/" + intervention.type  + "/" + intervention.id}/>
+              <TableRow title={intervention.name} subtitle={intervention.type} onEditLink={"/interventies/" + intervention.type + "/wijzigen/" + intervention.id} onDeleteClick={() => deleteIntervention(intervention.id)} navigationLink={"/interventies/" + intervention.type  + "/" + intervention.id}/>
             </div>
           )
         })}
