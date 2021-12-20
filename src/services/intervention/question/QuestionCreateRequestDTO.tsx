@@ -5,12 +5,12 @@ import QuestionDTO from "../../../dto/QuestionDTO";
 class CommandCreateRequestDTO {
     name: string = "";
 	question: string = "";
-    answer: AnswerDTO[] = [];
+    answers: AnswerDTO[] = [];
     
     constructor(questionDTO: QuestionDTO) {
         this.name = questionDTO.name;
         this.question = questionDTO.question;
-        this.answer = questionDTO.answer;
+        this.answers = questionDTO.answers;
     };
 }
 

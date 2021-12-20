@@ -3,7 +3,7 @@ import CommandDTO from "../../../dto/CommandDTO";
 class CommandUpdateRequestDTO {
     id: number = 0;
     name: string = "";
-	commandText: string = "";
+    commandText: string = "";
     
     constructor(commandDTO: CommandDTO) {
         this.id = commandDTO.id;

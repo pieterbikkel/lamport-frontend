@@ -24,6 +24,10 @@ import UserList from './pages/user-list/UserList';
 import UserDetail from './pages/user-detail/UserDetail';
 import Breadcrumb from './components/breadcrumb/Breadcrumb';
 import UserEdit from './pages/user-edit/UserEdit';
+import CommandDetail from './pages/intervention-detail/command/CommandDetail';
+import InterventionList from './pages/intervention-list/InterventionList';
+import QuestionDetail from './pages/intervention-detail/question/QuestionDetail';
+import QuestionnaireDetail from './pages/intervention-detail/questionnaire/QuestionnaireDetail';
 import CommandEdit from './pages/command-edit/CommandEdit';
 import QuestionEdit from './pages/question-edit/QuestionEdit';
 import RoleList from './pages/role-list/RoleList';
@@ -65,22 +69,21 @@ ReactDOM.render(
           <Route path="wijzigen/:id" element={<UserEdit />}/>
           <Route path=":id" element={<UserDetail />}/>
         </Route>
+        <Route path="interventies">
+          <Route index element={<InterventionList/>}/>
+          <Route path="commando/wijzigen/:id" element={<div/>}/>
+          <Route path="commando/:id" element={<CommandDetail/>}/>
+          <Route path="vragen/wijzigen/:id" element={<div/>}/>
+          <Route path="vragen/:id" element={<QuestionDetail/>}/>
+          <Route path="vragenlijst/wijzigen/:id" element={<div/>}/>
+          <Route path="vragenlijst/:id" element={<QuestionnaireDetail/>}/>
+        </Route>
         <Route path="rollen">
           <Route index element={<RoleList />}/>
           <Route path="wijzigen/:id" element={<RoleEdit />}/>
           <Route path=":id" element={<RoleDetail />}/>
         </Route>
         <Route path="login" element={<Login/>}/>
-        <Route path="commandos">
-        {/* <Route index element={<CommandList />}/> */}
-          {/* <Route path=":id" element={<CommandDetail />}/> */}
-          <Route path="wijzigen/:id" element={<CommandEdit />}/>
-        </Route>
-        <Route path="vragen">
-          {/* <Route index element={<QuestionList />}/> */}
-          <Route path="wijzigen/:id" element={<QuestionEdit />}/>
-          {/* <Route path=":id" element={<QuestionDetail />}/> */}
-        </Route>
         <Route
         //todo 404
           path="*"

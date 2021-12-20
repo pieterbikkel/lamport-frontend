@@ -32,9 +32,9 @@ const Breadcrumb = ({lastItem}: Props) => {
           const isLast = index === pathnames.length - 1;
           const isEditPage = name.toUpperCase() === "WIJZIGEN";
           return isLast ? (
-            <div>
-              {lastItem && <Typography key={lastItem}><h4>{lastItem.charAt(0).toUpperCase() + lastItem.slice(1)}</h4></Typography>}
-              {!lastItem && <Typography key={name}><h4>{name.charAt(0).toUpperCase() + name.slice(1)}</h4></Typography>}
+            <div key={name}>
+              {lastItem && <Typography component={'span'} key={lastItem}><h4>{lastItem.charAt(0).toUpperCase() + lastItem.slice(1)}</h4></Typography>}
+              {!lastItem && <Typography component={'span'} key={name}><h4>{name.charAt(0).toUpperCase() + name.slice(1)}</h4></Typography>}
             </div>
           ) : (
             <Link underline={(!isEditPage ? "hover" : "none")} color="inherit" key={name} onClick={() => !isEditPage ? navigate(routeTo) : {}}>

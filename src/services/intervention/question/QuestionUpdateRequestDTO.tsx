@@ -6,13 +6,13 @@ class CommandUpdateRequestDTO {
     id: number = 0;
     name: string = "";
 	question: string = "";
-    answer: AnswerDTO[] = [];
+    answers: AnswerDTO[] = [];
     
     constructor(questionDTO: QuestionDTO) {
         this.id = questionDTO.id;
         this.name = questionDTO.name;
         this.question = questionDTO.question;
-        this.answer = questionDTO.answer;
+        this.answers = questionDTO.answers;
     };
 }
 

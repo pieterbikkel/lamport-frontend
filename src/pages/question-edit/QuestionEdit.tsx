@@ -64,7 +64,7 @@ const QuestionEdit : React.FC = () => {
         <br/>
         <Input placeholderText={'Vraag'} inputName={'question'} inputType={'text'} inputLabel={'Vraag'} onChange={handleChange} value={question.question} errors={errors.question}/>
         <br/>
-		<Input placeholderText={'Antwoord'} inputName={'answer'} inputType={'text'} inputLabel={'Antwoord'} onChange={handleChange} value={question.answer} errors={errors.answer}/>
+		{/* <Input placeholderText={'Antwoord'} inputName={'answer'} inputType={'text'} inputLabel={'Antwoord'} onChange={handleChange} value={question.answers} errors={errors.answer}/> */}
         <br/>
         <SubmitButton value={isEdit ? "Opslaan" : "Voeg toe"}/>
       </form>

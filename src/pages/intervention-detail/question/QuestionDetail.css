@@ -1,0 +1,16 @@
+.questionnaire-detail-table {
+    margin-top: 50px;
+}
+
+.table-min-width {
+    min-width: 200px;
+}
+
+.questionnaire>h4 {
+    margin-bottom: 4px;
+}
+
+.questionnaire>p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
