@@ -11,13 +11,17 @@ function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
 
 interface Props {
   lastItem?: string;
+  itemsToRemove?: string[]
 }
 
-const Breadcrumb = ({lastItem}: Props) => {
+const Breadcrumb = ({lastItem, itemsToRemove = []}: Props) => {
   const location = useLocation();
   const navigate = useNavigate();
   
-  const pathnames = location.pathname.split("/").filter(x => x);
+  //Filter x => to prevent empty ones in the breadcrumbs
+  let pathnames = location.pathname.split("/").filter(x => x);
+  //Sometimes we want to remove pathnames from the breadcrumbs, if for example the link it will lead to is incorrect
+  pathnames = [...pathnames.filter(x => itemsToRemove.find(y => y === x) === undefined)];
 
   return (
     <div className="breadcrumb" role="presentation" onClick={handleClick}>

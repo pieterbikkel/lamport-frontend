@@ -19,7 +19,7 @@ function TableRow({ title, subtitle="", onEditLink="", onDeleteClick, navigation
 
     return (
         <div className="table-row">
-            <div className="table-row-grey-section" onClick={() => (navigationLink !== "" ? navigate(navigationLink!) : {})}>
+            <div className={navigationLink !== "" ? "table-row-grey-section" : "table-row-grey-section-edit"} onClick={() => (navigationLink !== "" ? navigate(navigationLink!) : {})}>
                 <div className="left-section">
                     <h4 className="left-section-text">{title}</h4>
                     <h5 className="left-section-text">{subtitle}</h5>

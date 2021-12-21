@@ -19,7 +19,6 @@ function InterventionList() {
     interventionService.loadAll()
     .then(val => {
       setInterventions(val);
-      console.log(val);
     })
   }, [])
 

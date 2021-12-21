@@ -1,7 +1,8 @@
 .add-row {
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-end !important;
+	margin: 0;
 }
 
 .fields-row {
@@ -30,5 +31,33 @@
 
 .edit-page {
 	display: flex;
-	flex-direction: row;
+	justify-content: space-between;
+	column-gap: 4rem;
+}
+
+.edit-question-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: flex-end;
+}
+
+.trash-intervention-edit {
+	margin-top: 3px;
+	margin-bottom: 3px;
+	width: 54px;
+	height: 54px;
+}
+
+.submit-button-intervention-question {
+	margin-top: 0.8rem;
+	padding: 0;
+}
+
+.submit-button-intervention-question > button {
+	background-color: var(--wur-groen);
+}
+
+.submit-button-intervention-question > button:hover {
+	background-color: var(--wur-button-hover);
 }

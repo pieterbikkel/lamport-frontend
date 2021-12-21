@@ -49,7 +49,6 @@ const GoalEdit : React.FC = () => {
     } else {
       goalService.loadOne(id)
       .then(val => {
-        console.log(val);
         setGoal(val);
       })
     }

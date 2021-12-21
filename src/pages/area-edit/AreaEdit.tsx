@@ -87,16 +87,20 @@ const AreaEdit : React.FC = () => {
       <Breadcrumb lastItem={area.name}/>
       <h2>{isEdit ? area.name + " Wijzigen" : "Gebied aanmaken"}</h2>
       <form onSubmit={onSubmit}>
-        <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={area.name} errors={errors.name}/>
-        <br/>
-        <Input placeholderText={'Lengtegraad'} inputName={'longitude'} inputType={'number'} inputLabel={'Lengtegraad'} onChange={handleChange} value={area.longitude === 0 ? "" : area.longitude }  errors={errors.longitude}/>
-        <br/>
-        <Input placeholderText={'Breedtegraad'} inputName={'latitude'} inputType={'number'} inputLabel={'Breedtegraad'} onChange={handleChange} value={area.latitude === 0 ? "" : area.latitude} errors={errors.latitude}/>
-        <br/>
-        <Input placeholderText={'Straal in meters'} inputName={'radius'} inputType={'number'} inputLabel={'Straal'} onChange={handleChange} value={area.radius === 0 ? "" : area.radius} errors={errors.radius}/>
-        <br/>
-        <SubmitButton value={isEdit ? "Opslaan" : "Voeg toe"}/>
-        <Map key={mapKey} viewCoords={[area.latitude, area.longitude]} viewZoom={15} circles={circles}></Map>
+        <div className='flex-container'>
+          <div>
+            <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={area.name} errors={errors.name}/>
+            <br/>
+            <Input placeholderText={'Lengtegraad'} inputName={'longitude'} inputType={'number'} inputLabel={'Lengtegraad'} onChange={handleChange} value={area.longitude === 0 ? "" : area.longitude }  errors={errors.longitude}/>
+            <br/>
+            <Input placeholderText={'Breedtegraad'} inputName={'latitude'} inputType={'number'} inputLabel={'Breedtegraad'} onChange={handleChange} value={area.latitude === 0 ? "" : area.latitude} errors={errors.latitude}/>
+            <br/>
+            <Input placeholderText={'Straal in meters'} inputName={'radius'} inputType={'number'} inputLabel={'Straal'} onChange={handleChange} value={area.radius === 0 ? "" : area.radius} errors={errors.radius}/>
+            <br/>
+            <SubmitButton value={isEdit ? "Opslaan" : "Voeg toe"}/>
+          </div>
+          <Map key={mapKey} viewCoords={[area.latitude, area.longitude]} viewZoom={15} circles={circles}></Map>
+        </div>
       </form>
     </div>
   );

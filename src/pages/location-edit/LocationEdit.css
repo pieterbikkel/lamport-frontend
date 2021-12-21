@@ -6,11 +6,16 @@
 
 .fields-row {
     display: flex;
-    column-gap: 10%;
+    column-gap: 3rem !important;
+    width: 100%;
 }
 
 .add-button {
     margin-bottom: 3px;
+}
+
+.form-edit {
+    flex-shrink: 1;
 }
 
 .column {

@@ -39,45 +39,49 @@ function LocationDetail() {
     <div>
       <Breadcrumb lastItem={location.name}/>
       <DetailTopSection pageTitle={location.name} buttonTitle={'Wijzigen'} navigationLink={'/locaties/wijzigen/' + location.id} subheading={'Locaties'}/>
-      <table className="location-detail-table">
-        <tbody>
-          <tr>
-            <td className="table-min-width">Gebied:</td>
-            <td><Link to={"/gebieden/" + location.area.id}>{location.area.name}</Link></td>
-          </tr>
-          <tr>
-            <td className="table-min-width">Franchise:</td>
-            <td><Link to={"/franchises/" + location.franchise.id}>{location.franchise.name}</Link></td>
-          </tr>
-          <tr>
-            <td className="table-min-width">Lengtegraad:</td>
-            <td>{location.longitude + "°"}</td>
-          </tr>
-          <tr>
-            <td className="table-min-width">Breedtegraad:</td>
-            <td>{location.latitude + "°"}</td>
-          </tr>
-          <tr>
-            <td className="table-min-width">Straal:</td>
-            <td>{location.radius + " meter"}</td>
-          </tr>
-          <tr>
-            <td className="table-min-width">Triggertijd:</td>
-            <td>{location.delay + (location.delay > 1 ? " seconden" : " seconde")}</td>
-          </tr>
-        </tbody>
-      </table>
-      <div className="interventions">
-        <h4>Interventies</h4>
-        {
-        location.linkedInterventions.length !== 0  ? 
-        location.linkedInterventions.map(intervention => {
-          return <p id={intervention.id.toString()}>{intervention.name}</p>
-        }) : 
-        <p>Er zijn nog geen gekoppelde interventies!</p>
-        }
+      <div className='flex-container'>
+        <div>
+          <table className="location-detail-table">
+            <tbody>
+              <tr>
+                <td className="table-min-width">Gebied:</td>
+                <td><Link to={"/gebieden/" + location.area.id}>{location.area.name}</Link></td>
+              </tr>
+              <tr>
+                <td className="table-min-width">Franchise:</td>
+                <td><Link to={"/franchises/" + location.franchise.id}>{location.franchise.name}</Link></td>
+              </tr>
+              <tr>
+                <td className="table-min-width">Lengtegraad:</td>
+                <td>{location.longitude + "°"}</td>
+              </tr>
+              <tr>
+                <td className="table-min-width">Breedtegraad:</td>
+                <td>{location.latitude + "°"}</td>
+              </tr>
+              <tr>
+                <td className="table-min-width">Straal:</td>
+                <td>{location.radius + " meter"}</td>
+              </tr>
+              <tr>
+                <td className="table-min-width">Triggertijd:</td>
+                <td>{location.delay + (location.delay > 1 ? " seconden" : " seconde")}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div className="interventions">
+            <h4>Interventies</h4>
+            {
+            location.linkedInterventions.length !== 0  ? 
+            location.linkedInterventions.map(intervention => {
+              return <p id={intervention.id.toString()}>{intervention.name}</p>
+            }) : 
+            <p>Er zijn nog geen gekoppelde interventies!</p>
+            }
+          </div>
+        </div>
+        <Map viewCoords={[location.latitude, location.longitude]} viewZoom={15} circles={circles}></Map>
       </div>
-      <Map viewCoords={[location.latitude, location.longitude]} viewZoom={15} circles={circles}></Map>
     </div>
   );
 }

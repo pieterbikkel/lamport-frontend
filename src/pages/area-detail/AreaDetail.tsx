@@ -39,23 +39,25 @@ function AreaDetail() {
     <div>
       <Breadcrumb lastItem={area.name}/>
       <DetailTopSection pageTitle={area.name} buttonTitle={'Wijzigen'} navigationLink={'/gebieden/wijzigen/' + area.id} subheading={'Gebieden'}/>
-      <table className="area-detail-table">
-        <tbody>
-          <tr>
-            <td className="table-min-width">Lengtegraad:</td>
-            <td>{area.longitude + "°"}</td>
-          </tr>
-          <tr>
-            <td className="table-min-width">Breedtegraad:</td>
-            <td>{area.latitude + "°"}</td>
-          </tr>
-          <tr>
-            <td className="table-min-width">Straal:</td>
-            <td>{area.radius + " meter"}</td>
-          </tr>
-        </tbody>
-      </table>
-      <Map key={mapKey} viewCoords={[area.latitude, area.longitude]} viewZoom={15} circles={circles}></Map>
+      <div className='flex-container'>
+        <table className="area-detail-table">
+          <tbody>
+            <tr>
+              <td className="table-min-width">Lengtegraad:</td>
+              <td>{area.longitude + "°"}</td>
+            </tr>
+            <tr>
+              <td className="table-min-width">Breedtegraad:</td>
+              <td>{area.latitude + "°"}</td>
+            </tr>
+            <tr>
+              <td className="table-min-width">Straal:</td>
+              <td>{area.radius + " meter"}</td>
+            </tr>
+          </tbody>
+        </table>
+        <Map key={mapKey} viewCoords={[area.latitude, area.longitude]} viewZoom={15} circles={circles}></Map>
+      </div>
     </div>
   );
 }
