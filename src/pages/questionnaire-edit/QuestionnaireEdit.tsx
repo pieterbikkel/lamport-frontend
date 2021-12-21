@@ -10,6 +10,8 @@ import QuestionnaireService from '../../services/intervention/questionnaire/Ques
 import QuestionDTO from '../../dto/QuestionDTO';
 import TrashIcon from '../../assets/icons/delete.svg';
 import AnswerDTO from '../../dto/AnswerDTO';
+import { CloseButton } from 'react-toastify/dist/components';
+import CloseModalButton from '../../components/closebutton/CloseModalButton';
 
 const QuestionnaireEdit : React.FC = () => {
   const [questionnaire, setQuestionnaire] = useState({} as QuestionnaireDTO);
@@ -126,49 +128,55 @@ const QuestionnaireEdit : React.FC = () => {
   }
   
   return (
-    <div>
+    <div className='edit-questionnaire-page'>
+
       <Breadcrumb lastItem={questionnaire.name} itemsToRemove={["vragenlijst"]}/>
       <h2>{isEdit ? questionnaire.name + " Wijzigen" : "Vragenlijst aanmaken"}</h2>
 
-      <div className="edit-page">
-        <div className="form">
-         <form onSubmit={onSubmit}>
-         <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={questionnaire.name} errors={errors.name}/>
-         <br/>
-         <SubmitButton value={isEdit ? "Opslaan" : "Voeg toe"}/>
-      </form>
-      </div>
-      <div className="submit-button">
-            <button value="Voeg toe" onClick={() => addQuestion()}>Voeg vraag toe</button>
-      </div>
-      <div className='questions'>
+      <div className='edit-section-questionnaire-container'>
+
+        <div className="left-container-questionnaire">
+          <div className="form">
+            <form onSubmit={onSubmit}>
+              <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={questionnaire.name} errors={errors.name}/>
+              <br/>
+              <SubmitButton value={isEdit ? "Opslaan" : "Voeg toe"}/>
+            </form>
+          </div>
+        </div>
+
+        <div className='left-container-questionnaire'>
+          <div className="submit-button questionnaire-add-question">
+            <button className='add-question-questionnaire-button' value="Voeg toe" onClick={() => addQuestion()}>Voeg vraag toe</button>
+          </div>
           {questionnaire.questions.map(question => {
-            return <div className='add-row'>
-              <Input placeholderText={'Vraag'} inputName={question.id.toString()} 
-              value={question.name} onChange={handleQuestionChange}
-              inputType={'text'} inputLabel={'Vraag'} errors={[]}           
-              />
-              <button value = "Verwijder vraag" className="trash table-row-button" onClick={() => deleteQuestion(question.id)}>
-                <img className="table-row-icon" src={TrashIcon} alt="verwijder" />
-              </button>
-              <div className="submit-button">
-                <button value="Voeg toe" onClick={() => addAnswer(question.id)}>Voeg antwoord toe</button>
-              </div>
-              <div className='answers'>
-              {question.answers.map(answer => {
-                return <div className='add-row'>
-                  <Input placeholderText={'Antwoord'} inputName={question.id.toString() + "-" + answer.id.toString()} 
-                value={answer.answerText} onChange={handleAnswerChange}
-                inputType={'text'} inputLabel={'Antwoord'} errors={[]}           
+            return (
+              <div className='full-question-container'>
+                <CloseModalButton onClick={() => deleteQuestion(question.id) }/>
+                <Input placeholderText={'Vraag'} inputName={question.id.toString()} 
+                  value={question.name} onChange={handleQuestionChange}
+                  inputType={'text'} inputLabel={'Vraag'} errors={[]}           
                 />
-                <button value = "Verwijder antwoord" className="trash table-row-button" onClick={() => deleteAnswer(question.id, answer.id)}>
-                  <img className="table-row-icon" src={TrashIcon} alt="verwijder" />
-                </button>
+
+                <div className='answers'>
+                  {question.answers.map(answer => {
+                    return (
+                    <div className='add-row-questionnaire'>
+                        <Input placeholderText={'Antwoord'} inputName={question.id.toString() + "-" + answer.id.toString()} 
+                          value={answer.answerText} onChange={handleAnswerChange}
+                          inputType={'text'} inputLabel={'Antwoord'} errors={[]}           
+                        />
+                        <button value = "Verwijder antwoord" className="trash trash-questionnaire-edit table-row-button" onClick={() => deleteAnswer(question.id, answer.id)}>
+                          <img className="table-row-icon" src={TrashIcon} alt="verwijder" />
+                        </button>
+                    </div>
+                  )})}
+                  <div className="submit-button submit-button-questionnaire">
+                    <button className='button-questionnaire' value="Voeg toe" onClick={() => addAnswer(question.id)}>Voeg antwoord toe</button>
+                  </div>
                 </div>
-              })}
               </div>
-            </div>
-          })}
+            )})}
         </div>
       </div>
     </div>

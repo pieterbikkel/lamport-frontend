@@ -1,5 +1,5 @@
 .close-button {
-    background-color: var(--wur-groen);
+    background-color: var(--wur-rood);
     width: 48px;
     height: 48px;
     display: flex;
@@ -15,5 +15,5 @@
 }
 
 .close-button:hover {
-    background-color: var(--wur-button-hover);
+    background-color: var(--wur-rood-hover);
 }
