@@ -5,6 +5,10 @@
     align-items: center;
 }
 
+.login > h1 {
+    margin-top: 15rem;
+}
+
 .login-button {
     margin-top: 2rem;
     display: flex;
