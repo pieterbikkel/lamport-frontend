@@ -24,9 +24,15 @@ function Login() {
         localStorage.setItem("token", data.token)
         navigate("/");
       }).catch(err => {
-        if(err.response.status === 401) {
-          errors.password = ["Invalid login!"];
-          setErrors(errors);
+        if(err.response.status === 400) {
+          //Errors from back-end are not empty, set them, else, it is an invalid login.
+          if(Object.keys(err.response.data).length !== 0) {
+            setErrors(err.response.data);
+          } else {
+            const newErrors = {} as any;
+            newErrors.password = ["Deze combinatie van gebruikersnaam en wachtwoord is niet gevonden!"];
+            setErrors(newErrors);
+          }
         }
         return;
       })
@@ -40,7 +46,7 @@ function Login() {
     <div className="login">
       <h1>Jitai</h1>
       <form onSubmit={onSubmit}>
-        <Input placeholderText={'Gebruikersnaam'} inputName={'username'} inputType={'text'} inputLabel={'Gebruikersnaam'} onChange={handleChange} value={login.username} errors={[]}/>
+        <Input placeholderText={'Gebruikersnaam'} inputName={'username'} inputType={'text'} inputLabel={'Gebruikersnaam'} onChange={handleChange} value={login.username} errors={errors.username}/>
         <br/>
         <Input placeholderText={'Wachtwoord'} inputName={'password'} inputType={'password'} inputLabel={'Wachtwoord'} onChange={handleChange} value={login.password} errors={errors.password}/>
         <div className="login-button">
