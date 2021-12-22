@@ -5,17 +5,20 @@
   "dependencies": {
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
+    "@jest/test-sequencer": "^27.4.5",
     "@mui/material": "^5.2.3",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "@types/jest": "^26.0.24",
     "@types/node": "^12.20.36",
+    "@types/puppeteer": "^5.4.4",
     "@types/react": "^17.0.34",
     "@types/react-dom": "^17.0.11",
     "axios": "^0.24.0",
     "jwt-decode": "^3.1.2",
     "leaflet": "^1.7.1",
+    "puppeteer": "^13.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.0.2",
@@ -27,7 +30,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test  --watchAll --runInBand --testSequencer=./src/tests/testSequencer.js --testMatch **/src/tests/**.test.ts",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
