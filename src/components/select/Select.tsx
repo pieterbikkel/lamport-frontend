@@ -13,13 +13,15 @@ interface Props {
 
 function Select({ placeholderText, selectName, selectLabel, options, value = "", onChange, width = "normal" }: Props ) {
     const changeSelect = (e:React.ChangeEvent<HTMLSelectElement>):any => {
-        onChange(options[e.target.options.selectedIndex - 1].id);
+        const selectedOption = options[e.target.options.selectedIndex - 1];
+        onChange(selectedOption === undefined ? 0 : selectedOption.id);
     }
     return (
         <div>
             <h4 className="select-label">{selectLabel}</h4>
-            <select value={value != "" ? value : "0"} className={"select select-" + width} id={selectName} name={selectName} onChange={changeSelect}>
-                <option value="0">{placeholderText + "..."}</option>
+            <select value={value != "" ? value : "0"} className={selectName === "" ? "select dropwdown" : "select select-" + width} id={selectName} name={selectName} onChange={changeSelect}>
+                {selectName === "" && <option value="0">{placeholderText}</option>}
+                {selectName.length > 1 && <option value="0">{placeholderText + "..."}</option>}
                 {options.map(option => {
                     return (
                         <option value={option.id} key={option.id}>{option.name}</option>

@@ -1,5 +1,4 @@
 import LocationDTO from "../../dto/LocationDTO";
-
 class LocationUpdateRequestDTO {
     areaId: number = 0;
     franchiseId: number = 0;
@@ -20,7 +19,6 @@ class LocationUpdateRequestDTO {
         this.delay = locationDTO.delay;
         this.linkedInterventions = locationDTO.linkedInterventions.map(x => {return x.id});
     };
-
 }
 
 export default LocationUpdateRequestDTO;

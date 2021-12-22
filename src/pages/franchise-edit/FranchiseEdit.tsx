@@ -6,6 +6,7 @@ import Input from '../../components/input/Input';
 import SubmitButton from '../../components/submit-button/SubmitButton';
 import FranchiseDTO from '../../dto/FranchiseDTO';
 import FranchiseService from '../../services/franchise/FranchiseService';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
 const FranchiseEdit : React.FC = () => {
   const [franchise, setFranchise] = useState({} as FranchiseDTO);
@@ -62,6 +63,7 @@ const FranchiseEdit : React.FC = () => {
 
   return (
     <div>
+      <Breadcrumb lastItem={franchise.name}/>
       <h2>{isEdit ? franchise.name + " Wijzigen" : "Franchise aanmaken"}</h2>
       <form onSubmit={onSubmit}>
         <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={franchise.name} errors={errors.name}/>

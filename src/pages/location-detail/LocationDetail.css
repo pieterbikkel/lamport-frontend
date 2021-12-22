@@ -1,14 +1,16 @@
 .location-detail-table {
-    margin-top: 50px;
+    margin-top: 0;
 }
 
 .table-min-width {
     min-width: 200px;
 }
-.interventions > h4 {
+
+.interventions>h4 {
     margin-bottom: 4px;
 }
-.interventions > p {
+
+.interventions>p {
     margin-top: 0;
     margin-bottom: 0;
 }

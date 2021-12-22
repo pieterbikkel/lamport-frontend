@@ -8,12 +8,11 @@ interface Props {
     inputType: string,
     inputLabel: string,
     onChange:any,
-    value:any,
+    value?:any,
     errors: string[]
 }
 
-function Input({ placeholderText, inputName, inputLength = "short", inputType, inputLabel,onChange,value,errors = []}: Props ) {
-
+function Input({ placeholderText, inputName, inputLength = "short", inputType, inputLabel, onChange, value = "", errors = []}: Props ) {
     return (
         <div>
             <h4 className="input-label">{inputLabel}</h4>

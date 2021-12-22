@@ -4,6 +4,7 @@ import TopSection from '../../components/list-top-section/ListTopSection';
 import TableRow from '../../components/tablerow/TableRow';
 import AreaService from '../../services/AreaService';
 import AreaDTO from '../../dto/AreaDTO';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
 function AreaList() {
   const [areas, setAreas] = useState([] as AreaDTO[]);
@@ -29,11 +30,12 @@ function AreaList() {
 
   return (
     <div>
-      <TopSection pageTitle={'Gebieden'} buttonTitle={'Toevoegen'} navigationLink={'/areas/edit/0'} onClick={search}/>
+      <Breadcrumb/>
+      <TopSection pageTitle={'Gebieden'} buttonTitle={'Toevoegen'} navigationLink={'/gebieden/wijzigen/0'} onClick={search}/>
         {areas.map(area => {
           return (
             <div key={area.id}>
-              <TableRow title={area.name} onEditLink={"/areas/edit/" + area.id} onDeleteClick={() => deleteArea(area.id)} navigationLink={"/areas/" + area.id}/>
+              <TableRow title={area.name} onEditLink={"/gebieden/wijzigen/" + area.id} onDeleteClick={() => deleteArea(area.id)} navigationLink={"/gebieden/" + area.id}/>
             </div>
           )
         })}
