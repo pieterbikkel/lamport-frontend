@@ -5,6 +5,7 @@ import TableRow from '../../components/tablerow/TableRow';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 import RoleService from '../../services/role/RoleService';
 import RoleDTO from '../../dto/RoleDTO';
+import { toast } from 'react-toastify';
 
 function RoleList() {
   const [roles, setRoles] = useState([] as RoleDTO[]);
@@ -20,8 +21,11 @@ function RoleList() {
   }, [])
 
   const deleteRole = (roleId: number) => {
-      setRoles(roles.filter(x => x.id !== roleId))
-      roleService.delete(roleId);
+      roleService.delete(roleId).then(() => {
+        setRoles(roles.filter(x => x.id !== roleId))
+      }).catch(() => {
+        toast.error("Er zitten gebruikers aan deze rol en kan daarom niet verwijderd worden!");
+      });
     }
   
   const search = () => {
