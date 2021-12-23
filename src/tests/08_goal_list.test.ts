@@ -21,12 +21,13 @@ describe("GoalList.tsx", () => {
     await page.waitForSelector(".table-row");
     const rows = await page.evaluate(() => Array.from(document.querySelectorAll(".table-row")).map((el:any) => el.innerText));
 
-    expect(rows.length).toBe(2);
+    expect(rows.length).toBe(3);
     expect(rows[0]).toBe("Afvallen");
     expect(rows[1]).toBe("Geld Besparen");
+    expect(rows[1]).toBe("ADMIN");
   });
 
-  it("After delete 1 row", async () => {
+  it("After delete 2 rows", async () => {
     await page.goto("http://localhost:3000/doelstellingen");
     await page.waitForSelector(".table-row");
 
@@ -38,7 +39,7 @@ describe("GoalList.tsx", () => {
 
     const rows = await page.evaluate(() => Array.from(document.querySelectorAll(".table-row")).map((el:any) => el.innerText));
 
-    expect(rows.length).toBe(1);
+    expect(rows.length).toBe(2);
     expect(rows[0]).toBe("Geld Besparen");
   });
 
