@@ -9,7 +9,7 @@ describe("AreaList.tsx", () => {
     browser = await puppeteer.launch();
     page = await browser.newPage();
     await page.goto("http://localhost:3000/")
-    const response = await new AxiosNetworkAdapter().post("/auth", {"username": "Bart", "password": "Bart"});
+    const response = await new AxiosNetworkAdapter().post("/auth", {"username": "E2E", "password": "E2E"});
     const token = response.data.token;
     await page.evaluate(async (token) => {
       localStorage.setItem("token", token);
