@@ -9,6 +9,7 @@ import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 function FranchiseList() {
   const [franchises, setFranchises] = useState([] as FranchiseDTO[]);
   const [service, setService] = useState({} as FranchiseService);
+  const [searchTerm, setSearchTerm] = useState("")
 
   useEffect(() => {
     const franchiseService = new FranchiseService();
@@ -24,15 +25,24 @@ function FranchiseList() {
     service.delete(id);
   }
 
-  const search = () => {
-    console.log("search")
+  const onSubmit = async (e: any) => {
+    e.preventDefault()
+
+    setSearchTerm(e.target[0].value)
+  }
+
+  const handleSearchChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value)
   }
 
   return (
     <div>
       <Breadcrumb/>
-      <TopSection pageTitle={'Franchises'} buttonTitle={'Toevoegen'} navigationLink={'/franchises/wijzigen/0'} onClick={search}/>
-        {franchises.map(franchise => {
+      <TopSection pageTitle={'Franchises'} buttonTitle={'Toevoegen'} navigationLink={'/franchises/wijzigen/0'} onSearchChange={handleSearchChange} onSubmit={onSubmit} />
+        {franchises.filter((franchise) => {
+          if(searchTerm === "") return franchise
+          if(franchise.name.toLowerCase().includes(searchTerm.toLowerCase())) return franchise
+        }).map(franchise => {
           return (
             <div key={franchise.id}>
               <TableRow title={franchise.name} onEditLink={"/franchises/wijzigen/" + franchise.id} onDeleteClick={() => deleteFranchise(franchise.id)} navigationLink={"/franchises/" + franchise.id}/>

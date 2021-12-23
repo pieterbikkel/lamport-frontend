@@ -9,6 +9,7 @@ import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 function UserList() {
   const [users, setUsers] = useState([] as UserDTO[]);
   const [userService, setUserService] = useState({} as UserService);
+  const [searchTerm, setSearchTerm] = useState("")
 
   useEffect(() => {
     const userService = new UserService();
@@ -24,15 +25,24 @@ function UserList() {
       userService.delete(userId);
     }
   
-  const search = () => {
-    console.log("search")
-  }
+    const onSubmit = async (e: any) => {
+      e.preventDefault()
+  
+      setSearchTerm(e.target[0].value)
+    }
+  
+    const handleSearchChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+      setSearchTerm(e.target.value)
+    }
 
   return (
     <div>
       <Breadcrumb/>
-      <TopSection pageTitle={'Gebruikers'} buttonTitle={'Toevoegen'} navigationLink={'/gebruikers/wijzigen/0'} onClick={search}/>
-        {users.map(user => {
+      <TopSection pageTitle={'Gebruikers'} buttonTitle={'Toevoegen'} navigationLink={'/gebruikers/wijzigen/0'} onSearchChange={handleSearchChange} onSubmit={onSubmit}/>
+        {users.filter((user) => {
+          if(searchTerm === "") return user
+          if(user.username.toLowerCase().includes(searchTerm.toLowerCase())) return user
+        }).map(user => {
           return (
             <div key={user.id}>
               <TableRow title={user.username} subtitle={user.role.name} onEditLink={"/gebruikers/wijzigen/" + user.id} onDeleteClick={() => deleteUser(user.id)} navigationLink={ "/gebruikers/" + user.id }/>

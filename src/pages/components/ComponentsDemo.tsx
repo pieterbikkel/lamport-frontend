@@ -53,7 +53,7 @@ function Components() {
 
             <br/>
 
-            <Searchbar placeholderText={"zoeken"} inputName="searchbar" onClick={() => console.log("search")}/>
+            {/* <Searchbar placeholderText={"zoeken"} inputName="searchbar" onClick={() => console.log("search")}/> */}
 
             <br/>
             
