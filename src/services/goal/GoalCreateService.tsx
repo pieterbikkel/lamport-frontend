@@ -20,6 +20,7 @@ class GoalService implements IService<GoalDTO> {
                 return toReturn;
             });
     }
+
     async loadOne(id: number): Promise<GoalDTO> {
         return networkAdapter
         .get("goal/" + id)
@@ -36,9 +37,11 @@ class GoalService implements IService<GoalDTO> {
     async update(value: GoalDTO): Promise<void> {
         return networkAdapter.put("goal", new GoalUpdateRequestDTO(value));
     }
+
     async create(value: GoalDTO): Promise<void> {
         return networkAdapter.post("goal", new GoalCreateRequestDTO(value));
     }
+    
     async delete(id: number): Promise<void> {
         return networkAdapter.delete("goal/" + id);
     }
