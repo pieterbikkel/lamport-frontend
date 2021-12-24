@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 function InterventionList() {
   const [interventions, setInterventions] = useState([] as InterventionDTO[]);
   const [service, setService] = useState({} as InterventionService);
+  const [searchTerm, setSearchTerm] = useState("")
 
   const navigate = useNavigate();
 
@@ -50,13 +51,26 @@ function InterventionList() {
     navigate(val);
   }
 
+  const onSubmit = async (e: any) => {
+    e.preventDefault()
+
+    setSearchTerm(e.target[0].value)
+  }
+
+  const handleSearchChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value)
+  }
+
   return (
     <div>
       <Breadcrumb/>
-      <TopSection pageTitle={'Interventies'} buttonTitle={'Toevoegen'} dropdownOptions={dropdownOptions} onClick={search} onChange={changeDropdown}/>
-        {interventions.map(intervention => {
+      <TopSection pageTitle={'Interventies'} buttonTitle={'Toevoegen'} dropdownOptions={dropdownOptions} onSearchChange={handleSearchChange} onChange={changeDropdown} onSubmit={onSubmit}/>
+        {interventions.filter((area) => {
+          if(searchTerm === "") return area
+          if(area.name.toLowerCase().includes(searchTerm.toLowerCase())) return area
+        }).map(intervention => {
           return (
-            <div key={intervention.id}>
+            <div key={intervention.id} >
               <TableRow title={intervention.name} subtitle={intervention.type} onEditLink={"/interventies/" + intervention.type + "/wijzigen/" + intervention.id} onDeleteClick={() => deleteIntervention(intervention.id)} navigationLink={"/interventies/" + intervention.type  + "/" + intervention.id}/>
             </div>
           )

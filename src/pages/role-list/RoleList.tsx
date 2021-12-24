@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 function RoleList() {
   const [roles, setRoles] = useState([] as RoleDTO[]);
   const [roleService, setRoleService] = useState({} as RoleService);
+  const [searchTerm, setSearchTerm] = useState("")
 
   useEffect(() => {
     const userService = new RoleService();
@@ -32,11 +33,25 @@ function RoleList() {
     console.log("search")
   }
 
+  const onSubmit = async (e: any) => {
+    e.preventDefault()
+
+    setSearchTerm(e.target[0].value)
+  }
+
+  const handleSearchChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value)
+  }
+  
+
   return (
     <div>
       <Breadcrumb/>
-      <TopSection pageTitle={'Rollen'} buttonTitle={'Toevoegen'} navigationLink={'/rollen/wijzigen/0'} onClick={search}/>
-        {roles.map(role => {
+      <TopSection pageTitle={'Rollen'} buttonTitle={'Toevoegen'} navigationLink={'/rollen/wijzigen/0'} onSearchChange={handleSearchChange} onSubmit={onSubmit}/>
+        {roles.filter((role) => {
+          if(searchTerm === "") return role
+          if(role.name.toLowerCase().includes(searchTerm.toLowerCase())) return role
+        }).map(role => {
           return (
             <div key={role.id}>
               <TableRow title={role.name} subtitle="" onEditLink={"/rollen/wijzigen/" + role.id} onDeleteClick={() => deleteRole(role.id)} navigationLink={ "/rollen/" + role.id }/>
