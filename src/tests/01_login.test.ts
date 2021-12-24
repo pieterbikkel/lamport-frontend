@@ -58,13 +58,13 @@ describe("Login.tsx", () => {
     await username.click({ clickCount: 3 })
     await page.keyboard.press('Backspace');
     await username.click({ clickCount: 1 })
-    await page.keyboard.type('Bart', {delay: 10});
+    await page.keyboard.type('E2E', {delay: 10});
 
     const password : any = await page.$('input[name=password]');
     await password.click({ clickCount: 3 })
     await page.keyboard.press('Backspace');
     await password.click({ clickCount: 1 })
-    await page.keyboard.type('Bart', {delay: 10});
+    await page.keyboard.type('E2E', {delay: 10});
 
     await page.$eval('input[type=submit]', (el : any) => el.click());
 

@@ -1,0 +1,23 @@
+.home-link {
+    max-width: 10rem;
+}
+
+.home-link__image {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-link > a {
+    display: flex;
+    column-gap: 1.5rem;
+    align-items: center;
+    color: var(--wur-zwart);
+}
+
+.home-link > a:hover {
+    text-decoration: underline;
+    color: var(--wur-groen)
+}
