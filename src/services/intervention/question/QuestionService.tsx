@@ -31,7 +31,7 @@ class QuestionService {
         });
     }
 
-    async   update(value: QuestionDTO): Promise<void> {
+    async  update(value: QuestionDTO): Promise<void> {
         return networkAdapter.put("interventions/question", new QuestionUpdateRequestDTO(value));
     }
 
