@@ -34,6 +34,7 @@ import QuestionnaireEdit from './pages/questionnaire-edit/QuestionnaireEdit';
 import RoleList from './pages/role-list/RoleList';
 import RoleDetail from './pages/role-detail/RoleDetail';
 import RoleEdit from './pages/role-edit/RoleEdit';
+import Chart from './pages/chart/Chart';
 
 
 ReactDOM.render(
@@ -85,6 +86,7 @@ ReactDOM.render(
           <Route path=":id" element={<RoleDetail />}/>
         </Route>
         <Route path="login" element={<Login/>}/>
+        <Route path="chart" element={<Chart/>}/>
         <Route
         //todo 404
           path="*"
