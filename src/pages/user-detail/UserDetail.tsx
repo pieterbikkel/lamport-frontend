@@ -10,7 +10,6 @@ import GoalDTO from '../../dto/GoalDTO';
 
 function UserDetail() {
   const [user, setUser] = useState({} as UserDTO);
-  const [goals, setGoals] = useState([] as GoalDTO[]);
 
   useEffect(() => {
     const userService = new UserService();
@@ -18,16 +17,6 @@ function UserDetail() {
     .then(val => {
       setUser(val);
     })
-  }, [])
-
-  useEffect(() => {
-    const goalService = new GoalService();
-
-    goalService
-      .loadAll()
-      .then(goals => {
-        setGoals(goals);
-      })
   }, [])
 
   const params = useParams();
@@ -58,7 +47,7 @@ function UserDetail() {
           </tr>
           <tr>
             <td className="table-min-width">Doelstelling:</td>
-            <td>{goals[user.goalId].name}</td>
+            <td>{user.linkedGoal.name}</td>
           </tr>
         </tbody>
       </table>
