@@ -8,6 +8,7 @@ class UserUpdateRequestDTO {
 	password: string= "";
     role: RoleDTO = new RoleDTO();
     roleId: number = 0;
+    goalId: number = 0;
     
     constructor(userDTO: UserDTO) {
         this.id = userDTO.id;
@@ -16,6 +17,7 @@ class UserUpdateRequestDTO {
 		this.password = userDTO.password;
         this.role = userDTO.role;
         this.roleId = userDTO.roleId;
+        this.goalId = userDTO.goalId;
     };
 }
 
