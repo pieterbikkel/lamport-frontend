@@ -13,14 +13,12 @@ import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 import RoleService from '../../services/role/RoleService';
 import GoalDTO from '../../dto/GoalDTO';
 import GoalService from '../../services/goal/GoalService';
-import TableRow from '../../components/tablerow/TableRow';
 
 const UserEdit : React.FC = () => {
   const [user, setUser] = useState({} as UserDTO);
   const [service, setService] = useState({} as UserService);
   const [errors, setErrors] = useState({} as any);
   const [allRoles, setAllRoles] = useState([] as RoleDTO[]);
-  const [selectedGoal, setSelectedGoal] = useState(0 as number);
   const [goals, setGoals] = useState([] as GoalDTO[]);
   const params = useParams();
   const navigate = useNavigate();
