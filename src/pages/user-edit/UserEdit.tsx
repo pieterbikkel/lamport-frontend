@@ -122,7 +122,7 @@ const UserEdit : React.FC = () => {
           placeholderText={'Kies een Doelstelling'} 
           selectName={'new-goal'} 
           onChange={changeSelectedGoal} 
-          selectLabel={'Voeg doelstelling toe'} 
+          selectLabel={'Doelstelling'} 
           value={user.goalId.toString()}
           options={goals.map(goal => {
             let option = new Option();
