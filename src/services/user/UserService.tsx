@@ -54,6 +54,7 @@ class UserService implements IService<UserDTO> {
             
             userDto.role = roleDto;
             userDto.id = user.id;
+            userDto.linkedGoal = goalDto;
             userDto.username = user.username;
             userDto.email = user.email;
             userDto.roleId = roleDto.id;
