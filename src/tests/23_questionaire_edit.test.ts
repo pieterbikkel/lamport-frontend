@@ -58,7 +58,7 @@ describe("QuestionaireEdit.tsx", () => {
 
     await page.$eval('.questionnaire-add-question > button', (el:any) => el.click());
 
-    const questionInput:any = await page.$("input[id='9']");
+    const questionInput:any = await page.$("input[id='14']");
     await questionInput.click({ clickCount: 1 });
     await page.keyboard.type('Dit is een testvraag', {delay: 10});
 

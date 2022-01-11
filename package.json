@@ -30,7 +30,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --runInBand --testSequencer=./src/tests/testSequencer.js --testMatch **/src/tests/**.test.ts",
+    "test": "react-scripts test --watchAll --runInBand --testSequencer=./src/tests/testSequencer.js --testMatch **/src/tests/**.test.ts",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

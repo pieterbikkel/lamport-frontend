@@ -28,6 +28,8 @@ describe("CommandEdit.tsx", () => {
     await page.keyboard.type('TestCommando2', {delay: 10});
 
     const textInput:any = await page.$('input[name=commandText]');
+    await textInput.click({ clickCount: 3 });
+    await page.keyboard.press('Backspace');
     await textInput.click({ clickCount: 1 });
     await page.keyboard.type('Dit is een testcommando', {delay: 10});
 
