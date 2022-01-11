@@ -22,7 +22,6 @@ import GoalEdit from './pages/goal-edit/GoalEdit';
 import Login from './pages/login/Login';
 import UserList from './pages/user-list/UserList';
 import UserDetail from './pages/user-detail/UserDetail';
-import Breadcrumb from './components/breadcrumb/Breadcrumb';
 import UserEdit from './pages/user-edit/UserEdit';
 import CommandDetail from './pages/intervention-detail/command/CommandDetail';
 import InterventionList from './pages/intervention-list/InterventionList';
