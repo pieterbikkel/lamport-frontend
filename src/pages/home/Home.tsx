@@ -22,8 +22,6 @@ function Home() {
 
       <Breadcrumb/>
       
-      <h1>Home</h1>
-      
       { token &&
         <div className='home__links'>
           <HomeLink name={'Gebieden'} link={'/gebieden'} image={AreaIcon}/>
@@ -44,7 +42,7 @@ function Home() {
           <br/>
           <br/>
           <br/>
-          <Button title={"login"} onClick={() => navigate("/login")}/>
+          <Button title={"Login"} onClick={() => navigate("/login")}/>
         </div>
       }
     </div>
