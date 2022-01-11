@@ -16,7 +16,7 @@ describe("AreaEdit.tsx", () => {
       }, token);
     });
 
-  it("Happy flow", async () => {
+  it("vlgnr:7 All data updates area", async () => {
     await page.goto("http://localhost:3000/gebieden/wijzigen/2");
     await page.waitForSelector("input[name=name]");
 
@@ -56,7 +56,7 @@ describe("AreaEdit.tsx", () => {
     expect(rows[0]).toBe("TestGebied2");
   });
 
-  it("Alternative flow 1", async () => {
+  it("vlgnr:8 Empty longitude gives error", async () => {
     await page.goto("http://localhost:3000/gebieden/wijzigen/2");
     await page.waitForSelector("input[name=name]");
 
@@ -91,7 +91,7 @@ describe("AreaEdit.tsx", () => {
     expect(errors[0]).toBe("Lengtegraad mag niet leeg zijn!");
   });
 
-  it("Alternative flow 2", async () => {
+  it("vlgnr:9 Empty radius gives error", async () => {
     await page.goto("http://localhost:3000/gebieden/wijzigen/2");
     await page.waitForSelector("input[name=name]");
 
@@ -127,4 +127,6 @@ describe("AreaEdit.tsx", () => {
 
     expect(errors[0]).toBe("Straal mag niet leeg zijn!");
   });
+
+  afterAll(() => browser.close());
 });

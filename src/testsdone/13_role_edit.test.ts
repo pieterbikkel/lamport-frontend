@@ -17,30 +17,30 @@ describe("RoleEdit.tsx", () => {
     });
 
   it("Happy flow", async () => {
-    await page.goto("http://localhost:3000/doelstellingen/wijzigen/2");
+    await page.goto("http://localhost:3000/rollen/wijzigen/2");
     await page.waitForSelector("input[name=name]");
 
     const nameInput:any = await page.$('input[name=name]');
     await nameInput.click({ clickCount: 3 });
     await page.keyboard.press('Backspace');
     await nameInput.click({ clickCount: 1 });
-    await page.keyboard.type('TestDoelstelling2', {delay: 10});
+    await page.keyboard.type('TestRol2', {delay: 10});
 
     await page.$eval('input[type=submit]', (el:any) => el.click());
 
     await page.waitForSelector(".Toastify__progress-bar--success");
     const succesText = await page.$eval(".Toastify__toast-body", (el:any) => el.innerText);
 
-    expect(succesText).toBe("Doelstelling bijgewerkt!");
+    expect(succesText).toBe("Rol bijgewerkt!");
 
     const rows = await page.evaluate(() => Array.from(document.querySelectorAll(".table-row")).map((el:any) => el.innerText));
     
     expect(rows.length).toBe(2);
-    expect(rows[0]).toBe("TestDoelstelling2");
+    expect(rows[0]).toBe("TestRol2");
   });
 
   it("Alternative flow 1", async () => {
-    await page.goto("http://localhost:3000/doelstellingen/wijzigen/2");
+    await page.goto("http://localhost:3000/rollen/wijzigen/2");
     await page.waitForSelector("input[name=name]");
 
     const nameInput:any = await page.$('input[name=name]');
@@ -55,4 +55,6 @@ describe("RoleEdit.tsx", () => {
 
     expect(errors[0]).toBe("Naam mag niet leeg zijn!");
   });
+
+  afterAll(() => browser.close());
 });

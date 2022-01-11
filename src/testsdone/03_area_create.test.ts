@@ -16,8 +16,9 @@ describe("AreaEdit.tsx", () => {
       }, token);
     });
 
-  it("Happy flow", async () => {
+  it("vlgnr:4 All data makes new area", async () => {
     await page.goto("http://localhost:3000/gebieden/wijzigen/0");
+
     await page.waitForSelector("input[name=name]");
 
     const nameInput:any = await page.$('input[name=name]');
@@ -57,8 +58,9 @@ describe("AreaEdit.tsx", () => {
     expect(rows[2]).toBe("TestGebied1");
   });
 
-  it("Alternative flow 1", async () => {
-    await page.goto("http://localhost:3000/gebieden/wijzigen/2");
+  it("vlgnr:5 Empty longitude gives error", async () => {
+    await page.goto("http://localhost:3000/gebieden/wijzigen/0");
+
     await page.waitForSelector("input[name=name]");
 
     const nameInput:any = await page.$('input[name=name]');
@@ -92,8 +94,9 @@ describe("AreaEdit.tsx", () => {
     expect(errors[0]).toBe("Lengtegraad mag niet leeg zijn!");
   });
 
-  it("Alternative flow 2", async () => {
-    await page.goto("http://localhost:3000/gebieden/wijzigen/2");
+  it("vlgnr:6 Empty radius gives error", async () => {
+    await page.goto("http://localhost:3000/gebieden/wijzigen/0");
+
     await page.waitForSelector("input[name=name]");
 
     const nameInput:any = await page.$('input[name=name]');
@@ -128,4 +131,6 @@ describe("AreaEdit.tsx", () => {
 
     expect(errors[0]).toBe("Straal mag niet leeg zijn!");
   });
+
+  afterAll(() => browser.close());
 });

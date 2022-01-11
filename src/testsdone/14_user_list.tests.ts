@@ -1,7 +1,7 @@
 import puppeteer, { Browser, Page } from "puppeteer";
 import AxiosNetworkAdapter from "../adapters/network/AxiosNetworkAdapter";
 
-describe("AreaList.tsx", () => {
+describe("UserList.tsx", () => {
   let browser : Browser;
   let page : Page;
 
@@ -16,55 +16,57 @@ describe("AreaList.tsx", () => {
     }, token);
   });
 
-  it("Has 3 rows", async () => {
-    await page.goto("http://localhost:3000/gebieden");
+  it("Has 4 rows", async () => {
+    await page.goto("http://localhost:3000/gebruikers");
     await page.waitForSelector(".table-row");
     const rows = await page.evaluate(() => Array.from(document.querySelectorAll(".table-row")).map((el:any) => el.innerText));
 
-    expect(rows.length).toBe(3);
-    expect(rows[0]).toBe("Nijmegen");
-    expect(rows[1]).toBe("Wageningen");
-    expect(rows[2]).toBe("Utrecht");
+    expect(rows.length).toBe(4);
+    expect(rows[0]).toBe("Ivan\nBeheerder");
+    expect(rows[1]).toBe("wur\nBeheerder");
+    expect(rows[2]).toBe("Bart\nBeheerder");
+    expect(rows[3]).toBe("Tim\nBeheerder");
   });
 
-  it("After delete 2 rows", async () => {
-    await page.goto("http://localhost:3000/gebieden");
+  it("After delete 3 rows", async () => {
+    await page.goto("http://localhost:3000/gebruikers");
     await page.waitForSelector(".table-row");
 
     await page.evaluate(() => {
       (document.querySelectorAll('button.trash.table-row-button')[0] as HTMLElement).click();
     });
 
-    await page.waitForSelector(".table-row");
+    await page.waitForTimeout(200);
 
     const rows = await page.evaluate(() => Array.from(document.querySelectorAll(".table-row")).map((el:any) => el.innerText));
 
-    expect(rows.length).toBe(2);
-    expect(rows[0]).toBe("Wageningen");
-    expect(rows[1]).toBe("Utrecht");
-  })
+    expect(rows.length).toBe(3);
+    expect(rows[0]).toBe("wur\nBeheerder");
+    expect(rows[1]).toBe("Bart\nBeheerder");
+    expect(rows[2]).toBe("Tim\nBeheerder");
+  });
 
   it("Update goes to update page", async () => {
-    await page.goto("http://localhost:3000/gebieden");
+    await page.goto("http://localhost:3000/gebruikers");
     await page.waitForSelector(".table-row");
 
     await page.evaluate(() => {
       (document.querySelectorAll('button.edit.table-row-button')[0] as HTMLElement).click();
     });
     
-    expect(page.url()).toBe("http://localhost:3000/gebieden/wijzigen/2")
+    expect(page.url()).toBe("http://localhost:3000/gebruikers/wijzigen/2")
   });
 
   it("Detail goes to detail page", async () => {
-    await page.goto("http://localhost:3000/gebieden");
+    await page.goto("http://localhost:3000/gebruikers");
     await page.waitForSelector(".table-row");
 
     await page.evaluate(() => {
       (document.querySelectorAll('.table-row-grey-section')[0] as HTMLElement).click();
     });
     
-    expect(page.url()).toBe("http://localhost:3000/gebieden/2")
-  })
+    expect(page.url()).toBe("http://localhost:3000/gebruikers/2")
+  });
 
   afterAll(() => browser.close());
 });

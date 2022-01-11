@@ -16,7 +16,7 @@ describe("FranchiseEdit.tsx", () => {
       }, token);
     });
 
-  it("Happy flow", async () => {
+  it("vlgnr:11 All data creates franchise", async () => {
     await page.goto("http://localhost:3000/franchises/wijzigen/0");
     await page.waitForSelector("input[name=name]");
 
@@ -24,7 +24,7 @@ describe("FranchiseEdit.tsx", () => {
     await nameInput.click({ clickCount: 3 });
     await page.keyboard.press('Backspace');
     await nameInput.click({ clickCount: 1 });
-    await page.keyboard.type('TestFranchise2', {delay: 10});
+    await page.keyboard.type('TestFranchise1', {delay: 10});
 
     await page.$eval('input[type=submit]', (el:any) => el.click());
 
@@ -36,16 +36,12 @@ describe("FranchiseEdit.tsx", () => {
     const rows = await page.evaluate(() => Array.from(document.querySelectorAll(".table-row")).map((el:any) => el.innerText));
     
     expect(rows.length).toBe(4);
-    expect(rows[3]).toBe("TestFranchise2");
+    expect(rows[3]).toBe("TestFranchise1");
   });
 
-  it("Alternative flow 1", async () => {
+  it("vlgnr:12 Empty name gives error", async () => {
     await page.goto("http://localhost:3000/gebieden/wijzigen/0");
     await page.waitForSelector("input[name=name]");
-
-    const nameInput:any = await page.$('input[name=name]');
-    await nameInput.click({ clickCount: 3 });
-    await page.keyboard.press('Backspace');
 
     await page.$eval('input[type=submit]', (el:any) => el.click());
 
@@ -55,4 +51,6 @@ describe("FranchiseEdit.tsx", () => {
 
     expect(errors[0]).toBe("Naam mag niet leeg zijn!");
   });
+
+  afterAll(() => browser.close());
 });

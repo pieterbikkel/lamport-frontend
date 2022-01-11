@@ -1,7 +1,7 @@
 import puppeteer, { Browser, Page } from "puppeteer";
 import AxiosNetworkAdapter from "../adapters/network/AxiosNetworkAdapter";
 
-describe("GoalEdit.tsx", () => {
+describe("QuestionEdit.tsx", () => {
     let browser : Browser;
     let page : Page;
   
@@ -17,35 +17,29 @@ describe("GoalEdit.tsx", () => {
     });
 
   it("Happy flow", async () => {
-    await page.goto("http://localhost:3000/doelstellingen/wijzigen/0");
+    await page.goto("http://localhost:3000/rollen/wijzigen/0");
     await page.waitForSelector("input[name=name]");
 
     const nameInput:any = await page.$('input[name=name]');
-    await nameInput.click({ clickCount: 3 });
-    await page.keyboard.press('Backspace');
     await nameInput.click({ clickCount: 1 });
-    await page.keyboard.type('TestDoelstelling1', {delay: 10});
+    await page.keyboard.type('TestRol1', {delay: 10});
 
     await page.$eval('input[type=submit]', (el:any) => el.click());
 
     await page.waitForSelector(".Toastify__progress-bar--success");
     const succesText = await page.$eval(".Toastify__toast-body", (el:any) => el.innerText);
 
-    expect(succesText).toBe("Doelstelling aangemaakt!");
+    expect(succesText).toBe("Rol aangemaakt!");
 
     const rows = await page.evaluate(() => Array.from(document.querySelectorAll(".table-row")).map((el:any) => el.innerText));
     
     expect(rows.length).toBe(2);
-    expect(rows[1]).toBe("TestDoelstelling1");
+    expect(rows[1]).toBe("TestRol1");
   });
 
   it("Alternative flow 1", async () => {
-    await page.goto("http://localhost:3000/doelstellingen/wijzigen/0");
+    await page.goto("http://localhost:3000/rollen/wijzigen/0");
     await page.waitForSelector("input[name=name]");
-
-    const nameInput:any = await page.$('input[name=name]');
-    await nameInput.click({ clickCount: 3 });
-    await page.keyboard.press('Backspace');
 
     await page.$eval('input[type=submit]', (el:any) => el.click());
 
@@ -55,4 +49,6 @@ describe("GoalEdit.tsx", () => {
 
     expect(errors[0]).toBe("Naam mag niet leeg zijn!");
   });
+
+  afterAll(() => browser.close());
 });

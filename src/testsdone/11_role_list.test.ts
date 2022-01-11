@@ -1,7 +1,7 @@
 import puppeteer, { Browser, Page } from "puppeteer";
 import AxiosNetworkAdapter from "../adapters/network/AxiosNetworkAdapter";
 
-describe("FranchiseList.tsx", () => {
+describe("RoleList.tsx", () => {
   let browser : Browser;
   let page : Page;
 
@@ -16,57 +16,73 @@ describe("FranchiseList.tsx", () => {
     }, token);
   });
 
-  it("Has 4 rows", async () => {
-    await page.goto("http://localhost:3000/franchises");
+  it("Has 2 rows", async () => {
+    await page.goto("http://localhost:3000/rollen");
     await page.waitForSelector(".table-row");
     const rows = await page.evaluate(() => Array.from(document.querySelectorAll(".table-row")).map((el:any) => el.innerText));
 
-    expect(rows.length).toBe(4);
-    expect(rows[0]).toBe("McDonalds");
-    expect(rows[1]).toBe("Gaia_building (office)");
-    expect(rows[2]).toBe("Subway");
-    expect(rows[3]).toBe("HP2 Consulting");
+    expect(rows.length).toBe(2);
+    expect(rows[0]).toBe("Gebruiker");
+    expect(rows[1]).toBe("Beheerder");
   });
 
-  it("After delete 3 rows", async () => {
-    await page.goto("http://localhost:3000/franchises");
+  it("After delete 1 row", async () => {
+    await page.goto("http://localhost:3000/rollen");
     await page.waitForSelector(".table-row");
 
     await page.evaluate(() => {
       (document.querySelectorAll('button.trash.table-row-button')[0] as HTMLElement).click();
     });
 
-    await page.waitForSelector(".table-row");
+    await page.waitForTimeout(200);
 
     const rows = await page.evaluate(() => Array.from(document.querySelectorAll(".table-row")).map((el:any) => el.innerText));
 
-    expect(rows.length).toBe(3);
-    expect(rows[0]).toBe("Gaia_building (office)");
-    expect(rows[1]).toBe("Subway");
-    expect(rows[2]).toBe("HP2 Consulting");
-  })
+    expect(rows.length).toBe(1);
+    expect(rows[0]).toBe("Beheerder");
+  });
+
+  it("Delete on role with users gives error", async () => {
+    await page.goto("http://localhost:3000/rollen");
+    await page.waitForSelector(".table-row");
+
+    await page.evaluate(() => {
+      (document.querySelectorAll('button.trash.table-row-button')[0] as HTMLElement).click();
+    });
+
+    await page.waitForSelector(".Toastify__progress-bar--error");
+
+    const errorText = await page.$eval(".Toastify__toast-body", (el:any) => el.innerText);
+
+    expect(errorText).toBe("Er zitten gebruikers aan deze rol en kan daarom niet verwijderd worden!");
+
+    const rows = await page.evaluate(() => Array.from(document.querySelectorAll(".table-row")).map((el:any) => el.innerText));
+
+    expect(rows.length).toBe(1);
+    expect(rows[0]).toBe("Beheerder");
+  });
 
   it("Update goes to update page", async () => {
-    await page.goto("http://localhost:3000/franchises");
+    await page.goto("http://localhost:3000/rollen");
     await page.waitForSelector(".table-row");
 
     await page.evaluate(() => {
       (document.querySelectorAll('button.edit.table-row-button')[0] as HTMLElement).click();
     });
     
-    expect(page.url()).toBe("http://localhost:3000/franchises/wijzigen/2")
+    expect(page.url()).toBe("http://localhost:3000/rollen/wijzigen/2")
   });
 
   it("Detail goes to detail page", async () => {
-    await page.goto("http://localhost:3000/franchises");
+    await page.goto("http://localhost:3000/rollen");
     await page.waitForSelector(".table-row");
 
     await page.evaluate(() => {
       (document.querySelectorAll('.table-row-grey-section')[0] as HTMLElement).click();
     });
     
-    expect(page.url()).toBe("http://localhost:3000/franchises/2")
-  })
+    expect(page.url()).toBe("http://localhost:3000/rollen/2")
+  });
 
   afterAll(() => browser.close());
 });

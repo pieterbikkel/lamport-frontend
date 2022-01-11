@@ -16,7 +16,7 @@ describe("FranchiseEdit.tsx", () => {
       }, token);
     });
 
-    it("Happy flow", async () => {
+    it("vlgnr:13 All data updates franchise", async () => {
       await page.goto("http://localhost:3000/franchises/wijzigen/2");
       await page.waitForSelector("input[name=name]");
   
@@ -39,7 +39,7 @@ describe("FranchiseEdit.tsx", () => {
       expect(rows[0]).toBe("TestFranchise2");
     });
   
-    it("Alternative flow 1", async () => {
+    it("vlgnr:14 Empty name gives error", async () => {
       await page.goto("http://localhost:3000/gebieden/wijzigen/2");
       await page.waitForSelector("input[name=name]");
   
@@ -55,4 +55,6 @@ describe("FranchiseEdit.tsx", () => {
   
       expect(errors[0]).toBe("Naam mag niet leeg zijn!");
     });
+
+    afterAll(() => browser.close());
 });
