@@ -45,10 +45,12 @@ function Login() {
   return (
     <div className="login">
       <h1>Jitai</h1>
-      <form onSubmit={onSubmit}>
+      <form className='login-form' onSubmit={onSubmit}>
         <Input placeholderText={'Gebruikersnaam'} inputName={'username'} inputType={'text'} inputLabel={'Gebruikersnaam'} onChange={handleChange} value={login.username} errors={errors.username}/>
         <br/>
-        <Input placeholderText={'Wachtwoord'} inputName={'password'} inputType={'password'} inputLabel={'Wachtwoord'} onChange={handleChange} value={login.password} errors={errors.password}/>
+        <div className='password-div'>
+          <Input placeholderText={'Wachtwoord'} inputName={'password'} inputType={'password'} inputLabel={'Wachtwoord'} onChange={handleChange} value={login.password} errors={errors.password}/>
+        </div>
         <div className="login-button">
           <SubmitButton value={"Login"}/>
         </div>
