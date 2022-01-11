@@ -5,6 +5,7 @@ import TableRow from '../../components/tablerow/TableRow';
 import GoalDTO from '../../dto/GoalDTO';
 import GoalService from '../../services/goal/GoalService';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
+import { toast } from 'react-toastify';
 
 function GoalList() {
   const [goals, setGoals] = useState([] as GoalDTO[]);
@@ -21,8 +22,11 @@ function GoalList() {
   }, [])
 
   const deleteGoal = (id: number) => {
-    setGoals(goals.filter(x => x.id !== id))
-    service.delete(id);
+    service.delete(id).then(() => {
+      setGoals(goals.filter(x => x.id !== id))
+    }).catch(() => {
+      toast.error("Er zitten gebruikers aan deze doelstelling en kan daarom niet verwijderd worden!");
+    });
   }
 
   const onSubmit = async (e: any) => {

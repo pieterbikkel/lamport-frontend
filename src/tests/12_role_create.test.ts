@@ -16,7 +16,7 @@ describe("QuestionEdit.tsx", () => {
       }, token);
     });
 
-  it("Happy flow", async () => {
+  it("vlgnr:65 All data makes new role", async () => {
     await page.goto("http://localhost:3000/rollen/wijzigen/0");
     await page.waitForSelector("input[name=name]");
 
@@ -37,7 +37,7 @@ describe("QuestionEdit.tsx", () => {
     expect(rows[1]).toBe("TestRol1");
   });
 
-  it("Alternative flow 1", async () => {
+  it("vlgnr:66 Empty name gives error", async () => {
     await page.goto("http://localhost:3000/rollen/wijzigen/0");
     await page.waitForSelector("input[name=name]");
 

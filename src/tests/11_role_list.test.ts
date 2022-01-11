@@ -26,7 +26,7 @@ describe("RoleList.tsx", () => {
     expect(rows[1]).toBe("Beheerder");
   });
 
-  it("After delete 1 row", async () => {
+  it("vlgnr:69 After delete 1 row", async () => {
     await page.goto("http://localhost:3000/rollen");
     await page.waitForSelector(".table-row");
 
