@@ -64,6 +64,7 @@ class AxiosNetworkAdapter implements INetworkAdapter {
             return data
         });
     }
+    
     public delete = async (path: string): Promise<any> => {
         return axios.delete   (this.buildUrl(path), {
             headers: this.getHeaders()

@@ -8,17 +8,21 @@ import FranchiseIcon from "../../assets/icons/franchise-icon.svg"
 import PersonIcon from "../../assets/icons/person-icon.svg"
 import RoleIcon from "../../assets/icons/role-icon.svg"
 import HomeLink from '../../components/homelink/HomeLink';
+import { useNavigate } from 'react-router-dom'
+import Button from '../../components/button/Button';
 
 function Home() {
 
-  
-    return (
-      <div className="home">
+  const navigate = useNavigate()
 
-        <Breadcrumb/>
-        
-        <h1>Home</h1>
-        
+  const token = localStorage.getItem("token");
+  
+  return (
+    <div className="home">
+
+      <Breadcrumb/>
+      
+      { token &&
         <div className='home__links'>
           <HomeLink name={'Gebieden'} link={'/gebieden'} image={AreaIcon}/>
           <HomeLink name={'Locaties'} link={'/locaties'} image={LocationIcon}/>
@@ -28,8 +32,21 @@ function Home() {
           <HomeLink name={'Gebruikers'} link={'/gebruikers'} image={PersonIcon}/>
           <HomeLink name={'Rollen'} link={'/rollen'} image={RoleIcon}/>
         </div>
-      </div>
-    );
+      }
+
+      {
+        token === null &&
+
+        <div>
+          <p>Log eerst in om gebruik te maken van de admin omgeving</p>
+          <br/>
+          <br/>
+          <br/>
+          <Button title={"Login"} onClick={() => navigate("/login")}/>
+        </div>
+      }
+    </div>
+  );
 }
 
 export default Home;
