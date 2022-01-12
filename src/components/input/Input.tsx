@@ -13,10 +13,11 @@ interface Props {
 }
 
 function Input({ placeholderText, inputName, inputLength = "short", inputType, inputLabel, onChange, value = "", errors = []}: Props ) {
+
     return (
-        <div>
-            <h4 className="input-label">{inputLabel}</h4>
-            <input className={"input length-" + inputLength} onChange={onChange} value={value} id={inputName} type={inputType} name={inputName} placeholder={placeholderText + "..."} step="any"/>
+        <div className='input-component'>
+            <h4 className={"input-label input-label-" + (errors.length !== 0 ? "error" : "")}>{inputLabel}</h4>
+            <input className={"input length-" + inputLength + " input-" + (errors.length !== 0 ? "error" : "") } onChange={onChange} value={value} id={inputName} type={inputType} name={inputName} placeholder={placeholderText + "..."} step="any"/>
             {errors.map(error => {
                 return <p className="error">{error}</p>
             })}
