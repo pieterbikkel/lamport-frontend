@@ -16,15 +16,16 @@ describe("AreaEdit.tsx", () => {
       }, token);
     });
 
-  it("Happy flow", async () => {
-    await page.goto("http://localhost:3000/gebieden/wijzigen/2");
+  it("vlgnr:4 All data makes new area", async () => {
+    await page.goto("http://localhost:3000/gebieden/wijzigen/0");
+
     await page.waitForSelector("input[name=name]");
 
     const nameInput:any = await page.$('input[name=name]');
     await nameInput.click({ clickCount: 3 });
     await page.keyboard.press('Backspace');
     await nameInput.click({ clickCount: 1 });
-    await page.keyboard.type('TestGebied2', {delay: 10});
+    await page.keyboard.type('TestGebied1', {delay: 10});
 
     const longitutdeInput:any = await page.$('input[name=longitude]');
     await longitutdeInput.click({ clickCount: 3 });
@@ -49,15 +50,17 @@ describe("AreaEdit.tsx", () => {
     await page.waitForSelector(".Toastify__progress-bar--success");
     const succesText = await page.$eval(".Toastify__toast-body", (el:any) => el.innerText);
 
-    expect(succesText).toBe("Gebied bijgewerkt!");
+    expect(succesText).toBe("Gebied aangemaakt!");
 
     const rows = await page.evaluate(() => Array.from(document.querySelectorAll(".table-row")).map((el:any) => el.innerText));
     
-    expect(rows[0]).toBe("TestGebied2");
+    expect(rows.length).toBe(3);
+    expect(rows[2]).toBe("TestGebied1");
   });
 
-  it("Alternative flow 1", async () => {
-    await page.goto("http://localhost:3000/gebieden/wijzigen/2");
+  it("vlgnr:5 Empty longitude gives error", async () => {
+    await page.goto("http://localhost:3000/gebieden/wijzigen/0");
+
     await page.waitForSelector("input[name=name]");
 
     const nameInput:any = await page.$('input[name=name]');
@@ -91,8 +94,9 @@ describe("AreaEdit.tsx", () => {
     expect(errors[0]).toBe("Lengtegraad mag niet leeg zijn!");
   });
 
-  it("Alternative flow 2", async () => {
-    await page.goto("http://localhost:3000/gebieden/wijzigen/2");
+  it("vlgnr:6 Empty radius gives error", async () => {
+    await page.goto("http://localhost:3000/gebieden/wijzigen/0");
+
     await page.waitForSelector("input[name=name]");
 
     const nameInput:any = await page.$('input[name=name]');
@@ -127,4 +131,6 @@ describe("AreaEdit.tsx", () => {
 
     expect(errors[0]).toBe("Straal mag niet leeg zijn!");
   });
+
+  afterAll(() => browser.close());
 });

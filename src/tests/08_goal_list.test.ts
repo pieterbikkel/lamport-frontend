@@ -16,7 +16,7 @@ describe("GoalList.tsx", () => {
     }, token);
   });
 
-  it("Has 2 rows", async () => {
+  it("Has 3 rows", async () => {
     await page.goto("http://localhost:3000/doelstellingen");
     await page.waitForSelector(".table-row");
     const rows = await page.evaluate(() => Array.from(document.querySelectorAll(".table-row")).map((el:any) => el.innerText));
@@ -24,10 +24,10 @@ describe("GoalList.tsx", () => {
     expect(rows.length).toBe(3);
     expect(rows[0]).toBe("Afvallen");
     expect(rows[1]).toBe("Geld Besparen");
-    expect(rows[1]).toBe("ADMIN");
+    expect(rows[2]).toBe("ADMIN");
   });
 
-  it("After delete 2 rows", async () => {
+  it("vlgnr:20 After delete 2 rows", async () => {
     await page.goto("http://localhost:3000/doelstellingen");
     await page.waitForSelector(".table-row");
 
@@ -42,26 +42,6 @@ describe("GoalList.tsx", () => {
     expect(rows.length).toBe(2);
     expect(rows[0]).toBe("Geld Besparen");
   });
-
-  // it("Delete on role with users gives error", async () => {
-  //   await page.goto("http://localhost:3000/rollen");
-  //   await page.waitForSelector(".table-row");
-
-  //   await page.evaluate(() => {
-  //     (document.querySelectorAll('button.trash.table-row-button')[0] as HTMLElement).click();
-  //   });
-
-  //   await page.waitForSelector(".Toastify__progress-bar--error");
-
-  //   const errorText = await page.$eval(".Toastify__toast-body", (el:any) => el.innerText);
-
-  //   expect(errorText).toBe("Er zitten gebruikers aan deze rol en kan daarom niet verwijderd worden!");
-
-  //   const rows = await page.evaluate(() => Array.from(document.querySelectorAll(".table-row")).map((el:any) => el.innerText));
-
-  //   expect(rows.length).toBe(1);
-  //   expect(rows[0]).toBe("Beheerder");
-  // })
 
   it("Update goes to update page", async () => {
     await page.goto("http://localhost:3000/doelstellingen");
@@ -83,7 +63,7 @@ describe("GoalList.tsx", () => {
     });
     
     expect(page.url()).toBe("http://localhost:3000/doelstellingen/2")
-  })
+  });
 
   afterAll(() => browser.close());
 });

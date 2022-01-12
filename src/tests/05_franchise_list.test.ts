@@ -28,7 +28,7 @@ describe("FranchiseList.tsx", () => {
     expect(rows[3]).toBe("HP2 Consulting");
   });
 
-  it("After delete 3 rows", async () => {
+  it("vlgnr:15 After delete 3 rows", async () => {
     await page.goto("http://localhost:3000/franchises");
     await page.waitForSelector(".table-row");
 
@@ -44,7 +44,7 @@ describe("FranchiseList.tsx", () => {
     expect(rows[0]).toBe("Gaia_building (office)");
     expect(rows[1]).toBe("Subway");
     expect(rows[2]).toBe("HP2 Consulting");
-  })
+  });
 
   it("Update goes to update page", async () => {
     await page.goto("http://localhost:3000/franchises");
@@ -66,7 +66,7 @@ describe("FranchiseList.tsx", () => {
     });
     
     expect(page.url()).toBe("http://localhost:3000/franchises/2")
-  })
+  });
 
   afterAll(() => browser.close());
 });

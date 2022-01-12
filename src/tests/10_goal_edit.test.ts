@@ -16,7 +16,7 @@ describe("RoleEdit.tsx", () => {
       }, token);
     });
 
-  it("Happy flow", async () => {
+  it("vlgnr:18 All data updates goal", async () => {
     await page.goto("http://localhost:3000/doelstellingen/wijzigen/2");
     await page.waitForSelector("input[name=name]");
 
@@ -35,11 +35,11 @@ describe("RoleEdit.tsx", () => {
 
     const rows = await page.evaluate(() => Array.from(document.querySelectorAll(".table-row")).map((el:any) => el.innerText));
     
-    expect(rows.length).toBe(2);
+    expect(rows.length).toBe(3);
     expect(rows[0]).toBe("TestDoelstelling2");
   });
 
-  it("Alternative flow 1", async () => {
+  it("vlgnr:19 Empty name gives error", async () => {
     await page.goto("http://localhost:3000/doelstellingen/wijzigen/2");
     await page.waitForSelector("input[name=name]");
 
@@ -55,4 +55,6 @@ describe("RoleEdit.tsx", () => {
 
     expect(errors[0]).toBe("Naam mag niet leeg zijn!");
   });
+
+  afterAll(() => browser.close());
 });

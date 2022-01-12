@@ -1,7 +1,7 @@
 import puppeteer, { Browser, Page } from "puppeteer";
 import AxiosNetworkAdapter from "../adapters/network/AxiosNetworkAdapter";
 
-describe("RoleEdit.tsx", () => {
+describe("QuestionEdit.tsx", () => {
     let browser : Browser;
     let page : Page;
   
@@ -16,13 +16,11 @@ describe("RoleEdit.tsx", () => {
       }, token);
     });
 
-  it("Happy flow", async () => {
+  it("vlgnr:65 All data makes new role", async () => {
     await page.goto("http://localhost:3000/rollen/wijzigen/0");
     await page.waitForSelector("input[name=name]");
 
     const nameInput:any = await page.$('input[name=name]');
-    await nameInput.click({ clickCount: 3 });
-    await page.keyboard.press('Backspace');
     await nameInput.click({ clickCount: 1 });
     await page.keyboard.type('TestRol1', {delay: 10});
 
@@ -39,13 +37,9 @@ describe("RoleEdit.tsx", () => {
     expect(rows[1]).toBe("TestRol1");
   });
 
-  it("Alternative flow 1", async () => {
+  it("vlgnr:66 Empty name gives error", async () => {
     await page.goto("http://localhost:3000/rollen/wijzigen/0");
     await page.waitForSelector("input[name=name]");
-
-    const nameInput:any = await page.$('input[name=name]');
-    await nameInput.click({ clickCount: 3 });
-    await page.keyboard.press('Backspace');
 
     await page.$eval('input[type=submit]', (el:any) => el.click());
 
@@ -55,4 +49,6 @@ describe("RoleEdit.tsx", () => {
 
     expect(errors[0]).toBe("Naam mag niet leeg zijn!");
   });
+
+  afterAll(() => browser.close());
 });

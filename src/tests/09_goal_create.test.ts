@@ -16,13 +16,11 @@ describe("GoalEdit.tsx", () => {
       }, token);
     });
 
-  it("Happy flow", async () => {
+  it("vlgnr:16 All data makes new goal", async () => {
     await page.goto("http://localhost:3000/doelstellingen/wijzigen/0");
     await page.waitForSelector("input[name=name]");
 
     const nameInput:any = await page.$('input[name=name]');
-    await nameInput.click({ clickCount: 3 });
-    await page.keyboard.press('Backspace');
     await nameInput.click({ clickCount: 1 });
     await page.keyboard.type('TestDoelstelling1', {delay: 10});
 
@@ -35,17 +33,13 @@ describe("GoalEdit.tsx", () => {
 
     const rows = await page.evaluate(() => Array.from(document.querySelectorAll(".table-row")).map((el:any) => el.innerText));
     
-    expect(rows.length).toBe(2);
-    expect(rows[1]).toBe("TestDoelstelling1");
+    expect(rows.length).toBe(3);
+    expect(rows[2]).toBe("TestDoelstelling1");
   });
 
-  it("Alternative flow 1", async () => {
+  it("vlgnr:17 Empty names gives error", async () => {
     await page.goto("http://localhost:3000/doelstellingen/wijzigen/0");
     await page.waitForSelector("input[name=name]");
-
-    const nameInput:any = await page.$('input[name=name]');
-    await nameInput.click({ clickCount: 3 });
-    await page.keyboard.press('Backspace');
 
     await page.$eval('input[type=submit]', (el:any) => el.click());
 
@@ -55,4 +49,6 @@ describe("GoalEdit.tsx", () => {
 
     expect(errors[0]).toBe("Naam mag niet leeg zijn!");
   });
+
+  afterAll(() => browser.close());
 });

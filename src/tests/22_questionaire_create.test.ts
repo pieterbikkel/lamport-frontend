@@ -1,7 +1,7 @@
 import puppeteer, { Browser, Page } from "puppeteer";
 import AxiosNetworkAdapter from "../adapters/network/AxiosNetworkAdapter";
 
-describe("FranchiseEdit.tsx", () => {
+describe("QuestionaireEdit.tsx", () => {
     let browser : Browser;
     let page : Page;
   
@@ -16,32 +16,44 @@ describe("FranchiseEdit.tsx", () => {
       }, token);
     });
 
-  it("vlgnr:11 All data creates franchise", async () => {
-    await page.goto("http://localhost:3000/franchises/wijzigen/0");
+  it("vlgnr:35 All data makes new questionaire", async () => {
+    await page.goto("http://localhost:3000/interventies/vragenlijst/wijzigen/0");
     await page.waitForSelector("input[name=name]");
 
     const nameInput:any = await page.$('input[name=name]');
-    await nameInput.click({ clickCount: 3 });
-    await page.keyboard.press('Backspace');
     await nameInput.click({ clickCount: 1 });
-    await page.keyboard.type('TestFranchise1', {delay: 10});
+    await page.keyboard.type('TestVragenlijst1', {delay: 10});
+
+    await page.$eval('.questionnaire-add-question > button', (el:any) => el.click());
+
+    const questionInput:any = await page.$("input[id='1']");
+    await questionInput.click({ clickCount: 1 });
+    await page.keyboard.type('Dit is een testvraag', {delay: 10});
 
     await page.$eval('input[type=submit]', (el:any) => el.click());
 
     await page.waitForSelector(".Toastify__progress-bar--success");
     const succesText = await page.$eval(".Toastify__toast-body", (el:any) => el.innerText);
 
-    expect(succesText).toBe("Franchise aangemaakt!");
+    expect(succesText).toBe("Vragenlijst aangemaakt!");
+
+    await page.waitForSelector(".table-row");
 
     const rows = await page.evaluate(() => Array.from(document.querySelectorAll(".table-row")).map((el:any) => el.innerText));
     
-    expect(rows.length).toBe(4);
-    expect(rows[3]).toBe("TestFranchise1");
+    expect(rows.length).toBe(8);
+    expect(rows[7]).toBe("TestVragenlijst1\nvragenlijst");
   });
 
-  it("vlgnr:12 Empty name gives error", async () => {
-    await page.goto("http://localhost:3000/gebieden/wijzigen/0");
+  it("vlgnr:36 Empty name gives error", async () => {
+    await page.goto("http://localhost:3000/interventies/vragenlijst/wijzigen/0");
     await page.waitForSelector("input[name=name]");
+
+    await page.$eval('.questionnaire-add-question > button', (el:any) => el.click());
+
+    const questionInput:any = await page.$("input[id='1']");
+    await questionInput.click({ clickCount: 1 });
+    await page.keyboard.type('Dit is een testvraag', {delay: 10});
 
     await page.$eval('input[type=submit]', (el:any) => el.click());
 
