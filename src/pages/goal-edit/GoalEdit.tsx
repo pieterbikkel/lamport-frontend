@@ -108,7 +108,7 @@ const GoalEdit : React.FC = () => {
           <div className='questions'>
             {goal.profileQuestions.map((question, index) => {
               return (
-                <div className='add-row'>
+                <div className='add-row-goal'>
                   <Input placeholderText={'Vraag'} inputName={question.id.toString()} 
                     value={question.name} onChange={handleQuestionChange}
                     inputType={'text'} inputLabel={'Vraag ' + (index + 1)} errors={[]}           
