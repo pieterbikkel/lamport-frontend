@@ -104,13 +104,13 @@ const UserEdit : React.FC = () => {
       <Breadcrumb lastItem={user.username}/>
       <h2>{isEdit ? user.username + " Wijzigen" : "Gebruiker aanmaken"}</h2>
       <form className='user-edit-form' onSubmit={onSubmit}>
-        <Input placeholderText={'Naam'} inputName={'username'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={user.username} errors={errors.name}/>
+        <Input placeholderText={'Naam'} inputName={'username'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={user.username} errors={errors.username}/>
         <br/>
-        <Input placeholderText={'Email'} inputName={'email'} inputType={'text'} inputLabel={'Email'} onChange={handleChange} value={user.email} errors={errors.name}/>
+        <Input placeholderText={'Email'} inputName={'email'} inputType={'text'} inputLabel={'Email'} onChange={handleChange} value={user.email} errors={errors.email}/>
         <br/>
-        <Input placeholderText={'Wachtwoord'} inputName={'password'} inputType={'password'} inputLabel={'Wachtwoord'} onChange={handleChange} value={user.password} errors={errors.name}/>
+        <Input placeholderText={'Wachtwoord'} inputName={'password'} inputType={'password'} inputLabel={'Wachtwoord'} onChange={handleChange} value={user.password} errors={errors.password}/>
         <br/>
-        <Select placeholderText={'Kies een rol'} value={user.roleId.toString()} selectName={'id'} selectLabel={'Rol'} onChange={updateRole} options={allRoles.map(x => {
+        <Select placeholderText={'Kies een rol'} value={user.roleId.toString()} selectName={'id'} selectLabel={'Rol'} onChange={updateRole} errors={errors.roleId} options={allRoles.map(x => {
           let option = new Option();
           option.id = x.id.toString();
           option.name = x.name;
@@ -124,6 +124,7 @@ const UserEdit : React.FC = () => {
           onChange={changeSelectedGoal} 
           selectLabel={'Doelstelling'} 
           value={user.goalId.toString()}
+          errors={errors.goalId}
           options={goals.map(goal => {
             let option = new Option();
             option.id = goal.id.toString();
