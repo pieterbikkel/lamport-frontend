@@ -109,5 +109,18 @@ describe("Login.tsx", () => {
     expect(errors[0]).toBe("Deze combinatie van gebruikersnaam en wachtwoord is niet gevonden!");
   });
 
+  it("vlgnr:70 Logout deletes token", async () => {
+    await page.goto("http://localhost:3000/login");
+    await page.waitForSelector(".nav-dropdown");
+
+    await page.select('.nav-dropdown', 'uitloggen');
+
+    await page.waitForSelector('.button');
+
+    const token = await page.evaluate(() => localStorage.getItem("token"));
+
+    expect(token).toBeNull();
+  });
+
   afterAll(() => browser.close());
 });
