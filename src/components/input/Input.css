@@ -40,10 +40,6 @@
     display: inline-block;
 }
 
-.input-component {
-    height: 7rem;
-}
-
 .input-error {
     background: url(../../assets/icons/error-exclamationmark.svg) no-repeat scroll 12px 12px;
     background-size: 580px 24px;
