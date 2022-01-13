@@ -149,8 +149,6 @@ describe("UserEdit.tsx", () => {
 
     await page.waitForSelector(".error");
 
-    //todo FAILS BECAUSE ERRORS ON DROPDOWNS ARE NOT IMPLEMENTED YET
-
     const errors = await page.evaluate(() => Array.from(document.querySelectorAll(".error")).map((el:any) => el.innerText));
 
     expect(errors[0]).toBe("Rol mag niet leeg zijn!");
@@ -177,8 +175,6 @@ describe("UserEdit.tsx", () => {
     await page.$eval('input[type=submit]', (el:any) => el.click());
 
     await page.waitForSelector(".error");
-
-    //todo FAILS BECAUSE ERRORS ON DROPDOWNS ARE NOT IMPLEMENTED YET
 
     const errors = await page.evaluate(() => Array.from(document.querySelectorAll(".error")).map((el:any) => el.innerText));
 

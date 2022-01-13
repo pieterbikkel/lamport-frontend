@@ -85,7 +85,6 @@ ReactDOM.render(
         </Route>
         <Route path="login" element={<Login/>}/>
         <Route
-        //todo 404
           path="*"
           element={
             <main style={{ padding: "1rem" }}>
