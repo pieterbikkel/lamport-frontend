@@ -52,8 +52,15 @@ describe("CommandEdit.tsx", () => {
     await page.goto("http://localhost:3000/interventies/commando/wijzigen/2");
     await page.waitForSelector("input[name=name]");
 
-    const nameInput:any = await page.$('input[name=commandText]');
+    const nameInput:any = await page.$('input[name=name]');
+
     await nameInput.click({ clickCount: 3 });
+    await page.keyboard.press('Backspace');
+    await nameInput.click({ clickCount: 1 });
+    await page.keyboard.type('TestCommando2', {delay: 10});
+
+    const textInput:any = await page.$('input[name=commandText]');
+    await textInput.click({ clickCount: 3 });
     await page.keyboard.press('Backspace');
 
     await page.$eval('input[type=submit]', (el:any) => el.click());

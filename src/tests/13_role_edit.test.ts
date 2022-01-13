@@ -33,6 +33,7 @@ describe("RoleEdit.tsx", () => {
 
     expect(succesText).toBe("Rol bijgewerkt!");
 
+    await page.waitForSelector(".table-row");
     const rows = await page.evaluate(() => Array.from(document.querySelectorAll(".table-row")).map((el:any) => el.innerText));
     
     expect(rows.length).toBe(2);

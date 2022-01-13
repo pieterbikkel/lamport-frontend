@@ -68,10 +68,10 @@ const AreaEdit : React.FC = () => {
     //This effect is needed because we sometimes want to update the circles whenever the location updates
     useEffect(() => {
       setMapKey(mapKey + 1);
-      if(area.longitude === undefined) {
+      // if(area.longitude === undefined) {
         setCircles([]);
-        return;
-      }
+      //   return;
+      // }
       
       setCircles([createCircle(area.longitude, area.latitude, area.radius, "red")]);
     }, [area]);

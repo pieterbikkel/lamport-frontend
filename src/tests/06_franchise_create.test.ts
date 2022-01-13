@@ -32,7 +32,7 @@ describe("FranchiseEdit.tsx", () => {
     const succesText = await page.$eval(".Toastify__toast-body", (el:any) => el.innerText);
 
     expect(succesText).toBe("Franchise aangemaakt!");
-
+    await page.waitForSelector(".table-row");
     const rows = await page.evaluate(() => Array.from(document.querySelectorAll(".table-row")).map((el:any) => el.innerText));
     
     expect(rows.length).toBe(4);
