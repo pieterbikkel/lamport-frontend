@@ -69,9 +69,11 @@ describe("AreaEdit.tsx", () => {
     await nameInput.click({ clickCount: 1 });
     await page.keyboard.type('TestGebied2', {delay: 10});
 
-    const longitutdeInput:any = await page.$('input[name=longitude]');
-    await longitutdeInput.click({ clickCount: 3 });
+    const longitudeInput:any = await page.$('input[name=longitude]');
+    await longitudeInput.click({ clickCount: 3 });
     await page.keyboard.press('Backspace');
+    await longitudeInput.click({ clickCount: 1 });
+    await page.keyboard.type('0', {delay: 10});
 
     const latitudeInput:any = await page.$('input[name=latitude]');
     await latitudeInput.click({ clickCount: 3 });
@@ -95,6 +97,7 @@ describe("AreaEdit.tsx", () => {
   });
 
   it("vlgnr:6 Empty radius gives error", async () => {
+    await page.setViewport({height: 720, width: 1280});
     await page.goto("http://localhost:3000/gebieden/wijzigen/0");
 
     await page.waitForSelector("input[name=name]");
