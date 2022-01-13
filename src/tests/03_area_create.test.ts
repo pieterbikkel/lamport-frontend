@@ -133,7 +133,7 @@ describe("AreaEdit.tsx", () => {
     const errors = await page.evaluate(() => Array.from(document.querySelectorAll(".error")).map((el:any) => el.innerText));
 
     expect(errors[0]).toBe("Straal mag niet leeg zijn!");
-  }, 200000);
+  });
 
   afterAll(() => browser.close());
 });
