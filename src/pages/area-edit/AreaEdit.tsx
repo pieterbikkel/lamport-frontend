@@ -13,7 +13,7 @@ import { Circle } from 'leaflet';
 import createCircle from '../../adapters/circle/CircleFactory';
 
 const AreaEdit : React.FC = () => {
-  const [area, setArea] = useState({} as AreaDTO);
+  const [area, setArea] = useState(new AreaDTO());
   const [service, setService] = useState({} as AreaService);
   const [errors, setErrors] = useState({} as any);
   const [circles, setCircles] = useState([] as Circle[]);
@@ -50,9 +50,7 @@ const AreaEdit : React.FC = () => {
   useEffect(() => {
     const areaService = new AreaService();
     setService(areaService)
-    if(!isEdit) {
-      setArea(new AreaDTO())
-    } else {
+    if(isEdit) {
       areaService.loadOne(id)
       .then(val => {
         setArea(val);
@@ -69,16 +67,16 @@ const AreaEdit : React.FC = () => {
 
     //This effect is needed because we sometimes want to update the circles whenever the location updates
     useEffect(() => {
-      if(area.longitude === undefined) {
+      setMapKey(mapKey + 1);
+      // if(area.longitude === undefined) {
         setCircles([]);
-        return;
-      }
+      //   return;
+      // }
       
       setCircles([createCircle(area.longitude, area.latitude, area.radius, "red")]);
-      setMapKey(mapKey + 1);
     }, [area]);
 
-  if(!area.longitude) {
+  if(!area) {
     return <div></div>
   }
 
@@ -91,11 +89,11 @@ const AreaEdit : React.FC = () => {
           <div>
             <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={area.name} errors={errors.name}/>
             <br/>
-            <Input placeholderText={'Lengtegraad'} inputName={'longitude'} inputType={'number'} inputLabel={'Lengtegraad'} onChange={handleChange} value={area.longitude === 0 ? "" : area.longitude }  errors={errors.longitude}/>
+            <Input placeholderText={'Lengtegraad'} inputName={'longitude'} inputType={'number'} inputLabel={'Lengtegraad'} onChange={handleChange} value={area.longitude}  errors={errors.longitude}/>
             <br/>
-            <Input placeholderText={'Breedtegraad'} inputName={'latitude'} inputType={'number'} inputLabel={'Breedtegraad'} onChange={handleChange} value={area.latitude === 0 ? "" : area.latitude} errors={errors.latitude}/>
+            <Input placeholderText={'Breedtegraad'} inputName={'latitude'} inputType={'number'} inputLabel={'Breedtegraad'} onChange={handleChange} value={area.latitude} errors={errors.latitude}/>
             <br/>
-            <Input placeholderText={'Straal in meters'} inputName={'radius'} inputType={'number'} inputLabel={'Straal'} onChange={handleChange} value={area.radius === 0 ? "" : area.radius} errors={errors.radius}/>
+            <Input placeholderText={'Straal in meters'} inputName={'radius'} inputType={'number'} inputLabel={'Straal'} onChange={handleChange} value={area.radius} errors={errors.radius}/>
             <br/>
             <SubmitButton value={isEdit ? "Opslaan" : "Voeg toe"}/>
           </div>

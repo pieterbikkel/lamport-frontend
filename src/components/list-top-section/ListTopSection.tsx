@@ -11,11 +11,12 @@ interface Props {
     buttonTitle: string,
     navigationLink?: string,
     onChange?: any,
+    onSearchChange: any,
     dropdownOptions?: Option[];
-    onClick: React.MouseEventHandler<HTMLButtonElement>
+    onSubmit?: any
 }
 
-function TopSection({ pageTitle, buttonTitle, navigationLink, onChange, dropdownOptions, onClick }: Props ) {
+function TopSection({ pageTitle, buttonTitle, navigationLink, onChange, dropdownOptions, onSubmit, onSearchChange }: Props ) {
 
     const navigate = useNavigate();
 
@@ -23,7 +24,7 @@ function TopSection({ pageTitle, buttonTitle, navigationLink, onChange, dropdown
         <div className="top-section-component">
             <h2>{pageTitle}</h2>
             <div className="top-section-component-right">
-                <Searchbar placeholderText={'zoeken...'} inputName={'search'} onClick={onClick}/>
+                <Searchbar placeholderText={'zoeken...'} inputName={'search'} onSubmit={onSubmit} onSearchChange={onSearchChange}/>
                 {navigationLink && <Button title={buttonTitle} onClick={() => navigate(navigationLink)} />}
                 {dropdownOptions && <Select placeholderText={'Toevoegen'} selectName={''} selectLabel={''} options={dropdownOptions} onChange={onChange}/>}
             </div>

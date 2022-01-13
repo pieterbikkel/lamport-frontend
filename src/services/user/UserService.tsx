@@ -1,4 +1,5 @@
 import networkAdapter from "../../adapters/network/NetworkAdapterFactory";
+import GoalDTO from "../../dto/GoalDTO";
 import RoleDTO from "../../dto/RoleDTO";
 import UserDTO from "../../dto/UserDTO";
 import IService from "../IService";
@@ -15,14 +16,21 @@ class UserService implements IService<UserDTO> {
             data.forEach((user: any) => {
                 let userDto: UserDTO = new UserDTO();
                 let roleDto: RoleDTO = new RoleDTO();
+                let goalDto: GoalDTO = new GoalDTO();
                 roleDto.id = user.role.id;
                 roleDto.name = user.role.name;
 
+                goalDto.id = user.goal.id;
+                goalDto.name = user.goal.name;
+                goalDto.profileQuestions = user.goal.profileQuestions;
+
                 userDto.role = roleDto;
+                userDto.linkedGoal = goalDto;
                 userDto.id = user.id;
                 userDto.username = user.username;
                 userDto.email = user.email;
                 userDto.roleId = roleDto.id;
+                userDto.goalId = goalDto.id;
 
                 toReturn.push(userDto);
             });
@@ -36,14 +44,21 @@ class UserService implements IService<UserDTO> {
         .then(user => {
             let userDto: UserDTO = new UserDTO();
             let roleDto: RoleDTO = new RoleDTO();
+            let goalDto: GoalDTO = new GoalDTO();
             roleDto.id = user.role.id;
             roleDto.name = user.role.name;
+
+            goalDto.id = user.goal.id;
+            goalDto.name = user.goal.name;
+            goalDto.profileQuestions = user.goal.profileQuestions;
             
             userDto.role = roleDto;
             userDto.id = user.id;
+            userDto.linkedGoal = goalDto;
             userDto.username = user.username;
             userDto.email = user.email;
             userDto.roleId = roleDto.id;
+            userDto.goalId = goalDto.id;
         
             return userDto;
         });

@@ -1,21 +1,24 @@
 import React from 'react';
 import './Searchbar.css';
+import { useState, useEffect, FormEvent } from 'react';
 import SearchIcon from '../../assets/icons/search.svg';
 
 interface Props {
     placeholderText: string,
     inputName: string,
-    onClick: React.MouseEventHandler<HTMLButtonElement>
+    onSubmit: any,
+    onSearchChange: any
 }
 
-function Searchbar({ placeholderText, inputName, onClick }: Props ) {
+function Searchbar({ placeholderText, inputName, onSubmit, onSearchChange }: Props ) {
+
 
     return (
         <div className="searchbar-container">
-            <input className="searchbar" type="text" name={inputName} placeholder={placeholderText + "..."}/>
-            <button className="search-button" onClick={onClick}>
-                <img src={SearchIcon} alt="zoeken" className="search-icon" />
-            </button>
+            <form onSubmit={onSubmit} className='searchbar-container'>
+                <input className="searchbar" type="text" name={inputName} onChange={onSearchChange} placeholder={placeholderText + "..."}/>
+                <input className="search-button" type="submit"/>
+            </form>
         </div>
     );
 }

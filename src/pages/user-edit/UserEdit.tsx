@@ -11,12 +11,15 @@ import Option from '../../components/select/Option';
 import RoleDTO from '../../dto/RoleDTO';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 import RoleService from '../../services/role/RoleService';
+import GoalDTO from '../../dto/GoalDTO';
+import GoalService from '../../services/goal/GoalService';
 
 const UserEdit : React.FC = () => {
   const [user, setUser] = useState({} as UserDTO);
   const [service, setService] = useState({} as UserService);
   const [errors, setErrors] = useState({} as any);
   const [allRoles, setAllRoles] = useState([] as RoleDTO[]);
+  const [goals, setGoals] = useState([] as GoalDTO[]);
   const params = useParams();
   const navigate = useNavigate();
 
@@ -63,11 +66,29 @@ const UserEdit : React.FC = () => {
     }
   }, [])
 
+  useEffect(() => {
+    const goalService = new GoalService();
+
+    goalService
+      .loadAll()
+      .then(goals => {
+        setGoals(goals);
+      })
+  }, [])
+
   const id: number = Number.parseInt(params.id === undefined ? "0" : params!.id);
   const isEdit: boolean = id !== 0;
 
   const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     setUser({...user, [e.target.id]: e.target.value})
+  }
+
+  const changeSelectedGoal = (id:string) => {
+    setUser({...user, "goalId": Number(id)});
+  }
+
+  if(!goals || !user || !user.linkedGoal) {
+    return null;
   }
 
   const updateRole = (id:string) => {
@@ -82,20 +103,38 @@ const UserEdit : React.FC = () => {
     <div>
       <Breadcrumb lastItem={user.username}/>
       <h2>{isEdit ? user.username + " Wijzigen" : "Gebruiker aanmaken"}</h2>
-      <form onSubmit={onSubmit}>
-        <Input placeholderText={'Naam'} inputName={'username'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={user.username} errors={errors.name}/>
+      <form className='user-edit-form' onSubmit={onSubmit}>
+        <Input placeholderText={'Naam'} inputName={'username'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={user.username} errors={errors.username}/>
         <br/>
-        <Input placeholderText={'Email'} inputName={'email'} inputType={'text'} inputLabel={'Email'} onChange={handleChange} value={user.email} errors={errors.name}/>
+        <Input placeholderText={'Email'} inputName={'email'} inputType={'text'} inputLabel={'Email'} onChange={handleChange} value={user.email} errors={errors.email}/>
         <br/>
-        <Input placeholderText={'Wachtwoord'} inputName={'password'} inputType={'password'} inputLabel={'Wachtwoord'} onChange={handleChange} value={user.password} errors={errors.name}/>
+        <Input placeholderText={'Wachtwoord'} inputName={'password'} inputType={'password'} inputLabel={'Wachtwoord'} onChange={handleChange} value={user.password} errors={errors.password}/>
         <br/>
-        <Select placeholderText={'Kies een rol'} value={user.roleId.toString()} selectName={'id'} selectLabel={'Rol'} onChange={updateRole} options={allRoles.map(x => {
+        <Select placeholderText={'Kies een rol'} value={user.roleId.toString()} selectName={'id'} selectLabel={'Rol'} onChange={updateRole} errors={errors.roleId} options={allRoles.map(x => {
+          let option = new Option();
+          option.id = x.id.toString();
+          option.name = x.name;
+
+          return option;
+        })} />
+        <br/>
+        <Select 
+          placeholderText={'Kies een Doelstelling'} 
+          selectName={'new-goal'} 
+          onChange={changeSelectedGoal} 
+          selectLabel={'Doelstelling'} 
+          value={user.goalId.toString()}
+          errors={errors.goalId}
+          options={goals.map(goal => {
             let option = new Option();
-            option.id = x.id.toString();
-            option.name = x.name;
+            option.id = goal.id.toString();
+            option.name = goal.name;
 
             return option;
-          })} />
+          })
+          }
+        />
+        <br/>
         <SubmitButton value={isEdit ? "Opslaan" : "Voeg toe"}/>
       </form>
     </div>

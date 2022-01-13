@@ -5,6 +5,8 @@ import DetailTopSection from '../../components/detail-top-section/DetailTopSecti
 import UserDTO from '../../dto/UserDTO';
 import UserService from '../../services/user/UserService';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
+import GoalService from '../../services/goal/GoalService';
+import GoalDTO from '../../dto/GoalDTO';
 
 function UserDetail() {
   const [user, setUser] = useState({} as UserDTO);
@@ -42,6 +44,10 @@ function UserDetail() {
           <tr>
             <td className="table-min-width">Rol:</td>
             <td>{user.role.name}</td>
+          </tr>
+          <tr>
+            <td className="table-min-width">Doelstelling:</td>
+            <td>{user.linkedGoal.name}</td>
           </tr>
         </tbody>
       </table>

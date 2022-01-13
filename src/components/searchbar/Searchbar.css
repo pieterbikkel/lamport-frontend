@@ -37,7 +37,13 @@
     align-items: center;
     justify-content: center;
     background-color: var(--wur-licht-grijs);
+    background-image: url('../../assets/icons/search.svg');
+    background-repeat: no-repeat;
     transition: 0.4s;
+    border: none;
+    text-indent: -99999px;
+    background-position: center;
+    
 }
 
 .search-button:hover {

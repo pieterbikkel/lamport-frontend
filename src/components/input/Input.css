@@ -23,6 +23,11 @@
 
 .input-label {
     margin: 0;
+    color: var(--wur-zwart);
+}
+
+.input-label-error {
+    color: var(--wur-rood);
 }
 
 .input:focus {
@@ -30,9 +35,21 @@
 }
 
 .error {
-    padding: 1rem;
-    background-color: var(--wur-error-bg);
-    border: 2px solid var(--wur-rood);
+    padding: 0.1rem;
+    color: var(--wur-rood);
     display: inline-block;
-    clear:both;
+}
+
+.input-error {
+    background: url(../../assets/icons/error-exclamationmark.svg) no-repeat scroll 12px 12px;
+    background-size: 580px 24px;
+    background-color: var(--wur-error-bg);
+    border: 3px solid var(--wur-rood);
+}
+
+input.input-error:autofill {
+    background: var(--wur-error-bg);
+    background: url(../../assets/icons/error-exclamationmark.svg) no-repeat scroll 12px 12px;
+    background-size: 580px 24px;
+    background-color: var(--wur-error-bg);
 }

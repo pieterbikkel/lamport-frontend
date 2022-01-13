@@ -37,10 +37,8 @@ class AxiosNetworkAdapter implements INetworkAdapter {
             headers: this.getHeaders()
         }).catch(ex => {
             if(ex.response.status === 403) {
-                //todo redirect to home page - Bart(17-12-2021)
                 createBrowserHistory().push('/');
                 window.location.reload();
-                //todo find a way to properly show the toast and make navigating more seamless - Bart(17-12-2021)
                 toast.error("U heeft geen toestemming om deze pagina te bezoeken!");
             }
             return Promise.reject(ex);
@@ -64,6 +62,7 @@ class AxiosNetworkAdapter implements INetworkAdapter {
             return data
         });
     }
+    
     public delete = async (path: string): Promise<any> => {
         return axios.delete   (this.buildUrl(path), {
             headers: this.getHeaders()
