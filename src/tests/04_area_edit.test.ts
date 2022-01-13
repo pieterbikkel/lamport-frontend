@@ -92,6 +92,7 @@ describe("AreaEdit.tsx", () => {
   });
 
   it("vlgnr:9 Empty radius gives error", async () => {
+    await page.setViewport({height: 720, width: 1280});
     await page.goto("http://localhost:3000/gebieden/wijzigen/2");
     await page.waitForSelector("input[name=name]");
 
