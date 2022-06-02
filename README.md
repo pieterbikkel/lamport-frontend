@@ -2,6 +2,8 @@
 
 This project was made with React using TypeScript.
 
+**You can find the backend [here](https://github.com/pieterbikkel/lamport-backend)**
+
 ## Getting Started
 
 In the project directory, you can run:
